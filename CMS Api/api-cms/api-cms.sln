@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api-cms", "api-cms.csproj", "{CFDC228B-3C86-4816-9DD3-3A864136F465}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFDC228B-3C86-4816-9DD3-3A864136F465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDC228B-3C86-4816-9DD3-3A864136F465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDC228B-3C86-4816-9DD3-3A864136F465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDC228B-3C86-4816-9DD3-3A864136F465}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4C59FE5-6C4B-4215-8A5D-738541BC2A0D}
+	EndGlobalSection
+EndGlobal
