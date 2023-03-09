@@ -1,36 +1,38 @@
-﻿using CMS_API.ConfigurationDB;
+﻿using api_cms.Object;
+using CMS_API.ConfigurationDB;
 using CMS_API.Library;
 using CMS_API.Object;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using static api_cms.Object.User;
 using static CMS_API.Library.GeneralLib;
 using static CMS_API.Object.Log;
 
-namespace CMS_API.Controllers
+namespace api_cms.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MenuController : ControllerBase
+    public class UserController : ControllerBase
     {
-        // GET: MenuController
         [HttpGet]
-        public GeneralResponseData<List<ListMenus>> GetAll()
+        public GeneralResponseData<List<ListUsers>> GetAll()
         {
             #region Intansiasi Object
-            GeneralResponseData<List<ListMenus>> ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>();
-            List<ListMenus> ObjListMenus = new List<ListMenus>();
+            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
+            List<ListUsers> ObjListUsers = new List<ListUsers>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
             string strControllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
             #endregion
 
-            #region Flow Control
+            #region FlowControl
             try
             {
                 string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                string query = HabakuDB.Query.SELECT_ALL_MENU;
+                string query = HabakuDB.Query.SELECT_ALL_USER;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -41,29 +43,31 @@ namespace CMS_API.Controllers
                         {
                             while (reader.Read())
                             {
-                                ObjListMenus.Add(new ListMenus
+                                ObjListUsers.Add(new ListUsers
                                 {
-                                    menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
-                                    menu_name = reader.GetString(reader.GetOrdinal("menu_name")),
-                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
+                                    user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
+                                    user_name = reader.GetString(reader.GetOrdinal("user_name")),
+                                    role = reader.GetString(reader.GetOrdinal("role"))
                                 });
                             }
                         }
                     }
                 }
 
-                ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>
+                ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>
                 {
                     Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS,
                     Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS,
-                    Data = ObjListMenus
+                    Data = ObjListUsers
                 };
 
             }
             catch (Exception ex)
             {
-                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+
+                throw;
             }
             #endregion
 
@@ -71,26 +75,25 @@ namespace CMS_API.Controllers
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListMenus;
+            writeFileLogResult.result = ObjResponseListUsers;
             writeFileLogResult.param = null;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListMenus.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListMenus;
+            return ObjResponseListUsers;
         }
 
-        // GET : MenuController/5
-        [HttpGet("{menu_id}")]
-        public GeneralResponseData<List<ListMenus>> GetById(string menu_id)
+        [HttpGet("{user_id}")]
+        public GeneralResponseData<List<ListUsers>> GetById(string user_id)
         {
             #region Intansiasi Object
-            GeneralResponseData<List<ListMenus>> ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>();
-            List<ListMenus> ObjListMenus = new List<ListMenus>();
+            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
+            List<ListUsers> ObjListUsers = new List<ListUsers>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -98,12 +101,12 @@ namespace CMS_API.Controllers
             #endregion
 
             #region Validation
-            if (string.IsNullOrEmpty(menu_id))
+            if (string.IsNullOrEmpty(user_id))
             {
-                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
-                return ObjResponseListMenus;
+                return ObjResponseListUsers;
             }
             #endregion
 
@@ -111,13 +114,13 @@ namespace CMS_API.Controllers
             try
             {
                 string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                string query = HabakuDB.Query.SELECT_MENU;
+                string query = HabakuDB.Query.SELECT_USER;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@menu_id", menu_id);
+                        command.Parameters.AddWithValue("@user_id", user_id);
 
                         connection.Open();
 
@@ -125,28 +128,28 @@ namespace CMS_API.Controllers
                         {
                             while (reader.Read())
                             {
-                                ObjListMenus.Add(new ListMenus
+                                ObjListUsers.Add(new ListUsers
                                 {
-                                    menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
-                                    menu_name = reader.GetString(reader.GetOrdinal("menu_name")),
-                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
+                                    user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
+                                    user_name = reader.GetString(reader.GetOrdinal("user_name")),
+                                    role = reader.GetString(reader.GetOrdinal("role"))
                                 });
                             }
                         }
                     }
                 }
 
-                ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>
+                ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>
                 {
                     Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS,
                     Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS,
-                    Data = ObjListMenus
+                    Data = ObjListUsers
                 };
             }
             catch (Exception ex)
             {
-                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
             }
             #endregion
 
@@ -154,26 +157,24 @@ namespace CMS_API.Controllers
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListMenus;
-            writeFileLogResult.param = menu_id;
+            writeFileLogResult.result = ObjResponseListUsers;
+            writeFileLogResult.param = user_id;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListMenus.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListMenus;
+            return ObjResponseListUsers;
         }
 
-        // POST: MenuController/Create
         [HttpPost]
-        public GeneralResponse Create(Menu collection)
+        public GeneralResponse Create(ParamCreateUser collection)
         {
-
             #region Intansiasi Object
-            var ObjParamRequestMenu = new Menu();
+            var ObjParamRequestUser = new ParamCreateUser();
             var ObjResponse = new GeneralResponse();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
@@ -182,7 +183,7 @@ namespace CMS_API.Controllers
             #endregion
 
             #region Validation
-            if (string.IsNullOrEmpty(collection.menu_name))
+            if (string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
             {
                 ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
                 ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
@@ -195,14 +196,15 @@ namespace CMS_API.Controllers
             try
             {
                 string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                string query = HabakuDB.Query.INSERT_MENU;
+                string query = HabakuDB.Query.INSERT_USER;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@menu_name", collection.menu_name);
-                        command.Parameters.AddWithValue("@status", 0);
+                        command.Parameters.AddWithValue("@user_name", collection.user_name);
+                        command.Parameters.AddWithValue("@password", collection.password);
+                        command.Parameters.AddWithValue("@role", collection.role);
                         command.Parameters.AddWithValue("@created_at", DateTime.Now);
                         command.Parameters.AddWithValue("@created_by", collection.created_by);
 
@@ -238,12 +240,11 @@ namespace CMS_API.Controllers
             return ObjResponse;
         }
 
-        // PUT: MenuController/5
-        [HttpPut("{menu_id}")]
-        public GeneralResponse Update(UpdateMenu collection)
+        [HttpPut("{user_id}")]
+        public GeneralResponse Update(ParamUpdateUser collection)
         {
             #region Intansiasi Object
-            var ObjParamRequestMenu = new Menu();
+            var ObjParamRequestUser = new User();
             var ObjResponse = new GeneralResponse();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
@@ -252,10 +253,10 @@ namespace CMS_API.Controllers
             #endregion
 
             #region Validation
-            if (collection.menu_id == null || collection.menu_id == 0)
+            if (collection.user_id == null || collection.user_id == 0 || string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
             {
                 ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_ID_NULL;
+                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
                 return ObjResponse;
             }
@@ -265,15 +266,16 @@ namespace CMS_API.Controllers
             try
             {
                 string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                string query = HabakuDB.Query.UPDATE_MENU;
+                string query = HabakuDB.Query.UPDATE_USER;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@menu_id", collection.menu_id);
-                        command.Parameters.AddWithValue("@menu_name", collection.menu_name);
-                        command.Parameters.AddWithValue("@status", collection.status);
+                        command.Parameters.AddWithValue("@user_id", collection.user_id);
+                        command.Parameters.AddWithValue("@user_name", collection.user_name);
+                        command.Parameters.AddWithValue("@password", collection.password);
+                        command.Parameters.AddWithValue("@role", collection.role);
                         command.Parameters.AddWithValue("@modified_at", DateTime.Now);
                         command.Parameters.AddWithValue("@modified_by", collection.modified_by);
 
@@ -308,5 +310,6 @@ namespace CMS_API.Controllers
 
             return ObjResponse;
         }
+
     }
 }
