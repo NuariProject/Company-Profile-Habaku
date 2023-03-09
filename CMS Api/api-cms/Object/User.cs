@@ -6,6 +6,7 @@
         {
             public int user_id { get; set; }
             public string user_name { get; set; }
+            public string pasasword { get; set; }
             public string role { get; set; }
         }
 

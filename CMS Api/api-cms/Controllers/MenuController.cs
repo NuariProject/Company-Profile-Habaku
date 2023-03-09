@@ -169,12 +169,13 @@ namespace CMS_API.Controllers
 
         // POST: MenuController/Create
         [HttpPost]
-        public GeneralResponse Create(Menu collection)
+        public GeneralResponseData<List<ListMenus>> Create(Menu collection)
         {
 
             #region Intansiasi Object
             var ObjParamRequestMenu = new Menu();
             var ObjResponse = new GeneralResponse();
+            GeneralResponseData<List<ListMenus>> ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -184,10 +185,10 @@ namespace CMS_API.Controllers
             #region Validation
             if (string.IsNullOrEmpty(collection.menu_name))
             {
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
-                return ObjResponse;
+                return ObjResponseListMenus;
             }
             #endregion
 
@@ -211,8 +212,8 @@ namespace CMS_API.Controllers
                     }
                 }
 
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
             }
             catch (Exception ex)
             {
@@ -235,16 +236,17 @@ namespace CMS_API.Controllers
 
             #endregion
 
-            return ObjResponse;
+            return ObjResponseListMenus;
         }
 
         // PUT: MenuController/5
         [HttpPut("{menu_id}")]
-        public GeneralResponse Update(UpdateMenu collection)
+        public GeneralResponseData<List<ListMenus>> Update(UpdateMenu collection)
         {
             #region Intansiasi Object
             var ObjParamRequestMenu = new Menu();
             var ObjResponse = new GeneralResponse();
+            GeneralResponseData<List<ListMenus>> ObjResponseListMenus = new GeneralResponseData<List<ListMenus>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -254,10 +256,10 @@ namespace CMS_API.Controllers
             #region Validation
             if (collection.menu_id == null || collection.menu_id == 0)
             {
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_ID_NULL;
+                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_ID_NULL;
 
-                return ObjResponse;
+                return ObjResponseListMenus;
             }
             #endregion
 
@@ -282,8 +284,8 @@ namespace CMS_API.Controllers
                     }
                 }
 
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                ObjResponseListMenus.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                ObjResponseListMenus.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
             }
             catch (Exception ex)
             {
@@ -306,7 +308,7 @@ namespace CMS_API.Controllers
 
             #endregion
 
-            return ObjResponse;
+            return ObjResponseListMenus;
         }
     }
 }

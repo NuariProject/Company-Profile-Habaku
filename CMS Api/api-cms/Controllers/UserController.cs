@@ -2,7 +2,6 @@
 using CMS_API.ConfigurationDB;
 using CMS_API.Library;
 using CMS_API.Object;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
@@ -47,6 +46,7 @@ namespace api_cms.Controllers
                                 {
                                     user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
                                     user_name = reader.GetString(reader.GetOrdinal("user_name")),
+                                    pasasword = reader.GetString(reader.GetOrdinal("password")),
                                     role = reader.GetString(reader.GetOrdinal("role"))
                                 });
                             }
@@ -132,6 +132,7 @@ namespace api_cms.Controllers
                                 {
                                     user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
                                     user_name = reader.GetString(reader.GetOrdinal("user_name")),
+                                    pasasword = reader.GetString(reader.GetOrdinal("password")),
                                     role = reader.GetString(reader.GetOrdinal("role"))
                                 });
                             }
@@ -171,11 +172,12 @@ namespace api_cms.Controllers
         }
 
         [HttpPost]
-        public GeneralResponse Create(ParamCreateUser collection)
+        public GeneralResponseData<List<ListUsers>> Create(ParamCreateUser collection)
         {
             #region Intansiasi Object
             var ObjParamRequestUser = new ParamCreateUser();
             var ObjResponse = new GeneralResponse();
+            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -185,10 +187,10 @@ namespace api_cms.Controllers
             #region Validation
             if (string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
             {
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
-                return ObjResponse;
+                return ObjResponseListUsers;
             }
             #endregion
 
@@ -213,13 +215,13 @@ namespace api_cms.Controllers
                     }
                 }
 
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
             }
             catch (Exception ex)
             {
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
             }
             #endregion
 
@@ -237,15 +239,16 @@ namespace api_cms.Controllers
 
             #endregion
 
-            return ObjResponse;
+            return ObjResponseListUsers;
         }
 
         [HttpPut("{user_id}")]
-        public GeneralResponse Update(ParamUpdateUser collection)
+        public GeneralResponseData<List<ListUsers>> Update(ParamUpdateUser collection)
         {
             #region Intansiasi Object
             var ObjParamRequestUser = new User();
             var ObjResponse = new GeneralResponse();
+            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -255,10 +258,10 @@ namespace api_cms.Controllers
             #region Validation
             if (collection.user_id == null || collection.user_id == 0 || string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
             {
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
-                return ObjResponse;
+                return ObjResponseListUsers;
             }
             #endregion
 
@@ -284,8 +287,8 @@ namespace api_cms.Controllers
                     }
                 }
 
-                ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
             }
             catch (Exception ex)
             {
@@ -308,7 +311,7 @@ namespace api_cms.Controllers
 
             #endregion
 
-            return ObjResponse;
+            return ObjResponseListUsers;
         }
 
     }

@@ -20,8 +20,8 @@ namespace CMS_API.ConfigurationDB
 
             #region User
             public const string INSERT_USER = "INSERT INTO [User] (user_name, password, role, created_at, created_by) VALUES (@user_name, @password, @role, @created_at, @created_by);";
-            public const string SELECT_ALL_USER = "SELECT user_id, user_name, role FROM [User];";
-            public const string SELECT_USER = "SELECT user_id, user_name, role FROM [User] WHERE user_id = @user_id;";
+            public const string SELECT_ALL_USER = "SELECT user_id, user_name, password, role FROM [User];";
+            public const string SELECT_USER = "SELECT user_id, user_name, password, role FROM [User] WHERE user_id = @user_id;";
             public const string UPDATE_USER = "UPDATE [User] SET user_name = @user_name, password = @password, ROLE = @role, modified_at = @modified_at, modified_by = @modified_by WHERE user_id = @user_id;";
 
             #endregion
