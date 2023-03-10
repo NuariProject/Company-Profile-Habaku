@@ -6,7 +6,9 @@ namespace CMS_API.ConfigurationDB
     {
         public static class ConnectionStrings
         {
-            public const string HABAKU_CONNECTION = "Data Source=localhost;Initial Catalog=HabakuDB;Integrated Security=True;TrustServerCertificate=True";
+            //"Data Source=FR-000-448\\SQLEXPRESS;Initial Catalog=HabakuDB;Integrated Security=True;TrustServerCertificate=True"
+
+            public const string HABAKU_CONNECTION = "Data Source=FR-000-448\\SQLEXPRESS;Initial Catalog=HabakuDB;Integrated Security=True;TrustServerCertificate=True";
 
         }
         public static class Query
