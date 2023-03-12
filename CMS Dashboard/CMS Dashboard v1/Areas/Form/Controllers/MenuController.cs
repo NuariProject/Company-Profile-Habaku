@@ -186,7 +186,6 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             return View(model);
         }
 
-
         [Route("Menu/Delete")]
         public async Task<IActionResult> Delete(int id)
         {

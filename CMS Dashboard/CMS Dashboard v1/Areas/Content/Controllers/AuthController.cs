@@ -20,7 +20,7 @@ namespace CMS_Dashboard_v1.Areas.Content.Controllers
             _configuration = configuration;
         }
 
-        [Route("/")]
+        [Route("/Login")]
         public IActionResult Login()
         {
             return View();
@@ -28,7 +28,7 @@ namespace CMS_Dashboard_v1.Areas.Content.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/")]
+        [Route("/Login")]
         public async Task<IActionResult> Login(LoginModel model)
             {
             MasterDataService _masterDataService = new MasterDataService();
