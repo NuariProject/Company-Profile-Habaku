@@ -2,9 +2,11 @@
 using CMS_API.ConfigurationDB;
 using CMS_API.Library;
 using CMS_API.Object;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using static api_cms.Object.Section;
 using static api_cms.Object.User;
 using static CMS_API.Library.GeneralLib;
 using static CMS_API.Object.Log;
@@ -13,14 +15,14 @@ namespace api_cms.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class SectionController : ControllerBase
     {
         [HttpGet]
-        public GeneralResponseData<List<ListUsers>> GetAll()
+        public GeneralResponseData<List<ListSections>> GetAll()
         {
             #region Intansiasi Object
-            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
-            List<ListUsers> ObjListUsers = new List<ListUsers>();
+            GeneralResponseData<List<ListSections>> ObjResponseListSections = new GeneralResponseData<List<ListSections>>();
+            List<ListSections> ObjListSections = new List<ListSections>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -31,7 +33,7 @@ namespace api_cms.Controllers
             try
             {
                 string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                string query = HabakuDB.Query.SELECT_ALL_USER;
+                string query = HabakuDB.Query.SELECT_ALL_SECTION;
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -42,30 +44,31 @@ namespace api_cms.Controllers
                         {
                             while (reader.Read())
                             {
-                                ObjListUsers.Add(new ListUsers
+                                ObjListSections.Add(new ListSections
                                 {
-                                    user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
-                                    user_name = reader.GetString(reader.GetOrdinal("user_name")),
-                                    pasasword = reader.GetString(reader.GetOrdinal("password")),
-                                    role = reader.GetString(reader.GetOrdinal("role"))
+                                    section_id = reader.GetInt32(reader.GetOrdinal("section_id")),
+                                    menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
+                                    section_name = reader.GetString(reader.GetOrdinal("section_name")),
+                                    section_number = reader.GetInt32(reader.GetOrdinal("section_number")),
+                                    section_approve = reader.GetInt32(reader.GetOrdinal("section_approve"))
                                 });
                             }
                         }
                     }
                 }
 
-                ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>
+                ObjResponseListSections = new GeneralResponseData<List<ListSections>>
                 {
                     Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS,
                     Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS,
-                    Data = ObjListUsers
+                    Data = ObjListSections
                 };
 
             }
             catch (Exception ex)
             {
-                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                ObjResponseListSections.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListSections.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
 
                 throw;
             }
@@ -75,25 +78,25 @@ namespace api_cms.Controllers
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListUsers;
+            writeFileLogResult.result = ObjResponseListSections;
             writeFileLogResult.param = null;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListSections.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListUsers;
+            return ObjResponseListSections;
         }
 
-        [HttpGet("{user_id}")]
-        public GeneralResponseData<List<ListUsers>> GetById(string user_id)
+        [HttpGet("{section_id}")]
+        public GeneralResponseData<List<ListSections>> GetById(int section_id)
         {
             #region Intansiasi Object
-            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
-            List<ListUsers> ObjListUsers = new List<ListUsers>();
+            GeneralResponseData<List<ListSections>> ObjResponseListSections = new GeneralResponseData<List<ListSections>>();
+            List<ListSections> ObjListSections = new List<ListSections>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -103,87 +106,92 @@ namespace api_cms.Controllers
             #endregion
 
             #region Validation
-            if (string.IsNullOrEmpty(user_id))
+            if (section_id == null || section_id == 0)
             {
-                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListSections.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListSections.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
                 isValid = false;
             }
+
             #endregion
 
-            #region Flow Control
+            #region FlowControl
             if (isValid)
             {
                 try
                 {
                     string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                    string query = HabakuDB.Query.SELECT_USER;
+                    string query = HabakuDB.Query.SELECT_SECTION;
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@user_id", user_id);
+                            command.Parameters.AddWithValue("@section_id", section_id);
 
                             connection.Open();
+                            command.ExecuteNonQuery();
 
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
                                 while (reader.Read())
                                 {
-                                    ObjListUsers.Add(new ListUsers
+                                    ObjListSections.Add(new ListSections
                                     {
-                                        user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
-                                        user_name = reader.GetString(reader.GetOrdinal("user_name")),
-                                        pasasword = reader.GetString(reader.GetOrdinal("password")),
-                                        role = reader.GetString(reader.GetOrdinal("role"))
+                                        section_id = reader.GetInt32(reader.GetOrdinal("section_id")),
+                                        menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
+                                        section_name = reader.GetString(reader.GetOrdinal("section_name")),
+                                        section_number = reader.GetInt32(reader.GetOrdinal("section_number")),
+                                        section_approve = reader.GetInt32(reader.GetOrdinal("section_approve"))
                                     });
                                 }
                             }
                         }
                     }
 
-                    ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>
+                    ObjResponseListSections = new GeneralResponseData<List<ListSections>>
                     {
                         Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS,
                         Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS,
-                        Data = ObjListUsers
+                        Data = ObjListSections
                     };
+
                 }
                 catch (Exception ex)
                 {
-                    ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                    ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                    ObjResponseListSections.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                    ObjResponseListSections.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+
+                    throw;
                 }
             }
-
             #endregion
 
             #region Create Log File
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListUsers;
-            writeFileLogResult.param = user_id;
+            writeFileLogResult.result = ObjResponseListSections;
+            writeFileLogResult.param = section_id;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListSections.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListUsers;
+            return ObjResponseListSections;
         }
 
         [HttpPost]
-        public GeneralResponseData<List<ListUsers>> Create(ParamCreateUser collection)
+        public GeneralResponseData<List<ListSections>> Create(ParamCreateSection collection)
         {
             #region Intansiasi Object
-            var ObjParamRequestUser = new ParamCreateUser();
+            var ObjParamRequestSection = new ParamCreateSection();
             var ObjResponse = new GeneralResponse();
-            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
+            GeneralResponseData<List<ListSections>> ObjResponseListSection = new GeneralResponseData<List<ListSections>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -193,30 +201,31 @@ namespace api_cms.Controllers
             #endregion
 
             #region Validation
-            if (string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
+            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrWhiteSpace(collection.section_name) || collection.section_number == null)
             {
-                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
                 isValid = false;
             }
             #endregion
 
-            #region Flow Control
+            #region FlowControl
             if (isValid)
             {
                 try
                 {
                     string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                    string query = HabakuDB.Query.INSERT_USER;
+                    string query = HabakuDB.Query.INSERT_SECTION;
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@user_name", collection.user_name);
-                            command.Parameters.AddWithValue("@password", collection.password);
-                            command.Parameters.AddWithValue("@role", collection.role);
+                            command.Parameters.AddWithValue("@menu_id", collection.menu_id);
+                            command.Parameters.AddWithValue("@section_name", collection.section_name);
+                            command.Parameters.AddWithValue("@section_number", collection.section_number);
+                            command.Parameters.AddWithValue("@section_approve", collection.section_approve);
                             command.Parameters.AddWithValue("@created_at", DateTime.Now);
                             command.Parameters.AddWithValue("@created_by", collection.created_by);
 
@@ -225,42 +234,40 @@ namespace api_cms.Controllers
                         }
                     }
 
-                    ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                    ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                    ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                    ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
                 }
                 catch (Exception ex)
                 {
-                    ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                    ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                    ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                    ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
                 }
             }
-           
+
             #endregion
 
             #region Create Log File
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListUsers;
+            writeFileLogResult.result = ObjResponseListSection;
             writeFileLogResult.param = collection;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListSection.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListUsers;
+            return ObjResponseListSection;
         }
 
         [HttpPut("{user_id}")]
-        public GeneralResponseData<List<ListUsers>> Update(ParamUpdateUser collection)
+        public GeneralResponseData<List<ListSections>> Update(ParamUpdateSection collection)
         {
             #region Intansiasi Object
-            var ObjParamRequestUser = new User();
-            var ObjResponse = new GeneralResponse();
-            GeneralResponseData<List<ListUsers>> ObjResponseListUsers = new GeneralResponseData<List<ListUsers>>();
+            GeneralResponseData<List<ListSections>> ObjResponseListSection = new GeneralResponseData<List<ListSections>>();
 
             WriteFileLogResult writeFileLogResult = new WriteFileLogResult();
             string strMethod = this.HttpContext.Request.Method;
@@ -270,31 +277,32 @@ namespace api_cms.Controllers
             #endregion
 
             #region Validation
-            if (collection.user_id == null || collection.user_id == 0 || string.IsNullOrEmpty(collection.user_name) || string.IsNullOrEmpty(collection.password) || string.IsNullOrEmpty(collection.role))
+            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrWhiteSpace(collection.section_name) || collection.section_number == null)
             {
-                ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
+                ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
 
                 isValid = false;
             }
             #endregion
 
-            #region Flow Control
+            #region FlowControl
             if (isValid)
             {
                 try
                 {
                     string connectionString = HabakuDB.ConnectionStrings.HABAKU_CONNECTION;
-                    string query = HabakuDB.Query.UPDATE_USER;
+                    string query = HabakuDB.Query.UPDATE_SECTION;
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            command.Parameters.AddWithValue("@user_id", collection.user_id);
-                            command.Parameters.AddWithValue("@user_name", collection.user_name);
-                            command.Parameters.AddWithValue("@password", collection.password);
-                            command.Parameters.AddWithValue("@role", collection.role);
+                            command.Parameters.AddWithValue("@section_id", collection.section_id);
+                            command.Parameters.AddWithValue("@menu_id", collection.menu_id);
+                            command.Parameters.AddWithValue("@section_name", collection.section_name);
+                            command.Parameters.AddWithValue("@section_number", collection.section_number);
+                            command.Parameters.AddWithValue("@section_approve", collection.section_approve);
                             command.Parameters.AddWithValue("@modified_at", DateTime.Now);
                             command.Parameters.AddWithValue("@modified_by", collection.modified_by);
 
@@ -303,34 +311,33 @@ namespace api_cms.Controllers
                         }
                     }
 
-                    ObjResponseListUsers.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
-                    ObjResponseListUsers.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
+                    ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_SUCCESS;
+                    ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_SUCCESS;
                 }
                 catch (Exception ex)
                 {
-                    ObjResponse.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
-                    ObjResponse.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
+                    ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
+                    ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR + ex.Message;
                 }
             }
-           
+
             #endregion
 
             #region Create Log File
 
             //create log file
             writeFileLogResult.id = GenerateUniqueID();
-            writeFileLogResult.result = ObjResponseListUsers;
+            writeFileLogResult.result = ObjResponseListSection;
             writeFileLogResult.param = collection;
             writeFileLogResult.trxDate = GetDateFormatDate();
             writeFileLogResult.trxTime = GetDateFormatTime();
             //writeFileLogResult.paramExt = strJSONObj;
 
-            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListUsers.Code, strMethod);
+            WriteFileLog.Write(JsonConvert.SerializeObject(writeFileLogResult), strControllerName, ObjResponseListSection.Code, strMethod);
 
             #endregion
 
-            return ObjResponseListUsers;
+            return ObjResponseListSection;
         }
-
     }
 }
