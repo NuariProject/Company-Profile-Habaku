@@ -1,15 +1,13 @@
-﻿@model CMS_Dashboard_v1.Models.NavbarModel
-@{
-}
+﻿@model NavbarModel
 <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
     <div class="container-fluid navbar-inner">
 
         <!-- Navbar Brand Start -->
         <a href="#" class="navbar-brand">
             <!--Logo start-->
-            <img width="30" src="~/assets/images/icons/habaku-logo.png" />
+            <img width="70" src="~/assets/images/icons/habaku-logo.png" />
             <!--logo End-->
-            <h4 class="logo-title">Habaku</h4>
+            @*<h4 class="logo-title">Habaku</h4>*@
         </a>
         <!-- Navbar Brans End -->
 
@@ -40,10 +38,14 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                       @* <li><a class="dropdown-item" href="../dashboard/app/user-profile.html">Profile</a></li>
+                        @* <li><a class="dropdown-item" href="../dashboard/app/user-profile.html">Profile</a></li>
                         <li><a class="dropdown-item" href="../dashboard/app/user-privacy-setting.html">Privacy Setting</a></li>
                         <li><hr class="dropdown-divider"></li>*@
-                        <li><a class="dropdown-item" asp-area="Content" asp-controller="Auth" asp-action="Logout" >Logout</a></li>
+                        @foreach (var item in Model.load)
+                        {
+                         <li><a class="dropdown-item" href="../dashboard/app/user-profile.html">@item.name</a></li>
+                        }
+                        <li><a class="dropdown-item" asp-area="Content" asp-controller="Auth" asp-action="Logout">Logout</a></li>
                     </ul>
                 </li>
             </ul>

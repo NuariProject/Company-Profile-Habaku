@@ -240,7 +240,7 @@ namespace CMS_API.Controllers
         }
 
         // PUT: MenuController/5
-        [HttpPut("{menu_id}")]
+        [HttpPut]
         public GeneralResponseData<List<ListMenus>> Update(UpdateMenu collection)
         {
             #region Intansiasi Object

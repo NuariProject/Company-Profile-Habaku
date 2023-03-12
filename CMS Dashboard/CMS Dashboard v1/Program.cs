@@ -1,5 +1,10 @@
+using CMS_Dashboard_v1.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using System.Configuration;
+using System.Net.Http.Headers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +19,8 @@ builder.Services
   .AddCookie(options => {
       options.Cookie.Name = "_Auth";
       options.LoginPath = "/";
-      options.LogoutPath = "/";
+      options.LogoutPath = "/Auth/Logout";
+      options.AccessDeniedPath = "/";
       options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
   });
 
@@ -27,6 +33,8 @@ builder.Services
   });
 
 builder.Services.AddSession();
+builder.Services.AddResponseCaching();
+
 
 
 var app = builder.Build();
@@ -41,16 +49,15 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseResponseCaching();
 app.UseRouting();
 
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Content}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

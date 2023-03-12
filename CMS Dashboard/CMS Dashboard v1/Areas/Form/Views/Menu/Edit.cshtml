@@ -1,0 +1,57 @@
+﻿@model CMS_Dashboard_v1.Models.ModelForm.MenuViewModel
+@{
+    ViewBag.title = "Edit";
+}
+
+<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / Master Menu / </span> @ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            @*StartTittle*@
+            <div class="card-body">
+                @*Content*@
+            </div>
+            <hr class="my-0" />
+            @*EndTittle*@
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <form method="post" asp-action="Edit">
+                            <input asp-for="menu_id" hidden />
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Nama Menu</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="menu_name" placeholder="Silakan Input Disini">
+                                <span asp-validation-for="menu_name" class="text-danger"></span>
+                            </div>
+
+                            @*<div class="form-group">
+                            <label class="form-label">Status Menu</label>
+                            @Html.DropDownListFor(model => Model.status, ViewBag.versiList as SelectList, "Silakan Pilih Disini",
+                            new { @class="form-select shadow-none", @id="status"})
+                            <span asp-validation-for="status" class="text-danger"></span>
+                            </div>*@
+
+                            <br />
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a asp-controller="Menu" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                                Back to List
+                            </a>
+                        </form>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        //validation without call serverside
+        <partial name="_ValidationScriptspartial" />
+    }
+}
+
