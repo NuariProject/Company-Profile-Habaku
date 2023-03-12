@@ -254,7 +254,7 @@ namespace api_cms.Controllers
             return ObjResponseListUsers;
         }
 
-        [HttpPut("{user_id}")]
+        [HttpPut]
         public GeneralResponseData<List<ListUsers>> Update(ParamUpdateUser collection)
         {
             #region Intansiasi Object

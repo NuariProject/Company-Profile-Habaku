@@ -34,6 +34,11 @@ namespace CMS_API.ConfigurationDB
             public const string UPDATE_SECTION = "UPDATE [Section] SET menu_id = @menu_id, section_name = @section_name, section_number = @section_number, section_approve = @section_approve, modified_at = @modified_at, modified_by = @modified_by WHERE section_id = @section_id;";
 
             #endregion
+
+            #region Content
+            public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url FROM [Content];";
+
+            #endregion
         }
     }
 }
