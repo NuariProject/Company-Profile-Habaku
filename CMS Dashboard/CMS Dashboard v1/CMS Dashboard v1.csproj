@@ -7,4 +7,12 @@
     <RootNamespace>CMS_Dashboard_v1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Areas\Content\Controllers\AuthController.cs~RFab9575f.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+  </ItemGroup>
+
 </Project>

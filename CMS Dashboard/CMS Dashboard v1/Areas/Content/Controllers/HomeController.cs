@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CMS_Dashboard_v1.Controllers
+namespace CMS_Dashboard_v1.Areas.Content.Controllers
 {
-    //[Authorize]
+    [Area("Content")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -18,6 +19,10 @@ namespace CMS_Dashboard_v1.Controllers
         [Route("Home/Index")]
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             return View();
         }
 
