@@ -18,9 +18,6 @@ builder.Services
   })
   .AddCookie(options => {
       options.Cookie.Name = "_Auth";
-      options.LoginPath = "/";
-      options.LogoutPath = "/Auth/Logout";
-      options.AccessDeniedPath = "/";
       options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
   });
 
@@ -58,6 +55,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Content}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=LandingPage}/{controller=Habaku}/{action=Index}/{id?}");
 
 app.Run();
