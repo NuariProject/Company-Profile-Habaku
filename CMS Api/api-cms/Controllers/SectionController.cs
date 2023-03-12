@@ -201,7 +201,7 @@ namespace api_cms.Controllers
             #endregion
 
             #region Validation
-            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrWhiteSpace(collection.section_name) || collection.section_number == null)
+            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrEmpty(collection.section_name) || collection.section_number == null)
             {
                 ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
                 ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;
@@ -277,7 +277,7 @@ namespace api_cms.Controllers
             #endregion
 
             #region Validation
-            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrWhiteSpace(collection.section_name) || collection.section_number == null)
+            if (collection.menu_id == 0 || collection.menu_id == null || string.IsNullOrEmpty(collection.section_name) || collection.section_number == null)
             {
                 ObjResponseListSection.Code = GeneralLib.Constan.CONST_RES_CD_ERROR;
                 ObjResponseListSection.Messages = GeneralLib.Constan.CONST_RES_MESSAGE_ERROR_NULL;

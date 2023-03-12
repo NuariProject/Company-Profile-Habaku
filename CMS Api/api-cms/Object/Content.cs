@@ -12,5 +12,16 @@
             public string image { get; set; }
             public string url { get; set; }
         }
+
+        public class ParamCreateContent
+        {
+            public int section_id { get; set; }
+            public string header { get; set; }
+            public string title { get; set; }
+            public string description { get; set; }
+            public string image { get; set; }
+            public string url { get; set; }
+            public string created_by { get; set; }
+        }
     }
 }

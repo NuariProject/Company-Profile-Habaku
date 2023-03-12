@@ -36,6 +36,7 @@ namespace CMS_API.ConfigurationDB
             #endregion
 
             #region Content
+            public const string INSERT_CONTENT = "INSERT INTO [Content] (section_id, header, title, description, image, url, created_at, created_by) VALUES (@section_id, @header, @title, @description, @image, @url, @created_at, @created_by);";
             public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url FROM [Content];";
 
             #endregion
