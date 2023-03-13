@@ -38,6 +38,8 @@ namespace CMS_API.ConfigurationDB
             #region Content
             public const string INSERT_CONTENT = "INSERT INTO [Content] (section_id, header, title, description, image, url, created_at, created_by) VALUES (@section_id, @header, @title, @description, @image, @url, @created_at, @created_by);";
             public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url FROM [Content];";
+            public const string SELECT_CONTENT = "SELECT content_id, section_id, header, title, description, image, url FROM [Content] WHERE content_id = @content_id;";
+            public const string UPDATE_CONTENT = "UPDATE [Content] SET section_id = @section_id, header = @header, title = @title, description = @description, image = @image, url = @url, modified_at = @modified_at, modified_by = @modified_by WHERE content_id = @content_id;";
 
             #endregion
         }
