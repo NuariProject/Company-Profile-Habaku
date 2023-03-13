@@ -1,12 +1,432 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html lang="en">
 
-<h1>Ini adalah page untuk landing page</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/output-style.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="output-style.css">*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-@RenderBody();
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
 
-<h4>Jika ingin atur content silakan login</h4>
-<a asp-area="Content" asp-controller="Auth" asp-action="Login">To Login</a>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <title>Habaku || Beranda</title>
+</head>
+
+<body class="font-lato">
+    <!--Navbar-->
+    <div class="fixed w-full z-50" x-data="{ showBar: false }">
+        <header class="2xl:container mx-auto px-4 md:px-72 py-3 lg:py-5"
+                :class="{ 'bg-greyscale-0 shadow transition duration-100' : showBar }"
+                scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+            <nav class="flex justify-between items-center">
+                <a class="block overflow-hidden" asp-area="Content" asp-controller="Auth" asp-action="Login">
+                    <img class="h-40 lg:h-56 w-74 lg:w-100 object-cover" src="images/habaku-logo.png" />
+                </a>
+                <div>
+                    <button id="toggle-menu-button" class="z-50 lg:hidden relative">
+                        <!--Toggle Menu-->
+                        <div id="open" class="flex flex-col items-end justify-between">
+                            <span class="block text-blue-400 text-mh-head3">
+                                <i class="fa fa-bars"></i>
+                            </span>
+                        </div>
+                        <div id="close" class="hidden fixed top-6 right-8 flex flex-col items-end justify-between">
+                            <span class="block text-greyscale-80 text-mh-head3">
+                                <i class="bi bi-x"></i>
+                            </span>
+                        </div>
+                    </button>
+                    <div id="toggle-menu"
+                         class="container hidden lg:block bg-green-100 lg:bg-transparent pt-85 lg:pt-0 font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full w-3/4 flex flex-col lg:relative lg:w-auto lg:h-auto">
+                        <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
+                            <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
+                                <a href="index.html">Beranda</a>
+                            </li>
+                            <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                                <a href="produk.html">Produk</a>
+                            </li>
+                            <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                                <a href="artikel.html">Artikel</a>
+                            </li>
+                            <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                                <a href="tentang-kami.html">Tentang Kami</a>
+                            </li>
+                            <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                                <a href="hubungi-kami.html">Hubungi Kami</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!--Header Banner-->
+    <section>
+        <div class="relative h-full">
+            <div class="bg-green-200 absolute top-0 w-full h-full"></div>
+            <div class="2xl:container mx-auto">
+                <div class="relative grid grid-cols-1 lg:grid-cols-2 px-0 md:pl-72 md:pr-0 pt-72 pb-48 lg:pb-0">
+                    <img src="images/hero-homepage-mob-illustration.png" class="w-full h-full block lg:hidden" />
+                    <div class="text-center lg:text-left grid gap-4 my-auto px-4 lg:px-0">
+                        <h1 class="font-montserrat text-dh-head5 lg:text-dh-head4 text-greyscale-100">
+                            Solusi Tepat
+                            Belanja <br /><span class="text-blue-400">Hemat</span> dan <span class="text-blue-400">Cepat</span>.
+                        </h1>
+                        <p class="text-mb-small lg:text-db-small font-medium w-full lg:w-3/4">
+                            Membantu para pelaku usaha dalam melakukan pengadaan barang dengan proses belanja yang
+                            TEPAT, HEMAT, dan CEPAT untuk mendapatkan keuntungan maksimal.
+                        </p>
+                        <p class="font-semibold text-db-large text-blue-400 italic">#PastiLebihUntung</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs" class="pt-5">
+                            <button class="text-dc-large lg:text-db-small font-semibold bg-blue-400 rounded-full px-6 py-10 text-greyscale-0">
+                                Download Sekarang
+                            </button>
+                        </a>
+                    </div>
+                    <img src="images/hero-homepage-desk-illustration.png" class="w-full hidden lg:block" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Section Apa itu Habaku-->
+    <section class="bg-bgApaHabakuMob md:bg-bgApaHabakuDesk bg-cover bg-center bg-no-repeat">
+
+        @RenderBody()
+        <div class="container mx-auto px-4 py-4 md:px-72 lg:py-40 text-center">
+            <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2">
+                Apa Itu Habaku?
+            </h1>
+            <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+            <p class="pt-6 pb-8 w-full lg:w-3/5 mx-auto text-mb-small lg:text-db-small text-greyscale-80">
+                Habaku adalah mitra bagi para pelaku usaha yang bergerak di bidang kecantikan, mom & baby care serta
+                kesehatan untuk mendapatkan produk yang berkualitas, jumlah yang tidak terbatas dengan harga yang
+                bersahabat.<br /><br />
+                Kami mengutamakan kepuasan pelanggan dengan menyediakan platform belanja yang mudah diakses, proses
+                belanja yang mudah, pilihan metode pembayaran yang akurat, serta pengiriman yang aman dan cepat.
+            </p>
+            <img src="images/about-habaku-illustration.png" class="w-200 h-120 lg:w-fit lg:h-fit m-auto" />
+        </div>
+    </section>
+
+    <!--Section Kenapa Harus Belanja Di Habaku-->
+    <section class="bg-green-100">
+        <div class="container mx-auto px-4 py-4 md:px-200 lg:py-40">
+            <div class="animate-slideDown">
+                <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
+                    Kenapa Harus Belanja di Habaku?
+                </h1>
+                <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-40 pt-4 lg:pt-6">
+                <div class="flex lg:grid space-x-4 lg:space-x-0">
+                    <img src="images/easyuse-illustration.png"
+                         class="mx-auto w-72 h-72 lg:w-max lg:h-max hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue rounded-full" />
+                    <div class="pt-0 lg:pt-4 pb-1 text-left lg:text-center">
+                        <h1 class="font-bold text-mh-head7 lg:text-dh-head6">Belanja Lebih Mudah</h1>
+                        <p class="text-mb-small lg:text-db-small text-greyscale-80 lg:text-greyscale-100">
+                            Belanja kapan
+                            saja dengan pembayaran yang mudah,
+                            serta pengiriman yang cepat.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex lg:grid space-x-4 lg:space-x-0">
+                    <img src="images/exclusive-deals-illustration.png"
+                         class="mx-auto w-72 h-72 lg:w-max lg:h-max hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue rounded-full" />
+                    <div class="pt-0 lg:pt-4 pb-1 text-left lg:text-center">
+                        <h1 class="text-mh-head7 lg:text-dh-head6">Banyak Penawaran Eksklusif</h1>
+                        <p class="text-mb-small lg:text-db-small text-greyscale-80 lg:text-greyscale-100">
+                            Berbagai
+                            tawaran eksklusif dari mulai diskon produk,
+                            voucher spesial, hingga gratis ongkir.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex lg:grid space-x-4 lg:space-x-0">
+                    <img src="images/bonus-rewards-illustration.png"
+                         class="mx-auto w-72 h-72 lg:w-max lg:h-max hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue rounded-full" />
+                    <div class="pt-0 lg:pt-4 pb-1 text-left lg:text-center">
+                        <h1 class="font-bold text-mh-head7 lg:text-dh-head6">Bonus dan Reward</h1>
+                        <p class="text-mb-small lg:text-db-small text-greyscale-80 lg:text-greyscale-100">
+                            Semakin sering
+                            belanja, semakin banyak peluang untuk
+                            dapat bonus dan reward spesial.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Section Apa Kata Mereka-->
+    <section>
+        <div class="container mx-auto px-4 py-4 lg:px-200 lg:py-40">
+            <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
+                Apa Kata Mereka?
+            </h1>
+            <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+
+            <div class="wrapper-rev">
+                <div class="carousel-rev">
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-0 lg:pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-1.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-2.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-3.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-0 lg:pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-1.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-2.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative bottom-0 text-center">
+                        <div class="absolute top-0 left-0"><img src="images/home-quots-up-illustration.png" /></div>
+                        <div class="absolute bottom-0 right-0">
+                            <img src="images/home-quots-down-illustration.png" />
+                        </div>
+                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
+                            <p class="pt-6 pb-4 text-db-small">
+                                Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis
+                                augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed
+                                felis libero mi aliquam sed a neque bibendum semper.
+                            </p>
+                            <div class="flex space-x-3 justify-center">
+                                <img src="images/3d-avatar-3.png" class="w-max h-max" />
+                                <div class="grid gap-1 text-left">
+                                    <p class="text-mb-small font-semibold">John Doe</p>
+                                    <p class="text-mc-large">John Doe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Section Download Aplikasi Habaku-->
+    <section class="bg-green-200">
+        <div class="container mx-auto grid grid-cols-2">
+            <div class="flex flex-col gap-y-2 text-left pl-4 py-4 md:pl-200 lg:py-40 my-auto">
+                <h1 class="text-mb-small lg:text-dh-head5 font-bold">
+                    Download Aplikasi Habaku Sekarang!
+                </h1>
+                <p class="text-mc-large lg:text-db-small">
+                    Dapatkan voucher spesial untuk pengguna pertama, dan promo
+                    menarik lainnya!
+                </p>
+                <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
+                    <img src="images/google-play-badge.png" class="w-100 h-38 lg:w-max lg:h-max" />
+                </a>
+            </div>
+            <img src="images/phone-barcode-desk-illustration.png" class="w-max h-max mx-auto hidden lg:block" />
+            <img src="images/phone-barcode-mob-illustration.png" class="w-max h-max mx-auto block lg:hidden" />
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="bg-green-100">
+        <div class="container mx-auto">
+            <div class="py-8 px-8 lg:px-72 lg:py-40">
+                <img src="images/habaku-logo.png" class="w-85 h-52" />
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-20 pt-6 text-greyscale-100">
+                    <div>
+                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                            Perusahaan
+                        </h1>
+                        <div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
+                            <a href="tentang-kami.html">Tentang</a>
+                            <a href="produk.html">Produk</a>
+                            <a href="artikel.html">Artikel</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                            Hubungi Kami
+                        </h1>
+                        <div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
+                            <a href="hubungi-kami.html">Kontak</a>
+                            <a href="hubungi-kami.html">Lokasi</a>
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                            Temukan Habaku di:
+                        </h1>
+                        <div class="rounded-full w-fit py-1 px-2 bg-green-400 text-green-100">
+                            <a href="https://www.instagram.com/habakuapp/"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                            Unduh Aplikasi
+                        </h1>
+                        <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
+                            <div class="border border-green-400 flex space-x-1 py-2 pl-2 pr-3 rounded text-green-400 items-center w-fit">
+                                <i class="fab fa-google-play"></i>
+                                <p class="text-db-small font-semibold">Google Play</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-left lg:text-center text-greyscale-80 px-4 py-4">
+                © 2023 Habaku | Marketplace for Health & Beauty Products
+            </p>
+        </div>
+    </footer>
+</body>
+
+<!--Script for Responsive Navbar-->
+<script>
+    var button = document.querySelector('#toggle-menu-button');
+    var menu = document.querySelector('#toggle-menu');
+    var open = document.querySelector('#open');
+    var close = document.querySelector('#close');
+
+    button.addEventListener('click', (e) => {
+        menu.classList.toggle('hidden');
+        open.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+    });
+</script>
+
+<!-- Script for Review Carousel-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.carousel-rev').slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            arrows: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+</html>
