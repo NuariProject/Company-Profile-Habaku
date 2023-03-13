@@ -18,6 +18,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <!-- Masukkan script JavaScript yang memuat Google Maps API -->
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ_XlxltqRMHEaqUxKak6LkIb0jt4qRWM"></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callbac"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>*@
+
 
 </head>
 
@@ -37,9 +42,9 @@
                             Perusahaan
                         </h1>
                         <div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
-                            <a href="tentang-kami.html">Tentang</a>
-                            <a href="produk.html">Produk</a>
-                            <a href="artikel.html">Artikel</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
                         </div>
                     </div>
 
@@ -48,8 +53,8 @@
                             Hubungi Kami
                         </h1>
                         <div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
-                            <a href="hubungi-kami.html">Kontak</a>
-                            <a href="hubungi-kami.html">Lokasi</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Kontak</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Lokasi</a>
                         </div>
                     </div>
 
@@ -58,7 +63,7 @@
                             Temukan Habaku di:
                         </h1>
                         <div class="rounded-full w-fit py-1 px-2 bg-green-400 text-green-100">
-                            <a href="https://www.instagram.com/habakuapp/"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="https://www.instagram.com/habakuapp/"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
 
@@ -66,7 +71,7 @@
                         <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
                             Unduh Aplikasi
                         </h1>
-                        <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
+                        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
                             <div class="border border-green-400 flex space-x-1 py-2 pl-2 pr-3 rounded text-green-400 items-center w-fit">
                                 <i class="fab fa-google-play"></i>
                                 <p class="text-db-small font-semibold">Google Play</p>
@@ -367,6 +372,26 @@
             },
         };
     }
+</script>
+
+<script>
+    function initMap() {
+        // Buat objek peta dengan koordinat tengah yang ditentukan
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -6.226715266465861, lng: 106.83340277536963 },
+            zoom: 30
+        });
+
+        // Tambahkan marker ke posisi tertentu di peta
+        var marker = new google.maps.Marker({
+            position: { lat: -6.226715266465861, lng: 106.83340277536963 },
+            map: map,
+            title: 'Kantor Saya'
+        });
+    }
+
+    // Panggil fungsi initMap() setelah halaman selesai dimuat
+    google.maps.event.addDomListener(window, 'load', initMap);
 </script>
 
 </html>

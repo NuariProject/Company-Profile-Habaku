@@ -27,19 +27,19 @@
                      class="container hidden bg-green-100 lg:bg-transparent lg:block pt-85 lg:pt-0 font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full w-3/4 flex flex-col lg:relative lg:w-auto lg:h-auto">
                     <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="index.html">Beranda</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="produk.html">Produk</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="artikel.html">Artikel</a>
+                           <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="tentang-kami.html">Tentang Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang Kami</a>
                         </li>
                         <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
-                            <a href="hubungi-kami.html">Hubungi Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Hubungi Kami</a>
                         </li>
                     </ul>
                 </div>
@@ -50,11 +50,15 @@
 
 <!--Header Banner-->
 <main>
+
+   
+
     <div class="relative h-full">
         <div class="bg-greyscale-0 absolute top-0 w-full h-full"></div>
         <div class="2xl:container mx-auto">
             <div class="relative container mx-auto px-4 lg:px-200 pt-80 lg:pt-140 pb-6 lg:pb-40">
-                <img src="~/assets/images/habaku/mapsicle-map.png" class="w-full h-full rounded-xl" />
+                @*<img src="~/assets/images/habaku/mapsicle-map.png" class="w-full h-full rounded-xl" />*@
+                <div id="map" style="height: 500px;"></div>
                 <div class="text-left py-4 lg:py-6">
                     <h1 class="font-bold text-mh-head3 lg:text-dh-head4">
                         Alamat Habaku
@@ -66,7 +70,7 @@
                         Jakarta (12950).
                     </p>
                 </div>
-                <a href="https://www.google.com/maps/dir/-6.2068956,106.8296376/PT.+SANO+SOLUSI+BERDIKARI+Menara+Palma,+Lantai+17+Jalan+H.R.+Rasuna+Said+Kavling+VI+Nomor+9+Kuningan+Timur,+Setiabudi,+Jakarta+Selatan,+DKI+Jakarta+(12950)./-6.2168811,106.822702,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x2e69f3f1da7a4369:0x2421b19a6801489c!2m2!1d106.8334201!2d-6.2268668">
+                <a target="_blank" href="https://www.google.com/maps/dir/-6.2068956,106.8296376/PT.+SANO+SOLUSI+BERDIKARI+Menara+Palma,+Lantai+17+Jalan+H.R.+Rasuna+Said+Kavling+VI+Nomor+9+Kuningan+Timur,+Setiabudi,+Jakarta+Selatan,+DKI+Jakarta+(12950)./-6.2168811,106.822702,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x2e69f3f1da7a4369:0x2421b19a6801489c!2m2!1d106.8334201!2d-6.2268668">
                     <div class="font-bold justify-end items-center flex space-x-2 text-mh-head7 lg:text-dh-head6 text-blue-400">
                         <p class="hover:underline underline-offset-8 decoration-blue-400">Lihat Selengkapnya</p>
                         <i class='fas fa-arrow-right'></i>

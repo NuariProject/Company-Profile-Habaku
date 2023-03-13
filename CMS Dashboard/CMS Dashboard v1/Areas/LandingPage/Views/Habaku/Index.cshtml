@@ -2,11 +2,11 @@
     <title>Habaku || Beranda</title>
 </head>
 
- <!--Navbar-->
+<!--Navbar-->
 <div class="fixed w-full z-50">
     <header id="navbar" class="2xl:container mx-auto">
         <nav class="flex justify-between items-center">
-            <a class="block overflow-hidden" href="index.html">
+            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">
                 <img class="h-40 lg:h-56 w-74 lg:w-100 object-cover" src="~/assets/images/habaku/habaku-logo.png" />
             </a>
             <div>
@@ -27,19 +27,19 @@
                      class="container hidden lg:block bg-green-100 lg:bg-transparent pt-85 lg:pt-0 font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full w-3/4 flex flex-col lg:relative lg:w-auto lg:h-auto">
                     <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
                         <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
-                            <a href="index.html">Beranda</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="produk.html">Produk</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="artikel.html">Artikel</a>
+                           <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="tentang-kami.html">Tentang Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang Kami</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a href="hubungi-kami.html">Hubungi Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Hubungi Kami</a>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +73,7 @@
                             TEPAT, HEMAT, dan CEPAT untuk mendapatkan keuntungan maksimal.
                         </p>
                         <p class="font-semibold text-db-large text-blue-400 italic">#PastiLebihUntung</p>
-                        <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs" class="pt-5">
+                        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.dataprods.scs" class="pt-5">
                             <button class="text-dc-large lg:text-db-small font-semibold bg-blue-400 rounded-full px-6 py-10 text-greyscale-0">
                                 Download Sekarang
                             </button>
@@ -324,7 +324,7 @@
                     Dapatkan voucher spesial untuk pengguna pertama, dan promo
                     menarik lainnya!
                 </p>
-                <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
                     <img src="~/assets/images/habaku/google-play-badge.png" class="w-100 h-38 lg:w-max lg:h-max" />
                 </a>
             </div>
