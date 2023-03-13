@@ -10,5 +10,29 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
         {
             return View();
         }
+
+        [Route("/produk")]
+        public IActionResult Produk()
+        {
+            return View();
+        }
+
+        [Route("/artikel")]
+        public IActionResult Artikel()
+        {
+            return View();
+        }
+
+        [Route("/tentangkami")]
+        public IActionResult TentangKami()
+        {
+            return View();
+        }
+
+        [Route("/hubungikami")]
+        public IActionResult HubungiKami()
+        {
+            return View();
+        }
     }
 }
