@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection;
 using System.Net;
+using System.Configuration;
 
 namespace CMS_Dashboard_v1.Areas.Form.Controllers
 {
@@ -17,33 +18,16 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
     public class MenuController : Controller
     {
         readonly IConfiguration _configuration;
+        GlobalListApi _globallist = new GlobalListApi();
         public MenuController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public async Task<List<MenuModel>> GetDataApi()
-        {
-            MasterDataService _masterDataService = new MasterDataService();
-            var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
-            var enpoint = _configuration.GetValue<string>("Api-CMS:Menu");
-            var data = new BaseResponse<List<MenuModel>>();
-            var list = new List<MenuModel>(); 
-            var response = await _masterDataService.GetAsync(baseadd + enpoint);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                data = JsonConvert.DeserializeObject<BaseResponse<List<MenuModel>>>(jsonString);
-                list = data.data;
-            }
-
-            return list;
-        }
 
         public async Task<IActionResult> Index(MenuModel Model)
         {
-            var response =  await GetDataApi();
+            var response =  await _globallist.GetListMenu();
 
             try
             {
@@ -52,7 +36,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                     Model.List = (from a in response.Where(ss => ss.status)
                                   select new MenuViewModel
                                   {
-                                      menu_id = a.menu_id,
+                                      menu_id = Convert.ToInt16(a.menu_id),
                                       menu_name = a.menu_name,
                                   }).ToList();
                 }
@@ -85,8 +69,8 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         [HttpPost]
         [Route("Menu/Create")]
         public async Task<IActionResult> Create(MenuViewModel model)
-        {
-            var response = await GetDataApi();
+            {
+            var response = await _globallist.GetListMenu();
             if (response.Any(ss => ss.status && ss.menu_name == model.menu_name))
                 ModelState.AddModelError("menu_name", "Nama menu sudah terdaftar");
 
@@ -125,10 +109,10 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         public async Task<MenuViewModel> FindData(int id)
         {
             var model = new MenuViewModel();
-            var response = await GetDataApi();
+            var response = await _globallist.GetListMenu();
             var value = response.Where(ss => ss.menu_id == id && ss.status).FirstOrDefault();
 
-            model.menu_id = value.menu_id;
+            model.menu_id = Convert.ToInt16(value.menu_id);
             model.menu_name = value.menu_name;
 
             return (model);
@@ -147,7 +131,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         [Route("Menu/Edit")]
         public async Task<IActionResult> Edit(MenuViewModel model)
         {
-            var response = await GetDataApi();
+            var response = await _globallist.GetListMenu();
             if (response.Any(ss => ss.status && ss.menu_name == model.menu_name && ss.menu_id != model.menu_id))
                 ModelState.AddModelError("menu_name", "Nama menu sudah terdaftar");
 
