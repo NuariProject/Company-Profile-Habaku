@@ -213,7 +213,7 @@ namespace CMS_API.Controllers
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.AddWithValue("@menu_name", collection.menu_name);
-                            command.Parameters.AddWithValue("@status", 0);
+                            command.Parameters.AddWithValue("@status", 1);
                             command.Parameters.AddWithValue("@created_at", DateTime.Now);
                             command.Parameters.AddWithValue("@created_by", collection.created_by);
 
