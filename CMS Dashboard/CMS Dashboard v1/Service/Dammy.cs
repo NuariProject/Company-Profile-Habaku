@@ -1,9 +1,23 @@
 ﻿using CMS_Dashboard_v1.Models;
+using CMS_Dashboard_v1.Models.ModelForm;
 
 namespace CMS_Dashboard_v1.Service
 {
     public class Dammy
     {
+        GlobalListApi _globallist = new GlobalListApi();
+
+        public async Task<IList<MenuModel>> MenuList()
+        {
+           var list = new List<MenuModel>();
+            var listmenu = await _globallist.GetListMenu();
+
+            list = (from a in listmenu.Where(ss => ss.status)
+                    select a).ToList();
+
+            return list;
+        }
+
         public List<LoginDammyModel> UserList()
         {
             var list = new List<LoginDammyModel>();
