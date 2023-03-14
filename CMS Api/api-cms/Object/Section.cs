@@ -9,6 +9,7 @@
             public string section_name { get; set; }
             public int section_number { get; set; }
             public int section_approve { get; set; }
+            public bool status { get; set; }
         }
 
         public class ParamCreateSection
@@ -17,6 +18,7 @@
             public string section_name { get; set; }
             public int section_number { get; set; }
             public int section_approve { get; set; }
+            public bool status { get; set; }
             public string created_by { get; set; }
 
         }
@@ -28,6 +30,7 @@
             public string section_name { get; set; }
             public int section_number { get; set; }
             public int section_approve { get; set; }
+            public bool status { get; set; }
             public string modified_by { get; set; }
 
         }

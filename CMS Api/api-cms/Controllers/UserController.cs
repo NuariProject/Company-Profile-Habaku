@@ -47,7 +47,8 @@ namespace api_cms.Controllers
                                     user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
                                     user_name = reader.GetString(reader.GetOrdinal("user_name")),
                                     pasasword = reader.GetString(reader.GetOrdinal("password")),
-                                    role = reader.GetString(reader.GetOrdinal("role"))
+                                    role = reader.GetString(reader.GetOrdinal("role")),
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
                                 });
                             }
                         }
@@ -137,7 +138,8 @@ namespace api_cms.Controllers
                                         user_id = reader.GetInt32(reader.GetOrdinal("user_id")),
                                         user_name = reader.GetString(reader.GetOrdinal("user_name")),
                                         pasasword = reader.GetString(reader.GetOrdinal("password")),
-                                        role = reader.GetString(reader.GetOrdinal("role"))
+                                        role = reader.GetString(reader.GetOrdinal("role")),
+                                        status = reader.GetBoolean(reader.GetOrdinal("status"))
                                     });
                                 }
                             }
@@ -217,6 +219,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@user_name", collection.user_name);
                             command.Parameters.AddWithValue("@password", collection.password);
                             command.Parameters.AddWithValue("@role", collection.role);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@created_at", DateTime.Now);
                             command.Parameters.AddWithValue("@created_by", collection.created_by);
 
@@ -295,6 +298,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@user_name", collection.user_name);
                             command.Parameters.AddWithValue("@password", collection.password);
                             command.Parameters.AddWithValue("@role", collection.role);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@modified_at", DateTime.Now);
                             command.Parameters.AddWithValue("@modified_by", collection.modified_by);
 

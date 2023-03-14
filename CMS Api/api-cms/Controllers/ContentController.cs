@@ -49,7 +49,8 @@ namespace api_cms.Controllers
                                     title = reader.GetString(reader.GetOrdinal("title")),
                                     description = reader.GetString(reader.GetOrdinal("description")),
                                     image = reader.GetString(reader.GetOrdinal("image")),
-                                    url = reader.GetString(reader.GetOrdinal("url"))
+                                    url = reader.GetString(reader.GetOrdinal("url")),
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
                                 });
                             }
                         }
@@ -143,7 +144,8 @@ namespace api_cms.Controllers
                                         title = reader.GetString(reader.GetOrdinal("title")),
                                         description = reader.GetString(reader.GetOrdinal("description")),
                                         image = reader.GetString(reader.GetOrdinal("image")),
-                                        url = reader.GetString(reader.GetOrdinal("url"))
+                                        url = reader.GetString(reader.GetOrdinal("url")),
+                                        status = reader.GetBoolean(reader.GetOrdinal("status"))
                                     });
                                 }
                             }
@@ -228,6 +230,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@description", collection.description);
                             command.Parameters.AddWithValue("@image", collection.image);
                             command.Parameters.AddWithValue("@url", collection.url);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@created_at", DateTime.Now);
                             command.Parameters.AddWithValue("@created_by", collection.created_by);
 
@@ -306,6 +309,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@description", collection.description);
                             command.Parameters.AddWithValue("@image", collection.image);
                             command.Parameters.AddWithValue("@url", collection.url);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@modified_at", DateTime.Now);
                             command.Parameters.AddWithValue("@modified_by", collection.modified_by);
 

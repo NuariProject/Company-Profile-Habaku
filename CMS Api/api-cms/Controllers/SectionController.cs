@@ -50,7 +50,8 @@ namespace api_cms.Controllers
                                     menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
                                     section_name = reader.GetString(reader.GetOrdinal("section_name")),
                                     section_number = reader.GetInt32(reader.GetOrdinal("section_number")),
-                                    section_approve = reader.GetInt32(reader.GetOrdinal("section_approve"))
+                                    section_approve = reader.GetInt32(reader.GetOrdinal("section_approve")),
+                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
                                 });
                             }
                         }
@@ -143,7 +144,8 @@ namespace api_cms.Controllers
                                         menu_id = reader.GetInt32(reader.GetOrdinal("menu_id")),
                                         section_name = reader.GetString(reader.GetOrdinal("section_name")),
                                         section_number = reader.GetInt32(reader.GetOrdinal("section_number")),
-                                        section_approve = reader.GetInt32(reader.GetOrdinal("section_approve"))
+                                        section_approve = reader.GetInt32(reader.GetOrdinal("section_approve")),
+                                        status = reader.GetBoolean(reader.GetOrdinal("status"))
                                     });
                                 }
                             }
@@ -226,6 +228,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@section_name", collection.section_name);
                             command.Parameters.AddWithValue("@section_number", collection.section_number);
                             command.Parameters.AddWithValue("@section_approve", collection.section_approve);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@created_at", DateTime.Now);
                             command.Parameters.AddWithValue("@created_by", collection.created_by);
 
@@ -303,6 +306,7 @@ namespace api_cms.Controllers
                             command.Parameters.AddWithValue("@section_name", collection.section_name);
                             command.Parameters.AddWithValue("@section_number", collection.section_number);
                             command.Parameters.AddWithValue("@section_approve", collection.section_approve);
+                            command.Parameters.AddWithValue("@status", collection.status);
                             command.Parameters.AddWithValue("@modified_at", DateTime.Now);
                             command.Parameters.AddWithValue("@modified_by", collection.modified_by);
 

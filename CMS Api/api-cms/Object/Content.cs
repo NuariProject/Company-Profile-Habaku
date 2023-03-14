@@ -11,6 +11,8 @@
             public string description { get; set; }
             public string image { get; set; }
             public string url { get; set; }
+            public bool status { get; set; }
+
         }
 
         public class ParamCreateContent
@@ -21,6 +23,7 @@
             public string description { get; set; }
             public string image { get; set; }
             public string url { get; set; }
+            public bool status { get; set; }
             public string created_by { get; set; }
         }
 
@@ -33,6 +36,7 @@
             public string description { get; set; }
             public string image { get; set; }
             public string url { get; set; }
+            public bool status { get; set; }
             public string modified_by { get; set; }
         }
 
