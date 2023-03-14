@@ -14,7 +14,7 @@ namespace CMS_API.ConfigurationDB
         {
             #region Menu
             public const string INSERT_MENU = "INSERT INTO Menu (menu_name, status, created_at, created_by) VALUES (@menu_name, @status, @created_at, @created_by);";
-            public const string SELECT_ALL_MENU = "SELECT menu_id, menu_name, status FROM Menu;";
+            public const string SELECT_ALL_MENU = "SELECT menu_id, menu_name, status FROM Menu ORDER BY menu_id ASC;";
             public const string SELECT_MENU = "SELECT menu_id, menu_name, status FROM Menu WHERE menu_id = @menu_id;";
             public const string UPDATE_MENU = "UPDATE Menu SET menu_name = @menu_name, status = @status, modified_at = @modified_at, modified_by = @modified_by WHERE menu_id = @menu_id;";
             #endregion
@@ -29,7 +29,7 @@ namespace CMS_API.ConfigurationDB
 
             #region Section
             public const string INSERT_SECTION = "INSERT INTO [Section] (menu_id, section_name, section_number, section_approve, status, created_at, created_by) VALUES (@menu_id, @section_name, @section_number, @section_approve, @status, @created_at, @created_by);";
-            public const string SELECT_ALL_SECTION = "SELECT section_id, menu_id, section_name, section_number, section_approve, status FROM [Section];";
+            public const string SELECT_ALL_SECTION = "SELECT section_id, menu_id, section_name, section_number, section_approve, status FROM [Section] ORDER BY section_id ASC;";
             public const string SELECT_SECTION = "SELECT section_id, menu_id, section_name, section_number, section_approve, status FROM [Section] WHERE section_id = @section_id;";
             public const string UPDATE_SECTION = "UPDATE [Section] SET menu_id = @menu_id, section_name = @section_name, section_number = @section_number, section_approve = @section_approve, status = @status, modified_at = @modified_at, modified_by = @modified_by WHERE section_id = @section_id;";
 
@@ -37,7 +37,7 @@ namespace CMS_API.ConfigurationDB
 
             #region Content
             public const string INSERT_CONTENT = "INSERT INTO [Content] (section_id, header, title, description, image, url, status, created_at, created_by) VALUES (@section_id, @header, @title, @description, @image, @url, @status, @created_at, @created_by);";
-            public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status FROM [Content];";
+            public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status FROM [Content] ORDER BY content_id ASC;";
             public const string SELECT_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status FROM [Content] WHERE content_id = @content_id;";
             public const string UPDATE_CONTENT = "UPDATE [Content] SET section_id = @section_id, header = @header, title = @title, description = @description, image = @image, url = @url, status = @status, modified_at = @modified_at, modified_by = @modified_by WHERE content_id = @content_id;";
 

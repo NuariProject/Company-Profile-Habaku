@@ -1,10 +1,72 @@
-﻿@{
+﻿@*@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <br/>
 </div>
- 
+*@
+
+<div class="text-center">
+    <div class="row">
+        <!--Start Card Total Menu-->
+        <div class="col-md-12 col-xl-4">
+            <div class="card" data-aos="fade-up" data-aos-delay="900">
+                <a asp-area="Form" asp-controller="Menu" asp-action="Index">
+                    <div class="card-body">
+                        <div class="progress-widget">
+                            <div>
+                                <i class="fas fa-th-list fa-3x"></i>
+                            </div>
+                            <div class="progress-detail">
+                                <p class="mb-2">Total Menu</p>
+                                <h4 class="counter">6</h4>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--End Card Total Menu-->
+        <!--Start Card Total Section-->
+        <div class="col-md-12 col-xl-4">
+            <div class="card" data-aos="fade-up" data-aos-delay="900">
+                    <a asp-area="Form" asp-controller="Section" asp-action="Index">
+                <div class="card-body">
+                    <div class="progress-widget">
+                        <div>
+                            <i class="fas fa-arrows-alt fa-3x"></i>
+                        </div>
+                        <div class="progress-detail">
+                            <p class="mb-2">Total Section</p>
+                            <h4 class="counter">21</h4>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!--End Card Total Section-->
+        <!--Start Card Total Section-->
+        <div class="col-md-12 col-xl-4">
+            <div class="card" data-aos="fade-up" data-aos-delay="900">
+                <a asp-area="Form" asp-controller="Content" asp-action="Index">
+                <div class="card-body">
+                    <div class="progress-widget">
+                        <div>
+                            <i class="far fa-newspaper fa-3x"></i>
+                        </div>
+                        <div class="progress-detail">
+                            <p class="mb-2">Total Content</p>
+                            <h4 class="counter">1</h4>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!--End Card Total Section-->
+
+    </div>
+</div>

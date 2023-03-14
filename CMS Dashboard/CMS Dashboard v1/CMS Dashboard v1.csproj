@@ -8,11 +8,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\vendor\**" />
+    <Content Remove="wwwroot\vendor\**" />
+    <EmbeddedResource Remove="wwwroot\vendor\**" />
+    <None Remove="wwwroot\vendor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Areas\Content\Controllers\AuthController.cs~RFab9575f.TMP" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+    <None Include="wwwroot\css\maps\custom.min.css.map" />
+    <None Include="wwwroot\css\maps\customizer.min.css.map" />
+    <None Include="wwwroot\css\maps\dark.min.css.map" />
+    <None Include="wwwroot\css\maps\hope-ui.min.css.map" />
+    <None Include="wwwroot\css\maps\rtl.min.css.map" />
+    <None Include="wwwroot\js\core\external.min.js" />
+    <None Include="wwwroot\js\core\libs.min.js" />
+    <None Include="wwwroot\js\plugins\calender.js" />
+    <None Include="wwwroot\js\plugins\circle-progress.js" />
+    <None Include="wwwroot\js\plugins\countdown.js" />
+    <None Include="wwwroot\js\plugins\form-wizard.js" />
+    <None Include="wwwroot\js\plugins\fslightbox.js" />
+    <None Include="wwwroot\js\plugins\kanban.js" />
+    <None Include="wwwroot\js\plugins\prism.mini.js" />
+    <None Include="wwwroot\js\plugins\setting.js" />
+    <None Include="wwwroot\js\plugins\slider-tabs.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
