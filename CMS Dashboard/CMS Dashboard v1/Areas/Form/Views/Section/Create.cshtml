@@ -22,14 +22,9 @@
                         <form method="post">
 
                             <div class="form-group">
-                                <label class="form-label">Menu</label>  
-                                @*@Html.DropDownListFor(model => Model.menu_id, ViewBag.menulist as SelectList, "Silakan Pilih Disini",
-                                new { @class="form-select shadow-none", @id="menu_id"})*@
-                               @* @Html.DropDownListFor(model => model.menu_name, ViewBag.MenuList as SelectList, "Silakan Pilih Disini",
-                                new { @class="form-select shadow-none", @id="menu_id"})*@
-
-                                @Html.DropDownListFor(model => model.menu_id, Model.MenuList, "Silakan Pilih Disini", new { @class="form-select shadow-none", @id="menu_id"})
-
+                                <label class="form-label">Menu</label> 
+                                <select class="form-select shadow-none" id="menulist" asp-for="menu_id">
+                                </select>
                                 <span asp-validation-for="menu_id" class="text-danger"></span>
                             </div>
 
@@ -65,6 +60,7 @@
     </div>
 </div>
 
+<script src="~/js/javascript.js"></script>
 @section Scripts{
     @{
         //validation without call serverside

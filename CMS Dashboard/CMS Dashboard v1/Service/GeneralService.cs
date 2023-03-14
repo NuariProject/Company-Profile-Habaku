@@ -8,7 +8,7 @@ namespace CMS_Dashboard_v1.Service
 {
     public class GeneralService
     {
-        public async Task<IList<MenuModel>> DropdownMenu()
+        public async Task<IList<DropdownModel>> DropdownMenu()
         {
             Dammy getvalue = new Dammy();
             var Value =  await getvalue.MenuList();

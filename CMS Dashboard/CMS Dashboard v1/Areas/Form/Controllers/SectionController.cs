@@ -33,8 +33,8 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             {
                 if (ListSection != null && ListMenu != null)
                 {
-                    Model.List = (from a in ListSection//.Where(ss => ss.status)
-                                  join b in ListMenu//.Where(ss => ss.status)
+                    Model.List = (from a in ListSection.Where(ss => ss.status).ToList()
+                                  join b in ListMenu.Where(ss => ss.status).ToList()
                                   on a.menu_id equals b.menu_id
                                   select new SectionViewModel
                                   {
@@ -74,15 +74,11 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         //    var dropdownData = await general.DropdownMenu();
         //    Model.MenuList = new SelectList(dropdownData, "value", "text").ToList();
         //}
-
-
+         
         [Route("Section/Create")]
-        public async Task<IActionResult> Create()
-        {
+        public IActionResult Create()
+         {
             var model = new SectionViewModel();
-            var general = new GeneralService();
-            var dropdownData = await general.DropdownMenu();
-            model.MenuList = new SelectList(dropdownData, "menu_id", "menu_name").ToList();
             return View(model);
         }
 
@@ -91,11 +87,12 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         public async Task<IActionResult> Create(SectionViewModel model)
         {
             var response = await _globallist.GetListSection();
-            if (response.Any(ss => /*ss.status &&*/ ss.section_name == model.section_name))
+            if (response.Any(ss => ss.status && ss.section_name == model.section_name))
                 ModelState.AddModelError("section_name", "Nama Section sudah terdaftar");
-            if (response.Any(ss => /*ss.status &&*/ ss.section_name == model.section_name 
+            if (response.Any(ss => ss.status && ss.section_name == model.section_name 
                                              && ss.section_number == model.section_number))
                 ModelState.AddModelError("section_number", "Urutan Section sudah terdaftar");
+
 
             try
             {
@@ -107,6 +104,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                         section_name = model.section_name,
                         section_number = model.section_number,
                         section_approve = model.section_approve,
+                        status = true,
                         created_by = HttpContext.Session.GetString("Username") 
                     };
 
@@ -132,17 +130,30 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             {
                 NotifMessage("error", " Error : " + e.Message.ToString());
             }
-            //Dropdown(model);
             return View(model);
         }
 
         public async Task<SectionViewModel> FindData(int id)
         {
             var model = new SectionViewModel();
-            var response = await _globallist.GetListSection();
-            var value = response.Where(ss => ss.section_id == id/* && ss.status*/).FirstOrDefault();
+            var section = await _globallist.GetListSection(); 
+            var menu = await _globallist.GetListMenu();
+
+
+            var value = (from a in section.Where(ss => ss.status == true && ss.section_id == id).ToList()
+                         join b in menu.Where(ss => ss.status == true).ToList() on a.menu_id equals b.menu_id
+                         select new SectionViewModel
+                         {
+                             section_id = a.section_id,
+                             menu_id = a.menu_id,
+                             menu_name = b.menu_name,
+                             section_name = a.section_name,
+                             section_number = a.section_number,
+                             section_approve = a.section_approve
+                         }).FirstOrDefault();                
 
             model.menu_id = value.menu_id;
+            model.menu_name = value.menu_name;
             model.section_name = value.section_name;
             model.section_number = value.section_number;
             model.section_approve = value.section_approve;
@@ -165,9 +176,9 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         public async Task<IActionResult> Edit(SectionViewModel model)
         {
             var response = await _globallist.GetListSection();
-            if (response.Any(ss => /*ss.status &&*/ ss.section_name == model.section_name && ss.section_id != model.section_id))
+            if (response.Any(ss => ss.status && ss.section_name == model.section_name && ss.section_id != model.section_id))
                 ModelState.AddModelError("section_name", "Nama Section sudah terdaftar");
-            if (response.Any(ss => /*ss.status &&*/ ss.section_name == model.section_name
+            if (response.Any(ss => ss.status && ss.section_name == model.section_name
                                              && ss.section_number == model.section_number
                                              && ss.section_id != model.section_id))
                 ModelState.AddModelError("section_number", "Urutan Section sudah terdaftar");
@@ -183,7 +194,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                         section_name = model.section_name,
                         section_number = model.section_number,
                         section_approve = model.section_approve,
-                        //status = true,
+                        status = true,
                         modified_by = HttpContext.Session.GetString("Username")
                     };
 
@@ -236,7 +247,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                         section_name = model.section_name,
                         section_number = model.section_number,
                         section_approve = model.section_approve,
-                        //status = false,
+                        status = false,
                         modified_by = HttpContext.Session.GetString("Username")
                     };
 
@@ -264,6 +275,16 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             }
             //Dropdown(model);
             return View(model);
+        }
+
+
+        [HttpGet]
+        [Route("Section/GetMenuList")]
+        public async Task<IActionResult> GetMenuList()
+        {
+            var general = new GeneralService();
+            var dropdownData = await general.DropdownMenu();
+            return Json(dropdownData);
         }
 
     }

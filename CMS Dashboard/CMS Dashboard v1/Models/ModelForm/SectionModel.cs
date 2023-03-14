@@ -33,8 +33,6 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         [Required(ErrorMessage = "Batas Content Tidak Boleh Kosong")]
         [Range(1, 50, ErrorMessage = "Harus diantara 1 and 50 !!!")]
         public int section_approve { get; set; }
-
-        public List<SelectListItem> MenuList { get; set; }
     }
 
     public class InsertSectionModel
@@ -43,6 +41,7 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         public string section_name { get; set; } = string.Empty;
         public int section_number { get; set; }
         public int section_approve { get; set; }
+        public bool status { get; set; }
         public string created_by { get; set; } = string.Empty;
 
     }
