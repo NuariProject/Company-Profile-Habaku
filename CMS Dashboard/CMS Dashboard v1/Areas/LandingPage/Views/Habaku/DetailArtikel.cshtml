@@ -1,0 +1,169 @@
+﻿<head>
+    <title>Habaku || Detail Artikel</title>
+</head>
+
+<!--Navbar-->
+<div class="fixed w-full z-50">
+    <header id="navbar" class="2xl:container mx-auto">
+        <nav class="nav-desk flex justify-between items-center">
+            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">
+                <img class="h-40 lg:h-56 w-74 lg:w-100 object-cover" src="~/assets/images/habaku/habaku-logo.png" />
+            </a>
+            <div>
+                <button id="toggle-menu-button" class="z-50 lg:hidden relative">
+                    <!--Toggle Menu-->
+                    <div id="open" class="flex flex-col items-end justify-between">
+                        <span class="block text-blue-400 text-mh-head3">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                    <div id="close" class="hidden fixed top-6 right-8 flex flex-col items-end justify-between">
+                        <span class="block text-greyscale-80 text-mh-head3">
+                            <i class="bi bi-x"></i>
+                        </span>
+                    </div>
+                </button>
+                <div id="toggle-menu"
+                     class="container hidden bg-green-100 lg:bg-transparent lg:block pt-85 lg:pt-0 font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full w-3/4 flex flex-col lg:relative lg:w-auto lg:h-auto">
+                    <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
+                        <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
+                        </li>
+                        <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
+                        </li>
+                        <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
+                        </li>
+                        <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang Kami</a>
+                        </li>
+                        <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Hubungi Kami</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<!--Section Artikel-->
+<section>
+    <div class="relative h-full">
+        <div class="bg-greyscale-0 absolute top-0 w-full h-full"></div>
+        <div class="2xl:container mx-auto">
+            <div class="relative container mx-auto px-4 lg:px-200 pt-72 lg:pt-140 pb-6 lg:pb-40">
+                <div class="container pb-4">
+                    <ol class="list-reset flex text-greyscale-100 text-mb-small">
+                        <li class="px-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
+                        </li>
+                        <li>/</li>
+                        <li class="px-2">
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel" class="no-underline text-green-400 hover:text-greyscale-100">Artikel</a>
+                        </li>
+                        <li>/</li>
+                        <li class="px-2">Judul Artikel</li>
+                    </ol>
+                </div>
+                <img src="~/assets/images/habaku/img-artikel-detail.png" class="w-full h-full rounded-xl lg:rounded-2xl" />
+                <div class="pt-4 pb-1 text-left">
+                    <h1 class="font-bold text-mh-head6 lg:text-dh-head5">Judul Artikel</h1>
+                    <p class="text-mc-large lg:text-dc-large text-greyscale-80">
+                        Kategori/Label Artikel · 12 Feb 2023
+                    </p>
+                </div>
+                <p class="text-mb-small lg:text-db-small pt-4 text-justify">
+                    Lorem ipsum dolor sit amet consectetur. Ullamcorper egestas urna interdum eget enim eget. Nulla
+                    suspendisse eu ultricies ultricies integer vulputate curabitur. Est senectus congue vitae donec
+                    mauris nullam sed. Suspendisse velit metus amet eget egestas mauris. Lobortis aliquam leo in
+                    scelerisque convallis tortor sollicitudin nec. Cras magna mi faucibus morbi feugiat. Condimentum
+                    urna in pellentesque tortor pharetra sed vel. Vitae purus cras aliquam orci mattis nisl senectus
+                    fermentum. Facilisis convallis neque netus id lectus fusce. Ac phasellus egestas amet quam.
+                    Tincidunt lectus elit sollicitudin in eu mollis consectetur proin. Sit vel tempus ante vulputate
+                    molestie vivamus eleifend aliquam. Tortor porttitor feugiat sapien enim.<br /><br />
+
+                    Vulputate mauris tempus et mi orci sem nibh. Quam sollicitudin tincidunt dapibus egestas morbi
+                    diam faucibus tortor posuere. Senectus dolor tortor nibh sed potenti leo in pretium magnis. Amet
+                    morbi commodo cras feugiat. A vel nunc elementum sollicitudin. Augue nisi proin sem eget
+                    tristique netus faucibus at. Neque et at montes scelerisque aliquam ipsum porta lectus. Dui enim
+                    quam arcu a urna turpis at elit egestas. Commodo odio sed eget lectus curabitur.<br /><br />
+
+                    Proin auctor enim arcu integer dolor sit. Et pellentesque convallis pellentesque gravida mi amet
+                    aliquam. Arcu ipsum amet ornare in felis diam nec. Enim proin purus ut ullamcorper orci nunc
+                    ipsum netus facilisis. Ac nibh lobortis ornare dignissim interdum enim phasellus dictumst sed.
+                    Bibendum vulputate sagittis scelerisque vulputate turpis. Sem velit fringilla lectus semper
+                    aliquet elementum tellus ornare mauris. Malesuada integer aenean vitae volutpat.<br /><br />
+
+                    Faucibus nibh proin quis facilisi ipsum. Enim consequat eget pharetra egestas. Vitae viverra
+                    augue ullamcorper varius dui ipsum faucibus quis adipiscing. Sit pharetra sed morbi integer
+                    donec aliquam. Pellentesque vestibulum vivamus accumsan non.<br /><br />
+
+                    Malesuada eu faucibus mauris proin fermentum. Mauris vitae tincidunt aliquam sed. Egestas amet
+                    arcu sit et nec id urna. Et eget faucibus vel vitae varius vitae lorem. Ac non volutpat vel
+                    integer. At mauris montes tincidunt scelerisque egestas bibendum urna.
+                </p>
+                <div class="pt-4 flex space-x-4">
+                    <p class="text-mb-small lg:text-db-small font-medium text-greyscale-80">Bagikan Artikel Ini</p>
+                    <a href="#">
+                        <i class="material-icons text-blue-400">link</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Section Artikel Terbaru-->
+<section class="bg-greyscale-0">
+    <div class="container mx-auto px-4 py-4 lg:px-72 lg:py-40 grid gap-6">
+        <h1 class="font-bold text-mh-head4 lg:text-dh-head4 text-left">
+            Artikel Terbaru
+        </h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
+            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="DetailArtikel">
+                <div class="group grid gap-4">
+                    <div class="group-hover:border-3 group-hover:rounded-xl group-hover:lg:rounded-2xl group-hover:border-blue-400 group-hover:drop-shadow-dropBlue">
+                        <img src="~/assets/images/habaku/img-artikel-1.png" class="rounded-xl lg:rounded-2xl mx-auto w-full h-full" />
+                    </div>
+                    <div class="text-left">
+                        <h1 class="group-hover:text-blue-400 font-bold text-mh-head6 lg:text-dh-head5">Judul Artikel</h1>
+                        <p class="text-mc-large text-dc-large text-greyscale-80">
+                            Kategori/Label Artikel · 12 Feb
+                            2023
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="DetailArtikel">
+                <div class="group grid gap-4">
+                    <div class="group-hover:border-3 group-hover:rounded-xl group-hover:lg:rounded-2xl group-hover:border-blue-400 group-hover:drop-shadow-dropBlue">
+                        <img src="~/assets/images/habaku/img-artikel-2.png" class="rounded-xl lg:rounded-2xl mx-auto w-full h-full" />
+                    </div>
+                    <div class="text-left">
+                        <h1 class="group-hover:text-blue-400 font-bold text-mh-head6 lg:text-dh-head5">Judul Artikel</h1>
+                        <p class="text-mc-large text-dc-large text-greyscale-80">
+                            Kategori/Label Artikel · 12 Feb
+                            2023
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="DetailArtikel">
+                <div class="group grid gap-4">
+                    <div class="group-hover:border-3 group-hover:rounded-xl group-hover:lg:rounded-2xl group-hover:border-blue-400 group-hover:drop-shadow-dropBlue">
+                        <img src="~/assets/images/habaku/img-artikel-3.png" class="rounded-xl lg:rounded-2xl mx-auto w-full h-full" />
+                    </div>
+                    <div class="text-left">
+                        <h1 class="group-hover:text-blue-400 font-bold text-mh-head6 lg:text-dh-head5">Judul Artikel</h1>
+                        <p class="text-mc-large text-dc-large text-greyscale-80">
+                            Kategori/Label Artikel · 12 Feb
+                            2023
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

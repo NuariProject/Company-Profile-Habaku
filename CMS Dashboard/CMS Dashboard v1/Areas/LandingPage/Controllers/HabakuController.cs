@@ -34,5 +34,10 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
         {
             return View();
         }
+        [Route("/detailartikel")]
+        public IActionResult DetailArtikel()
+        {
+            return View();
+        }
     }
 }

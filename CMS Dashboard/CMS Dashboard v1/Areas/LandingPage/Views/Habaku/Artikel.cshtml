@@ -33,7 +33,7 @@
                             <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
                         </li>
                         <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
-                           <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
                             <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang Kami</a>
@@ -91,7 +91,8 @@
         <!--Show Items of Article-->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
             <template x-for="item in filteredArticles" :key="item">
-                <a :href="`${item.link_detail}`">
+                @*<a :href="`${item.link_detail}`">*@
+                <a asp-area="LandingPage" asp-controller="Habaku" asp-action="DetailArtikel">
                     <div class="group grid gap-4">
                         <div class="group-hover:border-3 group-hover:rounded-xl group-hover:lg:rounded-2xl group-hover:border-blue-400 group-hover:drop-shadow-dropBlue">
                             <img :src="`${item.image}`" class="rounded-xl lg:rounded-2xl mx-auto w-full h-full" />
