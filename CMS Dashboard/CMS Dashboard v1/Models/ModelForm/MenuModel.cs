@@ -8,7 +8,7 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         {
             List = new List<MenuViewModel>();
         }
-        public int menu_id { get; set; }
+        public int? menu_id { get; set; }
         public string menu_name { get; set; } = string.Empty;
         public bool status { get; set; }
 
