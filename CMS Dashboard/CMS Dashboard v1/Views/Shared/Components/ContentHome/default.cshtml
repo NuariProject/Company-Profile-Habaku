@@ -1,9 +1,9 @@
 ﻿@model ContentLandingPageModel
 
 <section>
-    @foreach (var item in Model.ListContent )
+    @foreach (var item in Model.ListContent)
     {
-        if(item.section_id == 1)
+        if (item.section_id == 1)
         {
             <div class="relative h-full">
                 <div class="bg-green-200 absolute top-0 w-full h-full"></div>
@@ -19,10 +19,29 @@
                             <div class="text-center lg:text-left grid gap-4 px-4 lg:px-0" :class="visible ? 'animate-fadeInUp' : ''">
                                 <h1 class="font-montserrat text-dh-head5 lg:text-dh-head4 text-greyscale-100">
                                     @*Solusi
-                                    Tepat Belanja <br />
-                                    <span class="text-blue-400">Hemat</span> dan
-                                    <span class="text-blue-400">Cepat</span>.*@
-                                    @item.header
+                            Tepat Belanja <br />
+                            <span class="text-blue-400">Hemat</span> dan
+                            <span class="text-blue-400">Cepat</span>.*@
+
+                                    @{
+                                        string[] additionalWords = { "" };
+                                        string[] splitHeader = item.header.Split();
+                                        if (splitHeader.Count() < 6)
+                                        {
+                                            additionalWords = new string[] { "", "", "", "", "", "", "" };
+                                        }
+
+                                        string modelText = @item.header;
+                                        string[] words = modelText.Split(' ');
+                                        words = words.Concat(additionalWords).ToArray();
+                                        string result = string.Join(" ", words);
+                                        string line1 = string.Join(" ", @words[0], @words[1], @words[2]);
+                                    }
+                                    @line1 <br />
+                                    <span class="text-blue-400">@words[3] </span>
+                                    <span>@words[4] </span>
+                                    <span class="text-blue-400">@words[5] </span>
+                                    @*@item.header*@
                                 </h1>
                                 <p class="text-mb-small lg:text-db-small font-medium w-full lg:w-3/4">
                                     @*deskripsi*@
@@ -47,5 +66,5 @@
             </div>
         }
     }
-    
+
 </section>
