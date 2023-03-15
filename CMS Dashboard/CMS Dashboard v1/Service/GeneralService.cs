@@ -15,7 +15,13 @@ namespace CMS_Dashboard_v1.Service
 
             return Value;
         }
+        public async Task<IList<DropdownModel>> DropdownSection(int id)
+        {
+            Dammy getvalue = new Dammy();
+            var Value = await getvalue.SectionList(id);
 
+            return Value;
+        }
         public List<DropdownModel> Dropdown()
         {
             Dammy getvalue = new Dammy();

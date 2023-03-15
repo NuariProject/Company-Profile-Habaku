@@ -1,0 +1,49 @@
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ContentModel
+
+@{
+    ViewBag.title = "Master Content";
+}
+
+<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / </span> @ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            @*StartTittle*@
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a asp-controller="Content" asp-action="Create" type="button" class="btn btn-primary">
+                            <i class="fas fa-plus-square"></i>
+                            <span>
+                                &nbsp; Buat Data
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-0" />
+            @*EndTittle*@
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-hover" data-toggle="data-table">
+                        <thead>
+                            <tr>
+                                <th width="80%">Menu</th>
+                                <th width="80%">Section</th>
+                                <th width="80%">Urutan</th>
+                                <th width="80%">Batas Content</th>
+                                <th style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

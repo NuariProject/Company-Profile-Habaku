@@ -25,6 +25,21 @@ namespace CMS_Dashboard_v1.Service
             return list;
         }
 
+        public async Task<IList<DropdownModel>> SectionList(int id)
+        {
+            var list = new List<DropdownModel>();
+            var listSection = await _globallist.GetListSection();
+
+            list = (from a in listSection.Where(ss => ss.status && ss.menu_id == id)
+                    select new DropdownModel
+                    {
+                        value = Convert.ToInt16(a.section_id),
+                        text = a.section_name
+                    }).ToList();
+
+            return list;
+        }
+
         public List<LoginDammyModel> UserList()
         {
             var list = new List<LoginDammyModel>();
