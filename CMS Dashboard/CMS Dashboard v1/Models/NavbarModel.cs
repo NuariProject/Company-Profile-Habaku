@@ -1,4 +1,6 @@
-﻿namespace CMS_Dashboard_v1.Models
+﻿using CMS_Dashboard_v1.Models.ModelForm;
+
+namespace CMS_Dashboard_v1.Models
 {
     public class NavbarModel
     {
@@ -16,5 +18,14 @@
     public class Content
     {
         public string name { get; set; } = string.Empty;
+    }
+    public class ContentLandingPageModel
+    {
+        public ContentLandingPageModel()
+        {
+            ListContent = new List<ContentModel>();
+        }
+        public string section { get; set; } = string.Empty;
+        public List<ContentModel> ListContent { get; set; }
     }
 }

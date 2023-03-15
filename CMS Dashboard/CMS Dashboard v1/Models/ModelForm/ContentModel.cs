@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CMS_Dashboard_v1.Models.ModelForm
 {
     public class ContentModel
     {
+        public ContentModel()
+        {
+            List = new List<ContentViewModel>();
+        }
         public int content_id { get; set; }
         public int section_id { get; set; }
         public string header { get; set; } = string.Empty;
@@ -12,7 +17,11 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         public string image { get; set; } = string.Empty;
         public string url { get; set; } = string.Empty;
         public bool status { get; set; }
+        public List<ContentViewModel> List { get; set; }
     }
+
+
+
 
     public class ContentViewModel
     {

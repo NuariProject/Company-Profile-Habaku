@@ -54,5 +54,24 @@ namespace CMS_Dashboard_v1.Service
 
             return list;
         }
+
+        public async Task<List<ContentModel>> GetListContent()
+        {
+            MasterDataService _masterDataService = new MasterDataService();
+            var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
+            var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
+            var data = new BaseResponse<List<ContentModel>>();
+            var list = new List<ContentModel>();
+            var response = await _masterDataService.GetAsync(baseadd + enpoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
+                list = data.data;
+            }
+
+            return list;
+        }
     }
 }

@@ -1,7 +1,10 @@
-﻿using CMS_Dashboard_v1.Models.ModelForm;
+﻿using CMS_Dashboard_v1.Models;
+using CMS_Dashboard_v1.Models.ModelForm;
 using CMS_Dashboard_v1.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace CMS_Dashboard_v1.Areas.Form.Controllers
 {
@@ -9,12 +12,14 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
     [Authorize]
     public class ContentController : Controller
     {
+        readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ContentController(IWebHostEnvironment webHostEnvironment)
+        GlobalListApi _globallist = new GlobalListApi();
+        public ContentController(IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
         {
+            _configuration = configuration;
             _webHostEnvironment = webHostEnvironment;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -49,11 +54,30 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             {
                 string path = "cover/img/";
                 path += Guid.NewGuid().ToString()+"_"+model.Photos.FileName;
-                model.imageurl = path;
+                model.imageurl = "/"+path;
                 string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
                 await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
             }
+
+            var obj = new InsertContentModel 
+            {
+                section_id = model.section_id,
+                header = model.header,
+                title = model.title,
+                description = model.description,
+                image = model.imageurl,
+                url = model.url,
+                status = true,
+                created_by = HttpContext.Session.GetString("Username") 
+            };
+
+            MasterDataService _masterDataService = new MasterDataService();
+            var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
+            var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
+            var data = await _masterDataService.PostAsync(baseadd + enpoint, obj);
+            string jsonString = await data.Content.ReadAsStringAsync();
+            var BaseResponse = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
 
 
 

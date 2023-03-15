@@ -49,7 +49,8 @@
 </div>
 
 <!--Header Banner-->
-<section>
+@await Component.InvokeAsync("ContentHome", new ContentLandingPageModel() )
+@*<section>
     <div class="relative h-full">
         <div class="bg-green-200 absolute top-0 w-full h-full"></div>
         <div class="2xl:container mx-auto">
@@ -89,7 +90,7 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
 
 <!--Section Apa itu Habaku-->
 <section class="bg-bgApaHabakuMob md:bg-bgApaHabakuDesk bg-cover bg-center bg-no-repeat">
