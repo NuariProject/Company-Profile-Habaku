@@ -27,18 +27,42 @@
             @*EndTittle*@
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="datatable" class="table table-hover" data-toggle="data-table">
+                    <table id="datatable" class="table table-hover" data-toggle="data-table" width="100%">
                         <thead>
                             <tr>
-                                <th width="80%">Menu</th>
-                                <th width="80%">Section</th>
-                                <th width="80%">Urutan</th>
-                                <th width="80%">Batas Content</th>
-                                <th style="text-align:center;">Action</th>
+                                <th>Menu</th>
+                                <th>Section</th>
+                                <th>Header</th>
+                                <th>Title</th>
+                                <th width="40%">Description</th>
+                                <th>URL</th>
+                                <th width="30%">Image</th>
+                                <th style="text-align:center;" width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
+                            @foreach (var item in Model.List)
+                            {
+                                <tr>
+                                    <td>@item.Menu</td>
+                                    <td>@item.Section</td>
+                                    <td>@item.header</td>
+                                    <td>@item.title</td>
+                                    <td width ="40%">@Html.Raw(@item.description)</td>
+                                    <td>@item.url</td>
+                                    <td width="30%"><img width="200" height="100" src="@item.imageurl" /></td>
+
+                                    <td style="text-align:center;">
+                                        <a asp-controller="Conten" asp-action="Edit" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Conten" asp-action="Delete" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
 
                     </table>

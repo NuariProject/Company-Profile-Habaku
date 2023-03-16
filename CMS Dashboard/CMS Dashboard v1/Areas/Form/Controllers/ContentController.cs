@@ -2,6 +2,7 @@
 using CMS_Dashboard_v1.Models.ModelForm;
 using CMS_Dashboard_v1.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -20,10 +21,45 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             _configuration = configuration;
             _webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index(ContentModel Model)
         {
-            return View();
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var menu = await _globallist.GetListMenu();
+
+            try
+            {
+                if (content != null && section != null && menu != null)
+                {
+                    Model.List = (from a in content.Where(ss => ss.status).ToList()
+                                  join b in section.Where(ss => ss.status).ToList() on a.section_id equals b.section_id
+                                  join c in menu.Where(ss => ss.status).ToList() on b.menu_id equals c.menu_id
+                                  select new ContentViewModel
+                                  {
+                                      content_id = a.content_id,
+                                      Menu = c.menu_name,
+                                      Section = b.section_name,
+                                      header = a.header,
+                                      title = a.title,
+                                      description = a.description,
+                                      imageurl = a.image,
+                                      url = a.url
+                                  }).ToList();
+                }
+                else
+                {
+                    NotifMessage("error", "Gagal load data menu");
+                }
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", e.Message.ToString());
+            }
+
+            return View(Model);
         }
+
         public void NotifMessage(string status, string messages)
         {
             TempData[status] = status;

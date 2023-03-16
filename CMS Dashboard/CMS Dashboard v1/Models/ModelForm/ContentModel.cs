@@ -44,6 +44,8 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         [Required(ErrorMessage = "Silakan Pilih Gambar")]
         public IFormFile Photos { get; set; }
         public string imageurl { get; set; } = string.Empty;
+        public string Section { get; set; } = string.Empty;
+        public string Menu { get; set; } = string.Empty;
     }
 
     public class InsertContentModel
