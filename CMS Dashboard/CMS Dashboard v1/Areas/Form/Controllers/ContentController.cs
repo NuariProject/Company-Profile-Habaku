@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace CMS_Dashboard_v1.Areas.Form.Controllers
 {
@@ -86,39 +87,66 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         [Route("Content/Create")]
         public async Task<IActionResult> Create(ContentViewModel model)
         {
-            if(model.Photos != null)
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var batasContent = section.Where(ss => ss.status && ss.section_id == model.section_id).FirstOrDefault();
+            var totalContent = content.Where(ss => ss.status && ss.section_id == model.section_id).ToList();
+            
+            if (totalContent.Count() >= batasContent.section_approve)
             {
-                string path = "cover/img/";
-                path += Guid.NewGuid().ToString()+"_"+model.Photos.FileName;
-                model.imageurl = "/"+path;
-                string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
-
-                await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+                ModelState.AddModelError("section_id", "Total content anda di section ini : " + totalContent.Count() + " Content || " +
+                    "Batas content di section ini : "+batasContent.section_approve+" Content");
             }
-
-            var obj = new InsertContentModel 
+            try
             {
-                section_id = model.section_id,
-                header = model.header,
-                title = model.title,
-                description = model.description,
-                image = model.imageurl,
-                url = model.url,
-                status = true,
-                created_by = HttpContext.Session.GetString("Username") 
-            };
+                if (ModelState.IsValid)
+                {
+                    if (model.Photos != null)
+                    {
+                        string path = "cover/img/";
+                        path += Guid.NewGuid().ToString() + "_" + model.Photos.FileName;
+                        model.imageurl = "/" + path;
+                        string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
-            MasterDataService _masterDataService = new MasterDataService();
-            var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
-            var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
-            var data = await _masterDataService.PostAsync(baseadd + enpoint, obj);
-            string jsonString = await data.Content.ReadAsStringAsync();
-            var BaseResponse = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
+                        await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+                    }
 
+                    var obj = new InsertContentModel
+                    {
+                        section_id = model.section_id,
+                        header = model.header,
+                        title = model.title,
+                        description = model.description,
+                        image = model.imageurl,
+                        url = model.url,
+                        status = true,
+                        created_by = HttpContext.Session.GetString("Username")
+                    };
 
+                    MasterDataService _masterDataService = new MasterDataService();
+                    var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
+                    var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
+                    var data = await _masterDataService.PostAsync(baseadd + enpoint, obj);
+                    string jsonString = await data.Content.ReadAsStringAsync();
+                    var BaseResponse = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
 
+                    if (BaseResponse.code == Convert.ToInt16(HttpStatusCode.OK))
+                    {
+                        NotifMessage("success", "Content berhasil disimpan");
+                        return RedirectToAction("Index", "Content");
+                    }
+                    else
+                    {
+                        NotifMessage("error", " Data gagal disimpan");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+            }
 
             return View(model);
         }
-        }
+    }
 }
