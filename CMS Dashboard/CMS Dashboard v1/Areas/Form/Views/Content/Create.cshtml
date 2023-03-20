@@ -52,27 +52,24 @@
                                     <div class="col-sm-6">
                                         <label class="form-label" for="exampleInputText1">Image</label>
                                         <input class="form-control" accept="image/jpeg, image/png, image/gif" id="image" asp-for="Photos">
-                                        @*<span asp-validation-for="Photos" class="text-danger"></span>*@
-                                    </div>
+                                        </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="exampleInputText1">URL</label>
                                         <input type="url" class="form-control" asp-for="url" id="url" placeholder="Enter Url">
-                                        @*<span asp-validation-for="url" class="text-danger"></span>*@
                                     </div>
                                 </div> 
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="exampleInputText1">Description</label>
-                                <textarea class="form-control" id="editor" rows="5" asp-for="description" placeholder=" Isi Sebuah Artikel Disini">
+                                <textarea class="form-control" id="editor" rows="5" asp-for="description" placeholder=" Isi Sebuah Deskripsi Disini">
                                     
                                 </textarea>
-                                <span asp-validation-for="description" class="text-danger"></span>
                             </div>
 
                             <br />
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a asp-controller="Section" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                            <a asp-controller="Content" asp-action="Index" class="btn btn-secondary" style="width:150px">
                                 Back to List
                             </a>
                         </form>
@@ -87,26 +84,75 @@
 
 <script>
     
-    $(document).ready(function () {
-        $("#sectionlist").append("<option value=''>Silakan Pilih Section</option>");
-        ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
+    //$(document).ready(function () {
+    //    $("#sectionlist").append("<option value=''>Silakan Pilih Section</option>");
+    //    ClassicEditor
+    //    .create(document.querySelector('#editor'))
+    //    .catch(error => {
+    //        console.error(error);
+    //    });
+    //});
+
+
+    $(document).ready(function(){
+        // Initialitation id form
+        var dropdownSection = $("#sectionlist");
+        var dropdownMenu = $("#menulist");
+        var inputHeader = $("#NameMenu");
+
+        // value default dropdown
+        dropdownMenu.prepend("<option value=''>Silakan Pilih Menu</option>");
+        dropdownSection.prepend("<option value=''>Silakan Pilih Section</option>");
+        inputHeader.prop('disabled', false);
+
+        
+        
+        // trigger when dropdown menu change
+        dropdownMenu.change(function () {
+            debugger;
+            var id = dropdownMenu.val();
+            DropdownSection(id)
+            inputHeader.prop('disabled', false);
+            inputHeader.empty();
         });
-    });
 
-    $("#menulist").change(function(){ 
-        debugger;
-        var id = $("#menulist").val();
-        DropdownSection(id)
-    });
+        // trigger when dropdown section change
+        dropdownSection.change(function (){
+            debugger;
+            var idmenu = dropdownMenu.val();
+            var idsection = dropdownSection.val();
+            ValidasiContent(idmenu,idsection);
+        });
 
-    function DropdownSection(id) {
-        debugger
-        var obj = {id : id};
-        DropdownGeneral("GET", "/Content/GetSectionList", obj, 'sectionlist', 'Section');
-    }
+        // Get lIst Dropdown section wirth param id menu
+        function DropdownSection(id) {
+            debugger
+            var obj = { id: id };
+            DropdownGeneral("GET", "/Content/GetSectionList", obj, 'sectionlist', 'Section');
+        }
+
+        // Get validasi
+        function ValidasiContent(idmenu,idsection){
+            debugger;
+            var obj = {idmenu : idmenu, idsection : idsection}
+            $.ajax({
+                type : "GET",
+                url : "/Content/GetValidasiContent",
+                data : obj,
+                success: function(response){
+                    console.log(response)
+                    inputHeader.val(response.header);
+                    if (response.header != "") {
+                        inputHeader.prop('disabled', true);
+                    }
+                },failure: function(err){
+                    alert(err)
+                }
+            });
+        }
+
+    });
+    
 </script>
 
 <script src="~/js/javascript.js"></script>

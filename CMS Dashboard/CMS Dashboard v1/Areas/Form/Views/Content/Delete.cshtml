@@ -1,13 +1,30 @@
-﻿@model CMS_Dashboard_v1.Models.ModelForm.SectionViewModel
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ContentViewModel
 @{
     ViewBag.title = "Delete";
 }
+<style>
+    .border {
+        border: 1px solid #ccc; /* menambahkan border 1px solid warna abu-abu */
+    }
+
+    .img-container {
+        height: 200px; /* mengatur tinggi div agar sesuai dengan tinggi gambar */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* mengatur agar gambar yang di luar div tidak terlihat */
+    }
+
+        .img-container img {
+            object-fit: cover; /* mengatur gambar agar memenuhi seluruh area div */
+            max-width: 100%; /* mengatur agar gambar tidak melebihi lebar div */
+        }
+</style>
 
 <h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / Master Section / </span> @ViewBag.Title</h3>
 
 <div class="row">
-    <div class="col-sm-12"> 
-
+    <div class="col-sm-12">
         <div class="card">
             @*StartTittle*@
             <div class="card-body">
@@ -20,38 +37,64 @@
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8">
-                        <form method="post" asp-action="Delete">
+                        <form method="post" enctype="multipart/form-data" asp-action="Delete">
 
-                            <input asp-for="section_id" hidden />
-                            <input asp-for="menu_id" hidden />
+                            <input type="hidden" id="idcontent" asp-for="content_id" readonly>
+                            <input type="hidden" id="idsection" asp-for="section_id" readonly>
+
                             <div class="form-group">
                                 <label class="form-label">Menu</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="menu_name" readonly >
+                                <input type="text" class="form-control" id="NameMenu" asp-for="Menu" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Nama Section</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="section_name" readonly >
+                                <label class="form-label">Section</label>
+                                <input type="text" class="form-control" id="NameSection" asp-for="Section" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Urutan</label>
-                                <input type="number" class="form-control" id="NameMenu" asp-for="section_number" readonly >
+                                <label class="form-label" for="exampleInputText1">Header</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="header" readonly>
+                                <span asp-validation-for="header" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Batas Content</label>
-                                <input type="number" class="form-control" id="NameMenu" asp-for="section_approve" readonly >
+                                <label class="form-label" for="exampleInputText1">Tittle</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="title" readonly>
+                                <span asp-validation-for="title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="exampleInputText1">URL</label>
+                                        <input type="url" class="form-control" asp-for="url" id="url" readonly>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label" for="exampleInputText1">Preview Image</label>
+                                        <div class="img-container border">
+                                            <img src="@Model.imageurl" alt="gambar">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Description</label>
+                                <textarea class="form-control" id="editor" rows="5" asp-for="description" readonly>
+
+                                </textarea>
                             </div>
 
                             <br />
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a asp-controller="Section" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a asp-controller="Content" asp-action="Index" class="btn btn-secondary" style="width:150px">
                                 Back to List
                             </a>
                         </form>
                     </div>
                     <div class="col-sm-2"></div>
+
                 </div>
             </div>
         </div>

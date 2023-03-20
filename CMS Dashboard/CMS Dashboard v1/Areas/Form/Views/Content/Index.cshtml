@@ -34,7 +34,6 @@
                                 <th>Section</th>
                                 <th>Header</th>
                                 <th>Title</th>
-                                <th width="40%">Description</th>
                                 <th>URL</th>
                                 <th width="30%">Image</th>
                                 <th style="text-align:center;" width="10%">Action</th>
@@ -49,15 +48,14 @@
                                     <td>@item.Section</td>
                                     <td>@item.header</td>
                                     <td>@item.title</td>
-                                    <td width ="40%">@Html.Raw(@item.description)</td>
                                     <td>@item.url</td>
                                     <td width="30%"><img width="200" height="100" src="@item.imageurl" /></td>
 
                                     <td style="text-align:center;">
-                                        <a asp-controller="Conten" asp-action="Edit" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-warning">
+                                        <a asp-controller="Content" asp-action="Edit" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-warning">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a asp-controller="Conten" asp-action="Delete" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-danger">
+                                        <a asp-controller="Content" asp-action="Delete" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>

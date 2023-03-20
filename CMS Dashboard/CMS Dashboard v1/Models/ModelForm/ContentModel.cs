@@ -25,6 +25,10 @@ namespace CMS_Dashboard_v1.Models.ModelForm
 
     public class ContentViewModel
     {
+        public string url { get; set; } = string.Empty;
+        public IFormFile Photos { get; set; }
+        public string imageurl { get; set; } = string.Empty;
+
         public int content_id { get; set; }
         [Required(ErrorMessage = "Silakan Pilih Menu Terlebih Dulu")]
         public int menu_id { get; set; }
@@ -38,9 +42,6 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         public string title { get; set; } = string.Empty;
         [Required(ErrorMessage = "Description Tidak Boleh Kosong")]
         public string description { get; set; } = string.Empty;
-        public string url { get; set; } = string.Empty;
-        public IFormFile Photos { get; set; }
-        public string imageurl { get; set; } = string.Empty;
         public string Section { get; set; } = string.Empty;
         public string Menu { get; set; } = string.Empty;
     }
