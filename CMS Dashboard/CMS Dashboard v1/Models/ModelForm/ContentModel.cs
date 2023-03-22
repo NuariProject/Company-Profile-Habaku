@@ -11,6 +11,7 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         }
         public int content_id { get; set; }
         public int section_id { get; set; }
+        public int section { get; set; }
         public string header { get; set; } = string.Empty;
         public string title { get; set; } = string.Empty;
         public string description { get; set; } = string.Empty;

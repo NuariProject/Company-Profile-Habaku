@@ -103,7 +103,7 @@
         // value default dropdown
         dropdownMenu.prepend("<option value=''>Silakan Pilih Menu</option>");
         dropdownSection.prepend("<option value=''>Silakan Pilih Section</option>");
-        inputHeader.prop('disabled', false);
+        inputHeader.prop('readonly', false);
 
         
         
@@ -112,7 +112,7 @@
             debugger;
             var id = dropdownMenu.val();
             DropdownSection(id)
-            inputHeader.prop('disabled', false);
+            inputHeader.prop('readonly', false);
             inputHeader.empty();
         });
 
@@ -143,7 +143,7 @@
                     console.log(response)
                     inputHeader.val(response.header);
                     if (response.header != "") {
-                        inputHeader.prop('disabled', true);
+                        inputHeader.prop('readonly', true);
                     }
                 },failure: function(err){
                     alert(err)
