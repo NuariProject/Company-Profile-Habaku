@@ -4,7 +4,7 @@
 {
     if (i == 1)
     {
-        foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        foreach (var item in Model.ListContent.Where(ss => ss.section == i && ss.content_id <= 12))
         {
             <section>
                 <div class="relative h-full pt-56 lg:pt-85">
