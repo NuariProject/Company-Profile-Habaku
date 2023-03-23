@@ -7,19 +7,18 @@
         foreach (var item in Model.ListContent.Where(ss => ss.section == i))
         {
             <section>
-                <div class="relative h-full">
+                <div class="relative h-full pt-56 lg:pt-85">
                     <div class="bg-green-200 absolute top-0 w-full h-full"></div>
                     <div class="2xl:container mx-auto">
-                        <div class="relative grid grid-cols-1 lg:grid-cols-2 px-0 md:pl-72 md:pr-0 pt-72 pb-48 lg:pb-0 justify-between">
+                        <div class="relative grid grid-cols-1 lg:grid-cols-3 px-0 lg:pl-72 lg:pr-0 pt-0 lg:pt-85 2xl:pt-0 justify-center">
                             <div class="block lg:hidden" x-data="{ visible: false }" x-intersect="visible = true">
                                 <div :class="visible ? 'animate-scale' : ''">
                                     <img src="~/assets/images/habaku/hero-homepage-mob-illustration.png" class="w-full h-full" />
                                 </div>
                             </div>
 
-                            <div class="my-auto" x-data="{ visible: false }" x-intersect="visible = true">
-                                <div class="text-center lg:text-left grid gap-4 px-4 lg:px-0"
-                         :class="visible ? 'animate-fadeInUp' : ''">
+                            <div class="my-auto pb-48 lg:pb-72 2xl:pb-0 w-full" x-data="{ visible: false }" x-intersect="visible = true">
+                                <div class="text-center lg:text-left flex flex-col gap-4 px-4 lg:px-0" :class="visible ? 'animate-fadeInUp' : ''">
                                     <h1 class="font-montserrat text-dh-head5 lg:text-dh-head4 text-greyscale-100">
                                         @{
                                             string[] textSplit = item.header.Split(" ");
@@ -44,15 +43,14 @@
                                         <span class="text-blue-400">@words[2]</span>.
 
                                     </h1>
-                                    <p class="text-mb-small lg:text-db-small font-medium w-full lg:w-3/4">
+                                    <p class="text-db-large lg:text-dh-head6 font-medium w-full">
                                         @Html.Raw(item.description.Replace("\n", "<br>"))
                                     </p>
 
                                     <p class="font-semibold text-db-large text-blue-400 italic">
                                         #PastiLebihUntung
                                     </p>
-                                    <a href="@item.url" target="_blank"
-                           class="pt-5">
+                                    <a href="@item.url" target="_blank" class="pt-5">
                                         <button class="text-dc-large lg:text-db-small font-semibold bg-blue-400 hover:bg-blue-100 rounded-full px-6 py-10 text-greyscale-0 hover:border-2 hover:border-blue-400 hover:drop-shadow-dropOutlineBlue hover:text-blue-400">
                                             Download Sekarang
                                         </button>
@@ -60,8 +58,8 @@
                                 </div>
                             </div>
 
-                            <div class="hidden lg:block" x-data="{ visible: false }" x-intersect="visible = true">
-                                <div :class="visible ? 'animate-scale' : ''">
+                            <div class="hidden lg:block col-span-2 relative" x-data="{ visible: false }" x-intersect="visible = true">
+                                <div class="absolute 2xl:relative bottom-0" :class="visible ? 'animate-scale' : ''">
                                     <img src="@item.image" class="w-full" />
                                 </div>
                             </div>
@@ -70,110 +68,120 @@
                 </div>
             </section>
         }
-    }else if(i == 2)
+    }
+    else if (i == 2)
     {
         foreach (var item in Model.ListContent.Where(ss => ss.section == i))
         {
-            <section class="bg-bgApaHabakuMob md:bg-bgApaHabakuDesk bg-cover bg-center bg-no-repeat">
-                <div class="container mx-auto px-4 py-4 md:px-72 lg:py-40 text-center">
-                    <div x-data="{ visible: false }" x-intersect="visible = true">
-                        <div :class="visible ? 'animate-fadeInUp' : ''">
-                            <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2">
-                                @item.header
-                            </h1>
-                            <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
-                            <p class="pt-6 pb-8 w-full lg:w-3/5 mx-auto text-mb-small lg:text-db-small text-greyscale-80">
-                               @Html.Raw(item.description.Replace("\n","<br>"))
-                            </p>
-                        </div>
-                    </div>
-                    <img src="@item.image" class="w-200 h-120 lg:w-fit lg:h-fit m-auto" />
-                </div>
-            </section>
-        }
-    }else if(i == 3)
-    {
-        <section class="bg-green-100">
-            <div class="container mx-auto px-4 py-4 md:px-200 lg:py-40">
-                <div x-data="{ visible: false }" x-intersect="visible = true">
-                    <div :class="visible ? 'animate-fadeInUp' : ''">
-                        <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
-                            @Model.ListContent.FirstOrDefault(ss => ss.section == i).header
-                        </h1>
-                        <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-40 pt-4 lg:pt-6">
-                @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
-                {
-                    <div class="flex lg:grid space-x-4 lg:space-x-0">
-                            <img src="@item.image"
-                        class="mx-auto w-72 h-72 lg:w-fit lg:h-fit hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue rounded-full" />
-                            <div class="pt-0 lg:pt-4 pb-1 text-left lg:text-center">
-                                <h1 class="font-bold text-mh-head7 lg:text-dh-head6">Belanja Lebih Mudah</h1>
-                                <p class="text-mb-small lg:text-db-small text-greyscale-80 lg:text-greyscale-100">
+            <section class="bg-bgApaHabakuMob lg:bg-bgApaHabakuDesk bg-cover bg-center bg-no-repeat">
+                <div class="2xl:container mx-auto ">
+                    <div class="px-4 py-4 lg:px-72 2xl:px-200 lg:py-40 text-center">
+                        <div x-data="{ visible: false }" x-intersect="visible = true">
+                            <div :class="visible ? 'animate-fadeInUp' : ''">
+                                <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2">
+                                    @item.header
+                                </h1>
+                                <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+                                <p class="pt-6 pb-8 w-full lg:w-3/4 2xl:w-4/5 mx-auto text-mb-small lg:text-db-small text-greyscale-80">
                                     @Html.Raw(item.description.Replace("\n","<br>"))
                                 </p>
                             </div>
                         </div>
-                }
+                        <img src="@item.image" class="w-200 h-120 lg:w-fit lg:h-fit m-auto" />
+                    </div>
+                </div>
+            </section>
+        }
+    }
+    else if (i == 3)
+    {
+        <section class="bg-green-100">
+            <div class="2xl:container mx-auto ">
+                <div class="px-4 py-4 lg:px-72 2xl:px-200 lg:py-40">
+                    <div x-data="{ visible: false }" x-intersect="visible = true">
+                        <div :class="visible ? 'animate-fadeInUp' : ''">
+                            <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
+                                @Model.ListContent.FirstOrDefault(ss => ss.section == i).header
+                            </h1>
+                            <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-40 pt-4 lg:pt-8">
+                        @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+                        {
+                            <div class="flex flex-row lg:flex-col gap-4">
+                                <img src="@item.image"
+                         class="mx-auto w-72 lg:w-fit h-72 lg:h-fit hover:border-3 hover:rounded-full hover:border-blue-400 hover:drop-shadow-dropBlue" />
+                                <div class="flex flex-col gap-2 text-left lg:text-center w-full mx-auto">
+                                    <h1 class="font-bold text-mh-head7 lg:text-dh-head6">@item.title</h1>
+                                    <p class="text-mb-small lg:text-db-small text-greyscale-80">
+                                        @Html.Raw(item.description.Replace("\n","<br>"))
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </section>
-    }else if(i == 4)
+    }
+    else if (i == 4)
     {
         <section class="bg-greyscale-0">
-            <div class="container mx-auto px-4 py-4 lg:px-200 lg:py-40">
-                <div x-data="{ visible: false }" x-intersect="visible = true">
-                    <div :class="visible ? 'animate-scale' : ''">
-                        <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
-                            @Model.ListContent.FirstOrDefault(ss => ss.section == i).header
-                        </h1>
-                        <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+            <div class="2xl:container mx-auto">
+                <div class="px-4 py-4 lg:px-72 2xl:px-200 lg:py-40">
+                    <div x-data="{ visible: false }" x-intersect="visible = true">
+                        <div :class="visible ? 'animate-scale' : ''">
+                            <h1 class="font-bold text-mh-head7 lg:text-dh-head4 pb-2 text-center">
+                                @Model.ListContent.FirstOrDefault(ss => ss.section == i).header
+                            </h1>
+                            <div class="border-b-4 border-blue-400 rounded-full w-95 lg:w-262 mx-auto"></div>
+                        </div>
                     </div>
-                </div>
-                <div x-data="{ visible: false }" x-intersect="visible = true">
-                    <div :class="visible ? 'animate-fadeInUp' : ''">
-                        <div class="wrapper-rev">
-                            <div class="carousel-rev">
-                                @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
-                                {
-                                    <div class="relative bottom-0 text-center">
-                                        <div class="absolute top-0 left-0">
-                                            <img src="~/assets/images/habaku/home-quots-up-illustration.png" />
-                                        </div>
-                                        <div class="absolute bottom-0 right-0">
-                                            <img src="~/assets/images/habaku/home-quots-down-illustration.png" />
-                                        </div>
-                                        <div class="max-w-3xl xl:max-w-5xl mx-auto text-greyscale-100">
-                                            <p class="pt-0 lg:pt-6 pb-4 text-db-small">
-                                                @Html.Raw(@item.description.Replace("\n","<br>"))
-                                            </p>
-                                            <div class="flex space-x-3 justify-center">
-                                                <img src="@item.image" class="w-fit h-fit" />
-                                                <div class="grid gap-1 text-left">
-                                                    <p class="text-mb-small font-semibold">@item.title</p>
-                                                    <p class="text-mc-large">@item.title</p>
+                    <div x-data="{ visible: false }" x-intersect="visible = true">
+                        <div :class="visible ? 'animate-fadeInUp' : ''">
+                            <div class="wrapper-rev">
+                                <div class="carousel-rev">
+                                    @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+                                    {
+                                        <div class="relative bottom-0 text-center">
+                                            <div class="absolute top-0 left-0">
+                                                <img src="~/assets/images/habaku/home-quots-up-illustration.png" />
+                                            </div>
+                                            <div class="absolute bottom-0 right-0">
+                                                <img src="~/assets/images/habaku/home-quots-down-illustration.png" />
+                                            </div>
+                                            <div class="w-full mx-auto text-greyscale-80">
+                                                <p class="pt-4 lg:pt-6 pb-4 text-db-small w-full xl:w-4/5 mx-auto">
+                                                    @Html.Raw(@item.description.Replace("\n","<br>"))
+                                                </p>
+                                                <div class="flex space-x-3 justify-center">
+                                                    <img src="@item.image" class="w-fit h-fit" />
+                                                    <div class="grid gap-1 text-left">
+                                                        <p class="text-mb-small font-semibold">@item.title</p>
+                                                        <p class="text-mc-large">@item.title</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    }else if(i == 5)
+    }
+    else if (i == 5)
     {
         foreach (var item in Model.ListContent.Where(ss => ss.section == i))
         {
             <section class="bg-green-200">
-                <div class="container mx-auto grid grid-cols-2" x-data="{ visible: false }" x-intersect="visible = true">
-                    <div :class="visible ? 'animate-scale' : ''">
-                        <div class="flex flex-col gap-y-2 text-left pl-4 py-4 md:pl-200 lg:py-40 my-auto">
+                <div class="2xl:container mx-auto grid grid-cols-2" x-data="{ visible: false }" x-intersect="visible = true">
+                    <div class="my-auto" :class="visible ? 'animate-scale' : ''">
+                        <div class="flex flex-col gap-y-2 text-left pl-4 py-4 lg:pl-72 2xl:pl-200 lg:py-40 my-auto">
                             <h1 class="text-mb-small lg:text-dh-head5 font-bold">
                                 @item.header
                             </h1>
@@ -181,14 +189,14 @@
                                 @Html.Raw(item.description.Replace("\n","<br>"))
                             </p>
                             <a href="@item.url" target="_blank">
-                                <img src="~/assets/images/habaku/google-play-badge.png" class="w-100 h-38 lg:w-fit lg:h-fit" />
+                                <img src="~/assets/images/habaku/google-play-badge.png" class="w-100 h-38 lg:w-auto lg:h-auto" />
                             </a>
                         </div>
                     </div>
                     <div x-data="{ visible: false }" x-intersect="visible = true">
                         <div :class="visible ? 'animate-fadeInUp' : ''">
-                            <img src="@item.image" class="w-fit h-fit mx-auto hidden lg:block" />
-                            <img src="@item.image" class="w-fit h-fit mx-auto block lg:hidden" />
+                            <img src="@item.image" class="w-auto h-auto mx-auto hidden lg:block" />
+                            <img src="@item.image" class="w-auto h-auto mx-auto block lg:hidden" />
                         </div>
                     </div>
                 </div>

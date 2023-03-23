@@ -26,16 +26,15 @@
         </div>
     </div>
     <!-- loader END -->
-
     <!--Render Body-->
     @RenderBody()
 
     <!--Footer-->
     <footer class="bg-green-100">
-        <div class="container mx-auto">
+        <div class="2xl:container mx-auto">
             <div class="py-8 px-8 lg:px-72 lg:py-40">
                 <img src="~/assets/images/habaku/habaku-logo.png" class="w-85 h-52" />
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-20 pt-6 text-greyscale-100">
+                <div class="flex flex-col lg:flex-row gap-6 lg:gap-14 2xl:gap-160 pt-6 text-greyscale-100">
                     <div>
                         <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
                             Perusahaan
@@ -47,40 +46,54 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div class="lg:w-416">
                         <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
                             Hubungi Kami
                         </h1>
                         <div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Kontak</a>
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Lokasi</a>
+                            <p class="text-mb-small lg:text-db-small text-greyscale-80 font-normal">
+                                PT. SANO SOLUSI BERDIKARI<br />
+                                Menara Palma, Lantai 17<br />
+                                Jalan H.R. Rasuna Said Kavling VI
+                                Nomor 9 Kuningan Timur, Setiabudi, Jakarta Selatan, DKI Jakarta (12950).
+                            </p>
+                            <a href="mailto:sma.habaku@gmail.com" target="_blank">sma.habaku@gmail.com</a>
+                            <a href="https://wa.link/5o1zcu" target="_blank">whatsapp</a>
                         </div>
+                        @*<div class="grid gap-1 lg:gap-2 text-mb-small lg:text-db-small text-green-400 font-semibold">
+                        <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Kontak</a>
+                        <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Lokasi</a>
+                        </div>*@
                     </div>
 
-                    <div class="text-left">
-                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
-                            Temukan Habaku di:
-                        </h1>
-                        <div class="rounded-full w-fit py-1 px-2 bg-green-400 text-green-100">
-                            <a target="_blank" href="https://www.instagram.com/habakuapp/"><i class="fa fa-instagram"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="text-left">
-                        <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
-                            Unduh Aplikasi
-                        </h1>
-                        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.dataprods.scs">
-                            <div class="border border-green-400 flex space-x-1 py-2 pl-2 pr-3 rounded text-green-400 items-center w-fit">
-                                <i class="fab fa-google-play"></i>
-                                <p class="text-db-small font-semibold">Google Play</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-14 2xl:gap-180 text-greyscale-100">
+                        <div class="text-left w-full">
+                            <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                                Temukan Habaku di:
+                            </h1>
+                            <div class="rounded-full w-fit py-1 px-2 bg-green-400 text-green-100">
+                                <a href="https://www.instagram.com/habakuapp/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+
+                        <div class="text-left w-full">
+                            <h1 class="font-bold pb-1 lg:pb-2 text-mh-head6 lg:text-dh-head6">
+                                Unduh Aplikasi
+                            </h1>
+                            <a href="https://play.google.com/store/apps/details?id=com.dataprods.scs" target="_blank">
+                                <div class="border border-green-400 flex space-x-1 py-2 pl-2 pr-3 rounded text-green-400 items-center w-fit">
+                                    <i class="fab fa-google-play"></i>
+                                    <p class="text-db-small font-semibold">Google Play</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <p class="text-left lg:text-center text-greyscale-80 px-4 py-4">
-                © 2023 Habaku | Marketplace for Health & Beauty Products
+                © 2023 Habaku | B2B Marketplace for Health & Beauty Products
             </p>
         </div>
     </footer>

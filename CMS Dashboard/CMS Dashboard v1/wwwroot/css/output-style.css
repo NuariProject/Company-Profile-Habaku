@@ -517,40 +517,6 @@ video {
     --tw-backdrop-sepia:;
 }
 
-.container {
-    width: 100%;
-}
-
-@media (min-width: 640px) {
-    .container {
-        max-width: 640px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        max-width: 768px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .container {
-        max-width: 1024px;
-    }
-}
-
-@media (min-width: 1280px) {
-    .container {
-        max-width: 1280px;
-    }
-}
-
-@media (min-width: 1536px) {
-    .container {
-        max-width: 1536px;
-    }
-}
-
 .visible {
     visibility: visible;
 }
@@ -631,12 +597,21 @@ video {
     order: 3;
 }
 
-.order-first {
-    order: -9999;
+.col-span-1 {
+    grid-column: span 1 / span 1;
+}
+
+.col-span-2 {
+    grid-column: span 2 / span 2;
 }
 
 .m-auto {
     margin: auto;
+}
+
+.mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .mx-2 {
@@ -654,8 +629,8 @@ video {
     margin-bottom: auto;
 }
 
-.-mt-2 {
-    margin-top: -0.5rem;
+.-mt-1 {
+    margin-top: -0.25rem;
 }
 
 .mb-6 {
@@ -682,10 +657,6 @@ video {
     margin-top: auto;
 }
 
-.-mt-1 {
-    margin-top: -0.25rem;
-}
-
 .block {
     display: block;
 }
@@ -708,14 +679,6 @@ video {
 
 .h-105 {
     height: 105px;
-}
-
-.h-120 {
-    height: 120px;
-}
-
-.h-220 {
-    height: 220px;
 }
 
 .h-3 {
@@ -746,6 +709,10 @@ video {
     height: 95px;
 }
 
+.h-auto {
+    height: auto;
+}
+
 .h-fit {
     height: -moz-fit-content;
     height: fit-content;
@@ -763,20 +730,12 @@ video {
     width: 100px;
 }
 
-.w-200 {
-    width: 200px;
+.w-11\/12 {
+    width: 91.666667%;
 }
 
 .w-210 {
     width: 210px;
-}
-
-.w-215 {
-    width: 215px;
-}
-
-.w-250 {
-    width: 250px;
 }
 
 .w-3 {
@@ -811,6 +770,10 @@ video {
     width: 95px;
 }
 
+.w-auto {
+    width: auto;
+}
+
 .w-fit {
     width: -moz-fit-content;
     width: fit-content;
@@ -820,17 +783,9 @@ video {
     width: 100%;
 }
 
-.w-1\/2 {
-    width: 50%;
-}
-
 .w-max {
     width: -moz-max-content;
     width: max-content;
-}
-
-.max-w-3xl {
-    max-width: 48rem;
 }
 
 .-rotate-180 {
@@ -897,6 +852,10 @@ video {
 
 .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flex-row {
+    flex-direction: row;
 }
 
 .flex-col {
@@ -1069,6 +1028,11 @@ video {
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-greyscale-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(34 34 34 / var(--tw-bg-opacity));
+}
+
 .bg-nav-overlay {
     background-color: rgba(0, 0, 0, 0.35);
 }
@@ -1077,17 +1041,12 @@ video {
     background-color: transparent;
 }
 
-.bg-greyscale-100 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(34 34 34 / var(--tw-bg-opacity));
-}
-
 .bg-bgApaHabakuMob {
-    background-image: url('~/assets/images/habaku/bg-mob-about-habaku.png');
+    background-image: url('../assets/images/habaku/bg-desk-about-habaku.png');
 }
 
 .bg-bgHabakuLogoPromo {
-    background-image: url('~/assets/images/habaku/produk-habaku-logo.png');
+    background-image: url('../assets/images/habaku/produk-habaku-logo.png');
 }
 
 .bg-none {
@@ -1257,12 +1216,20 @@ video {
     padding-top: 0.5rem;
 }
 
+.pt-3 {
+    padding-top: 0.75rem;
+}
+
 .pt-4 {
     padding-top: 1rem;
 }
 
 .pt-5 {
     padding-top: 1.25rem;
+}
+
+.pt-56 {
+    padding-top: 56px;
 }
 
 .pt-6 {
@@ -1275,10 +1242,6 @@ video {
 
 .pt-8 {
     padding-top: 2rem;
-}
-
-.pt-80 {
-    padding-top: 80px;
 }
 
 .pt-85 {
@@ -1299,6 +1262,10 @@ video {
 
 .font-montserrat {
     font-family: Montserrat;
+}
+
+.font-serif {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .text-db-large {
@@ -1351,9 +1318,9 @@ video {
     line-height: 24px;
 }
 
-.text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
+.text-mh-head2 {
+    font-size: 26px;
+    line-height: 30px;
 }
 
 .font-bold {
@@ -1362,6 +1329,10 @@ video {
 
 .font-medium {
     font-weight: 500;
+}
+
+.font-normal {
+    font-weight: 400;
 }
 
 .font-semibold {
@@ -1416,11 +1387,6 @@ video {
     color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-.text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .no-underline {
     text-decoration-line: none;
 }
@@ -1441,6 +1407,13 @@ video {
 
 .filter {
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 header {
@@ -1538,6 +1511,10 @@ header {
     }
 }
 
+.hover\:rounded-full:hover {
+    border-radius: 9999px;
+}
+
 .hover\:border-2:hover {
     border-width: 2px;
 }
@@ -1613,30 +1590,12 @@ header {
 }
 
 @media (min-width: 768px) {
-    .md\:bg-bgApaHabakuDesk {
-        background-image: url('~/assets/images/habaku/bg-desk-about-habaku.png');
+    .md\:w-2\/5 {
+        width: 40%;
     }
 
-    .md\:px-200 {
-        padding-left: 200px;
-        padding-right: 200px;
-    }
-
-    .md\:px-72 {
-        padding-left: 72px;
-        padding-right: 72px;
-    }
-
-    .md\:pl-200 {
-        padding-left: 200px;
-    }
-
-    .md\:pl-72 {
-        padding-left: 72px;
-    }
-
-    .md\:pr-0 {
-        padding-right: 0px;
+    .md\:w-4\/6 {
+        width: 66.666667%;
     }
 }
 
@@ -1665,8 +1624,9 @@ header {
         order: 2;
     }
 
-    .lg\:order-last {
-        order: 9999;
+    .lg\:mx-auto {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .lg\:ml-80 {
@@ -1683,10 +1643,6 @@ header {
 
     .lg\:flex {
         display: flex;
-    }
-
-    .lg\:grid {
-        display: grid;
     }
 
     .lg\:hidden {
@@ -1722,8 +1678,12 @@ header {
         width: 75%;
     }
 
-    .lg\:w-3\/5 {
-        width: 60%;
+    .lg\:w-4\/5 {
+        width: 80%;
+    }
+
+    .lg\:w-416 {
+        width: 416px;
     }
 
     .lg\:w-auto {
@@ -1743,20 +1703,20 @@ header {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .lg\:grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
     .lg\:flex-row {
         flex-direction: row;
     }
 
-    .lg\:gap-2 {
-        gap: 0.5rem;
+    .lg\:flex-col {
+        flex-direction: column;
     }
 
-    .lg\:gap-20 {
-        gap: 5rem;
+    .lg\:gap-14 {
+        gap: 3.5rem;
+    }
+
+    .lg\:gap-2 {
+        gap: 0.5rem;
     }
 
     .lg\:gap-4 {
@@ -1775,14 +1735,12 @@ header {
         gap: 1.5rem;
     }
 
-    .lg\:gap-8 {
-        gap: 2rem;
+    .lg\:gap-74 {
+        gap: 74px;
     }
 
-    .lg\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
-        --tw-space-x-reverse: 0;
-        margin-right: calc(0px * var(--tw-space-x-reverse));
-        margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+    .lg\:gap-8 {
+        gap: 2rem;
     }
 
     .lg\:rounded-2xl {
@@ -1802,8 +1760,12 @@ header {
         background-color: transparent;
     }
 
+    .lg\:bg-bgApaHabakuDesk {
+        background-image: url('../assets/images/habaku/bg-desk-about-habaku.png');
+    }
+
     .lg\:bg-bgHabakuLogoPromo {
-        background-image: url('~/assets/images/habaku/produk-habaku-logo.png');
+        background-image: url('../assets/images/habaku/produk-habaku-logo.png');
     }
 
     .lg\:bg-none {
@@ -1870,8 +1832,8 @@ header {
         padding-bottom: 70px;
     }
 
-    .lg\:pl-200 {
-        padding-left: 200px;
+    .lg\:pb-72 {
+        padding-bottom: 72px;
     }
 
     .lg\:pl-72 {
@@ -1886,12 +1848,20 @@ header {
         padding-top: 0px;
     }
 
-    .lg\:pt-140 {
-        padding-top: 140px;
+    .lg\:pt-2 {
+        padding-top: 0.5rem;
     }
 
     .lg\:pt-4 {
         padding-top: 1rem;
+    }
+
+    .lg\:pt-40 {
+        padding-top: 40px;
+    }
+
+    .lg\:pt-5 {
+        padding-top: 1.25rem;
     }
 
     .lg\:pt-6 {
@@ -1910,6 +1880,10 @@ header {
         padding-top: 80px;
     }
 
+    .lg\:pt-85 {
+        padding-top: 85px;
+    }
+
     .lg\:text-left {
         text-align: left;
     }
@@ -1926,6 +1900,16 @@ header {
     .lg\:text-db-small {
         font-size: 16px;
         line-height: 24px;
+    }
+
+    .lg\:text-dc-large {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .lg\:text-dh-head3 {
+        font-size: 34px;
+        line-height: 44px;
     }
 
     .lg\:text-dh-head4 {
@@ -1963,17 +1947,46 @@ header {
 }
 
 @media (min-width: 1280px) {
-    .xl\:h-fit {
-        height: -moz-fit-content;
-        height: fit-content;
+    .xl\:w-4\/5 {
+        width: 80%;
+    }
+}
+
+@media (min-width: 1536px) {
+    .\32xl\:relative {
+        position: relative;
     }
 
-    .xl\:w-fit {
-        width: -moz-fit-content;
-        width: fit-content;
+    .\32xl\:w-3\/4 {
+        width: 75%;
     }
 
-    .xl\:max-w-5xl {
-        max-width: 64rem;
+    .\32xl\:w-4\/5 {
+        width: 80%;
+    }
+
+    .\32xl\:gap-160 {
+        gap: 160px;
+    }
+
+    .\32xl\:gap-180 {
+        gap: 180px;
+    }
+
+    .\32xl\:px-200 {
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    .\32xl\:pb-0 {
+        padding-bottom: 0px;
+    }
+
+    .\32xl\:pl-200 {
+        padding-left: 200px;
+    }
+
+    .\32xl\:pt-0 {
+        padding-top: 0px;
     }
 }
