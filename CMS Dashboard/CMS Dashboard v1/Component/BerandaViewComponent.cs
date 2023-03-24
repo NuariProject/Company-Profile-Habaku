@@ -17,21 +17,23 @@ namespace CMS_Dashboard_v1.Component
         {
             var ListContent = await _globallist.GetListContent();
             var ListSection = await _globallist.GetListSection();
+            var ListMenu = await _globallist.GetListMenu();
 
-             Model.ListContent = (from a in ListContent.Where(ss => ss.status).ToList()
-                        join b in ListSection.Where(ss => ss.status).ToList()
-                        on a.section_id equals b.section_id
-                        select new ContentModel
-                        {
-                            section_id = b.section_id,
-                            content_id = a.content_id,
-                            section = b.section_number,
-                            header = a.header,
-                            title = a.title,
-                            image = a.image,
-                            url = a.url,
-                            description = a.description
-                        }).ToList();
+            Model.ListContent = (from a in ListContent
+                                 join b in ListSection on a.section_id equals b.section_id
+                                 join c in ListMenu on b.menu_id equals c.menu_id
+                                 where a.status && b.status && c.status && c.menu_id == 1
+                                 select new ContentModel
+                                 {
+                                     section_id = b.section_id,
+                                     content_id = a.content_id,
+                                     section = b.section_number,
+                                     header = a.header,
+                                     title = a.title,
+                                     image = a.image,
+                                     url = a.url,
+                                     description = a.description
+                                 }).ToList();
 
             return View(Model);
         }

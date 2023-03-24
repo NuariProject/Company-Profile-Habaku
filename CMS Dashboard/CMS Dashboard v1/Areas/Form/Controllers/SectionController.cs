@@ -176,12 +176,12 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         public async Task<IActionResult> Edit(SectionViewModel model)
         {
             var response = await _globallist.GetListSection();
-            if (response.Any(ss => ss.status && ss.section_name == model.section_name && ss.section_id != model.section_id))
-                ModelState.AddModelError("section_name", "Nama Section sudah terdaftar");
-            if (response.Any(ss => ss.status && ss.section_name == model.section_name
-                                             && ss.section_number == model.section_number
-                                             && ss.section_id != model.section_id))
-                ModelState.AddModelError("section_number", "Urutan Section sudah terdaftar");
+            //if (response.Any(ss => ss.status && ss.section_name == model.section_name && ss.section_id != model.section_id))
+            //    ModelState.AddModelError("section_name", "Nama Section sudah terdaftar");
+            //if (response.Any(ss => ss.status && ss.section_name == model.section_name
+            //                                 && ss.section_number == model.section_number
+            //                                 && ss.section_id != model.section_id))
+            //    ModelState.AddModelError("section_number", "Urutan Section sudah terdaftar");
 
             try
             {
