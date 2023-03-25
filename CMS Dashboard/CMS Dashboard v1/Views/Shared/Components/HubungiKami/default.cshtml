@@ -1,0 +1,150 @@
+﻿@model ContentLandingPageModel
+
+@for (int i = 1; i <= Model.ListContent.Select(ss => ss.section).Distinct().Count(); i++)
+{
+    #region Section Header Banner
+    if (i == 1)
+    {
+        @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        {
+            <main>
+                <div class="relative h-full pt-56 lg:pt-85">
+                    <div class="bg-greyscale-0 absolute top-0 w-full h-full"></div>
+                    <div class="2xl:container mx-auto">
+                        <div class="relative 2xl:container mx-auto px-4 lg:px-72 2xl:px-200 pt-6 lg:pt-40 pb-6 lg:pb-40">
+                            <!-- <img src="~/assets/images/habaku/mapsicle-map.png" class="w-full h-full rounded-xl" /> -->
+                            <div class="text-left py-4 lg:py-6">
+                                <h1 class="font-bold text-mh-head3 lg:text-dh-head4">
+                                    @item.header
+                                </h1>
+                                <p class="pt-2 text-mb-small lg:text-db-small text-greyscale-80">
+                                    @{
+                                        string address = item.description;
+
+                                        // Mencari kata kunci yang mengindikasikan bangunan/lantai dan alamat
+                                        string buildingKeyword = new[] { "Menara", "Tower" }.FirstOrDefault(k => address.Contains(k));
+                                        string addressKeyword = new[] { "Jalan", "Street" }.FirstOrDefault(k => address.Contains(k));
+
+                                        // Mengambil substring untuk tiap kalimat
+                                        string company = address.Substring(0, address.IndexOf(buildingKeyword)).Trim(); // Kalimat 1: nama perusahaan
+                                        string building = address.Substring(address.IndexOf(buildingKeyword), address.IndexOf(addressKeyword) - address.IndexOf(buildingKeyword)).Trim(); // Kalimat 2: bangunan dan lantai
+                                        string addressLine = address.Substring(address.IndexOf(addressKeyword)).Trim(); // Kalimat 3: alamat lengkap
+
+                                    }
+                                    @company <br />
+                                    @building <br />
+                                    @addressLine <br />
+                                </p>
+                            </div>
+                            <a target="_blank" href="@item.url">
+                                <div class="font-bold justify-end items-center flex space-x-2 text-mh-head7 lg:text-dh-head6 text-blue-400">
+                                    <p class="hover:underline underline-offset-8 decoration-blue-400">Lihat Selengkapnya</p>
+                                    <i class='fas fa-arrow-right'></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        }
+
+    }
+    #endregion
+
+    #region Section Kritik dan Saran
+    else if (i == 2)
+    {
+        @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        {
+            <section class="bg-green-100">
+                <div class="2xl:container mx-auto ">
+                    <div class="px-4 lg:px-72 2xl:px-200 py-6 lg:py-40 grid lg:flex gap-4 lg:gap-8">
+                        <img src="@item.image" class="w-95 lg:w-fit h-95 lg:h-fit mx-auto" />
+                        <div class="mt-auto text-center lg:text-left">
+                            <h1 class="font-bold pb-2 text-mh-head6 lg:text-dh-head4">
+                                @item.header
+                            </h1>
+                            <p class="pb-4 text-db-small">
+                                @item.description
+                            </p>
+                            <a href="@item.url" target="_blank">
+                                <button class="w-full lg:w-fit hover:drop-shadow-dropBlueButton text-mb-small font-semibold text-greyscale-0 px-6 py-10 rounded-full bg-blue-400">
+                                    Beri Kritik dan Saran
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        }
+
+    }
+    #endregion
+
+    #region Section Ajukan Pertanyaan
+    else if (i == 3)
+    {
+        <section class="bg-greyscale-0">
+            <div class="2xl:container mx-auto ">
+                <div class="px-4 lg:px-72 2xl:px-200 py-6 lg:py-40">
+                    <div class="px-0 lg:px-4 py-0 lg:py-6">
+                        <h1 class="font-bold text-mh-head3 lg:text-dh-head4"> @Model.ListContent.FirstOrDefault(ss => ss.section == i).header</h1>
+                        <p class="text-db-small pt-2"> @Model.ListContent.FirstOrDefault(ss => ss.section == i).description</p>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4 pt-2 lg:pt-6">
+                            @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+                            {
+                                @if (item.title == "sma.habaku@gmail.com")
+                                {
+                                    <a href="@item.url" target="_blank">
+                                        <div class="flex space-x-4 p-4 border border-green-400 rounded-lg hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue">
+                                            <div class="text-mh-head3 lg:text-dh-head4 my-auto text-blue-400">
+                                                <i class="fa fa-envelope-o"></i>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <h1 class="text-mb-small lg:text-dh-head5 text-blue-400 font-semibold">
+                                                    Email
+                                                </h1>
+                                                <div class="flex space-x-1 text-greyscale-80 items-center">
+                                                    <p class="text-mb-small lg:text-db-small font-medium lg:font-semibold">
+                                                        @item.title
+                                                    </p>
+                                                    <i class='fas fa-arrow-right'></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@item.url" target="_blank">
+                                        <div class="flex space-x-4 p-4 border border-green-400 rounded-lg hover:border-3 hover:border-blue-400 hover:drop-shadow-dropBlue">
+                                            <div class="text-mh-head3 lg:text-dh-head4 my-auto text-blue-400">
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="flex flex-col gap-2">
+                                                <h1 class="text-mb-small lg:text-dh-head5 text-blue-400 font-semibold">
+                                                    WhatsApp
+                                                </h1>
+                                                <div class="flex space-x-1 text-greyscale-80 items-center">
+                                                    <p class="text-mb-small lg:text-db-small font-medium lg:font-semibold">
+                                                        @item.title
+                                                    </p>
+                                                    <i class='fas fa-arrow-right'></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    #endregion
+}
