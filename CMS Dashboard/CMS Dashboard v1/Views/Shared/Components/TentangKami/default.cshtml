@@ -1,0 +1,94 @@
+﻿@model ContentLandingPageModel
+
+@for (int i = 1; i <= Model.ListContent.Select(ss => ss.section).Distinct().Count(); i++)
+{
+    #region Section Header Banner
+    if (i == 1)
+    {
+        @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        {
+            <main>
+                <div class="relative h-full pt-56 lg:pt-85">
+                    <div class="bg-greyscale-0 absolute top-0 w-full h-full"></div>
+                    <div class="2xl:container mx-auto">
+                        <div class="relative px-4 lg:px-72 2xl:px-200 pt-6 lg:pt-40 py-6 lg:pb-40">
+                            <img src="@item.image" class="w-3/5 h-1/2 mx-auto" />
+                            <div class="2xl:container mx-auto text-center pt-4 lg:pt-72">
+                                <h1 class="font-bold text-mh-head5 lg:text-dh-head4">
+                                    @item.header
+                                </h1>
+                                <p class="pt-1 lg:pt-4 w-11/12 2xl:w-3/4 mx-auto text-mb-small lg:text-db-small text-greyscale-80">
+                                    @item.description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        }
+    }
+    #endregion
+
+    #region Section Visi Misi
+    else if (i == 2)
+    {
+        <section class="bg-greyscale-0">
+            <div class="2xl:container mx-auto px-4 lg:px-72 2xl:px-200 py-6 lg:py-40 grid gap-4">
+                @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+                {
+                    @if (item.title == "Visi")
+                    {
+                        <div class="relative rounded-xl bg-tk-blue">
+                            <div class="absolute top-10 left-10"><img src="~/assets/images/habaku/tk-quots-up-illustration.png" /></div>
+                            <div class="absolute bottom-10 lg:bottom-0 left-0 lg:left-auto right-auto lg:right-0">
+                                <img src="~/assets/images/habaku/tk-habaku-logo.png" class="w-210 lg:w-fit h-105 lg:h-fit" />
+                            </div>
+                            <div class="absolute bottom-10 right-10"><img src="~/assets/images/habaku/tk-quots-down-illustration.png" /></div>
+                            <div class="flex space-x-4  justify-between py-6 px-4 lg:px-8 items-center text-center">
+                                <img src="@item.image" class="z-10 w-fit h-fit" />
+                                <div>
+                                    <h1 class="font-bold text-mh-head5 lg:text-mh-head3 text-blue-400">@item.title</h1>
+                                    <p class="mx-auto w-full lg:w-3/4 text-mb-small lg:text-db-large text-greyscale-80 lg:text-greyscale-100">
+                                        @item.description
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="relative rounded-xl bg-tk-green">
+                            <div class="absolute top-10 left-10"><img src="~/assets/images/habaku/tk-quots-up-illustration.png" /></div>
+                            <div class="absolute bottom-10 lg:bottom-0 left-0">
+                                <img src="~/assets/images/habaku/tk-habaku-logo.png" class="w-210 lg:w-fit h-105 lg:h-fit" />
+                            </div>
+                            <div class="absolute bottom-10 right-10"><img src="~/assets/images/habaku/tk-quots-down-illustration.png" /></div>
+                            <div class="flex space-x-4  justify-between py-6 px-4 lg:px-8 items-center text-center">
+                                <div>
+                                    <h1 class="font-bold text-mh-head5 lg:text-mh-head3 text-blue-400">@item.title</h1>
+                                    <p class="mx-auto w-full lg:w-11/12 text-mb-small lg:text-db-large text-greyscale-80 lg:text-greyscale-100">
+                                        @item.description
+                                    </p>
+                                </div>
+                                <img src="@item.image" class="z-10 w-fit h-fit" />
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </section>
+    }
+    #endregion
+
+    #region Section Slogan
+    else if (i == 3)
+    {
+        @foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        {
+            <section class="bg-green-200 px-4 lg:px-72 2xl:px-200 py-40">
+                <h1 class="font-bold text-mh-head7 lg:text-dh-head4 items-center text-center">@item.description</h1>
+            </section>
+        }
+    }
+    #endregion
+}

@@ -1042,7 +1042,7 @@ video {
 }
 
 .bg-bgApaHabakuMob {
-    background-image: url('../assets/images/habaku/bg-desk-about-habaku.png');
+    background-image: url('../assets/images/habaku/bg-mob-about-habaku.png');
 }
 
 .bg-bgHabakuLogoPromo {
@@ -1298,6 +1298,11 @@ video {
     line-height: 18px;
 }
 
+.text-mh-head2 {
+    font-size: 26px;
+    line-height: 30px;
+}
+
 .text-mh-head3 {
     font-size: 24px;
     line-height: 30px;
@@ -1316,11 +1321,6 @@ video {
 .text-mh-head7 {
     font-size: 16px;
     line-height: 24px;
-}
-
-.text-mh-head2 {
-    font-size: 26px;
-    line-height: 30px;
 }
 
 .font-bold {
@@ -1590,10 +1590,6 @@ header {
 }
 
 @media (min-width: 768px) {
-    .md\:w-2\/5 {
-        width: 40%;
-    }
-
     .md\:w-4\/6 {
         width: 66.666667%;
     }
