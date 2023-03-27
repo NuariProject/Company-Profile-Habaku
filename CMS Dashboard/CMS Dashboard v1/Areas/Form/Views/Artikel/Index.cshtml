@@ -1,0 +1,67 @@
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ContentModel
+
+@{
+    ViewBag.title = "Master Artikel";
+}
+
+<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / </span> @ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            @*StartTittle*@
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a asp-controller="Artikel" asp-action="Create" class="btn btn-primary">
+                            <i class="fas fa-plus-square"></i>
+                            <span>
+                                &nbsp; Buat Data
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-0" />
+            @*EndTittle*@
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-hover" data-toggle="data-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Judul</th>
+                                <th>Category</th>
+                                <th>Publish</th>
+                                <th width="30%">Sampul</th>
+                                <th style="text-align:center;" width="10%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.ListArtikel)
+                            {
+                                <tr>
+                                    <td>@item.header</td>
+                                    <td>@item.title</td>
+                                    <td>@item.publish</td>
+                                    <td width="30%"><img width="200" height="100" src="@item.imageurl" /></td>
+
+                                    <td style="text-align:center;">
+                                        <a asp-controller="Artikel" asp-action="Edit" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-controller="Artikel" asp-action="Delete" asp-route-id="@item.content_id" type="button" class="btn btn-icon btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

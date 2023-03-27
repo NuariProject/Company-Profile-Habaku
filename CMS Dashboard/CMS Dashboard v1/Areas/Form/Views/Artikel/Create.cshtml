@@ -1,0 +1,83 @@
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ArtikelViewModel
+@{
+    ViewBag.title = "Create";
+}
+
+<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / Master Section / </span> @ViewBag.Title</h3>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            @*StartTittle*@
+            <div class="card-body">
+                @*Content*@
+            </div>
+            <hr class="my-0" />
+            @*EndTittle*@
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-2"></div>    
+                    <div class="col-sm-8">
+                        <form method="post" enctype="multipart/form-data" asp-action="Create">
+                            <input type="hidden" id="idsection" asp-for="section_id" readonly>
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Judul Artikel</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="header" placeholder="Silakan Input Disini">
+                                <span asp-validation-for="header" class="text-danger"></span>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Category</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="title" placeholder="Silakan Input Disini">
+                                <span asp-validation-for="title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Sampul</label>
+                                <input class="form-control" accept="image/jpeg, image/png, image/gif" id="image" asp-for="Photos">
+                                <span asp-validation-for="Photos" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Description</label>
+                                <textarea class="form-control" id="editor" rows="5" asp-for="description" placeholder=" Isi Sebuah Deskripsi Disini">
+                                    
+                                </textarea>
+                            </div>
+
+                            <br />
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a asp-controller="Content" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                                Back to List
+                            </a>
+                        </form>
+                    </div>
+                    <div class="col-sm-2"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    $(document).ready(function () {
+        ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    });
+
+</script>
+
+@section Scripts{
+    @{
+        //validation without call serverside
+        <partial name="_ValidationScriptspartial" />
+    }
+}
+
+

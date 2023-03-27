@@ -35,9 +35,8 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                 if (content != null && section != null && menu != null)
                 {
                     Model.List = (from a in content.Where(ss => ss.status).ToList()
-                                  join b in section.Where(ss => ss.status).ToList() on a.section_id equals b.section_id
+                                  join b in section.Where(ss => ss.status && ss.section_id != 12).ToList() on a.section_id equals b.section_id
                                   join c in menu.Where(ss => ss.status).ToList() on b.menu_id equals c.menu_id
-                                  where !c.menu_name.Contains("Artikel")
                                   select new ContentViewModel
                                   {
                                       content_id = a.content_id,

@@ -15,7 +15,8 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="~/js/alpine.js"></script>
-    <script src="~/js/alpine2.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="font-lato">
@@ -99,19 +100,7 @@
     </footer>
 
 </body>
-<!--Script for Responsive Navbar-->
-<script>
-    var button = document.querySelector('#toggle-menu-button');
-    var menu = document.querySelector('#toggle-menu');
-    var open = document.querySelector('#open');
-    var close = document.querySelector('#close');
 
-    button.addEventListener('click', (e) => {
-        menu.classList.toggle('hidden');
-        open.classList.toggle('hidden');
-        close.classList.toggle('hidden');
-    });
-</script>
 
 <!-- Script for Review Carousel-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -149,6 +138,23 @@
 <script src="https://unpkg.com/taos@1.0.2/dist/taos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 
+
+<!--Script for Responsive Navbar-->
+<script>
+    var button = document.querySelector('#toggle-menu-button');
+    var menu = document.querySelector('#toggle-menu');
+    var open = document.querySelector('#open');
+    var close = document.querySelector('#close');
+
+    button.addEventListener('click', (e) => {
+        menu.classList.toggle('hidden');
+        open.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+    });
+</script>
+
+
+
 <!--Script for Change Navbar When Scroll-->
 <script>
     window.onscroll = () => {
@@ -156,254 +162,5 @@
         if (this.scrollY <= 10) nav.className = ''; else nav.className = 'scroll';
     };
 </script>
-
-<!--Script for Articles Pagination-->
-<script>
-    var sourceData = [
-        {
-            id: "1",
-            image: "/assets/images/habaku/img-artikel-1.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel.html",
-        },
-        {
-            id: "2",
-            image: "/assets/images/habaku/img-artikel-2.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-2.html",
-        },
-        {
-            id: "3",
-            image: "/assets/images/habaku/img-artikel-3.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-3.html",
-        },
-        {
-            id: "4",
-            image: "/assets/images/habaku/img-artikel-4.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-4.html",
-        },
-        {
-            id: "5",
-            image: "/assets/images/habaku/img-artikel-5.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-5.html",
-        },
-        {
-            id: "6",
-            image: "/assets/images/habaku/img-artikel-6.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-6.html",
-        },
-        {
-            id: "7",
-            image: "/assets/images/habaku/img-artikel-7.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-7.html",
-        },
-        {
-            id: "8",
-            image: "/assets/images/habaku/img-artikel-8.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-8.html",
-        },
-        {
-            id: "9",
-            image: "/assets/images/habaku/img-artikel-9.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-9.html",
-        },
-        {
-            id: "10",
-            image: "/assets/images/habaku/img-artikel-10.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-10.html",
-        },
-        {
-            id: "11",
-            image: "/assets/images/habaku/img-artikel-11.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-11.html",
-        },
-        {
-            id: "12",
-            image: "/assets/images/habaku/img-artikel-12.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-12.html",
-        },
-        {
-            id: "13",
-            image: "/assets/images/habaku/img-artikel-13.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-13.html",
-        },
-        {
-            id: "14",
-            image: "/assets/images/habaku/img-artikel-14.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-14.html",
-        },
-        {
-            id: "15",
-            image: "/assets/images/habaku/img-artikel-15.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-15.html",
-        },
-        {
-            id: "16",
-            image: "/assets/images/habaku/img-artikel-16.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-16.html",
-        },
-        {
-            id: "17",
-            image: "/assets/images/habaku/img-artikel-17.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-17.html",
-        },
-        {
-            id: "18",
-            image: "/assets/images/habaku/img-artikel-18.png",
-            title: "Judul Artikel",
-            category: "Kategori/Label Artikel",
-            published: "12 Feb 2023",
-            link_detail: "detail-artikel-18.html",
-        },
-    ];
-
-    function loadArticles() {
-        return {
-            search: "",
-            pageNumber: 0,
-            size: 6,
-            total: "",
-            myForData: sourceData,
-
-            get filteredArticles() {
-                const start = this.pageNumber * this.size,
-                    end = start + this.size;
-
-                if (this.search === "") {
-                    this.total = this.myForData.length;
-                    return this.myForData.slice(start, end);
-                }
-
-                //Return the total results of the filters
-                this.total = this.myForData.filter((item) => {
-                    return item.title
-                        .toLowerCase()
-                        .includes(this.search.toLowerCase());
-                }).length;
-
-                //Return the filtered data
-                return this.myForData
-                    .filter((item) => {
-                        return item.title
-                            .toLowerCase()
-                            .includes(this.search.toLowerCase());
-                    })
-                    .slice(start, end);
-            },
-
-            //Create array of all pages (for loop to display page numbers)
-            pages() {
-                return Array.from({
-                    length: Math.ceil(this.total / this.size),
-                });
-            },
-
-            //Next Page
-            nextPage() {
-                this.pageNumber++;
-            },
-
-            //Previous Page
-            prevPage() {
-                this.pageNumber--;
-            },
-
-            //Total number of pages
-            pageCount() {
-                return Math.ceil(this.total / this.size);
-            },
-
-            //Return the start range of the paginated results
-            startResults() {
-                return this.pageNumber * this.size + 1;
-            },
-
-            //Return the end range of the paginated results
-            endResults() {
-                let resultsOnPage = (this.pageNumber + 1) * this.size;
-
-                if (resultsOnPage <= this.total) {
-                    return resultsOnPage;
-                }
-
-                return this.total;
-            },
-
-            //Link to navigate to page
-            viewPage(index) {
-                this.pageNumber = index;
-            },
-        };
-    }
-</script>
-
-@*<script>
-    function initMap() {
-        // Buat objek peta dengan koordinat tengah yang ditentukan
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -6.226715266465861, lng: 106.83340277536963 },
-            zoom: 24
-        });
-
-        // Tambahkan marker ke posisi tertentu di peta
-        var marker = new google.maps.Marker({
-            position: { lat: -6.226715266465861, lng: 106.83340277536963 },
-            map: map,
-            title: 'Kantor Saya'
-        });
-    }
-
-    // Panggil fungsi initMap() setelah halaman selesai dimuat
-    google.maps.event.addDomListener(window, 'load', initMap);
-</script>*@
 
 </html>

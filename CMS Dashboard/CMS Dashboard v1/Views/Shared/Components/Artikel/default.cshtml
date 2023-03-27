@@ -1,0 +1,30 @@
+﻿@model ContentLandingPageModel
+
+@for (int i = 1; i <= Model.ListContent.Select(ss => ss.section).Distinct().Count(); i++)
+{
+    if (i == 1)
+    {
+        foreach (var item in Model.ListContent.Where(ss => ss.section == i))
+        {
+            <section>
+                <div class="relative h-full">
+                    <div class="bg-green-200 absolute top-0 w-full h-full"></div>
+                    <div class="2xl:container mx-auto">
+                        <div class="relative grid grid-cols-1 lg:grid-cols-2 pl-4 pr-4 lg:pl-72 lg:pr-0 pt-72 pb-6 lg:pb-0">
+                            <img src="images/hero-artikel-mob-illustration.png" class="w-full h-full block lg:hidden" />
+                            <div class="text-center lg:text-left grid gap-4 my-auto">
+                                <h1 class="font-montserrat text-mh-head2 lg:text-dh-head3 text-greyscale-100">
+                                    @Model.ListContent.FirstOrDefault(ss => ss.section == i).header
+                                </h1>
+                                <p class="text-mh-head7 lg:text-dh-head5 font-medium font-serif w-full lg:w-4/5">
+                                    @Html.Raw(item.description.Replace("\n","<br>"))
+                                </p>
+                            </div>
+                            <img src="@item.image" class="w-full hidden lg:block" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    }
+}

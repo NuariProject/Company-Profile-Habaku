@@ -18,22 +18,7 @@
                                     @item.header
                                 </h1>
                                 <p class="pt-2 text-mb-small lg:text-db-small text-greyscale-80">
-                                    @{
-                                        string address = item.description;
-
-                                        // Mencari kata kunci yang mengindikasikan bangunan/lantai dan alamat
-                                        string buildingKeyword = new[] { "Menara", "Tower" }.FirstOrDefault(k => address.Contains(k));
-                                        string addressKeyword = new[] { "Jalan", "Street" }.FirstOrDefault(k => address.Contains(k));
-
-                                        // Mengambil substring untuk tiap kalimat
-                                        string company = address.Substring(0, address.IndexOf(buildingKeyword)).Trim(); // Kalimat 1: nama perusahaan
-                                        string building = address.Substring(address.IndexOf(buildingKeyword), address.IndexOf(addressKeyword) - address.IndexOf(buildingKeyword)).Trim(); // Kalimat 2: bangunan dan lantai
-                                        string addressLine = address.Substring(address.IndexOf(addressKeyword)).Trim(); // Kalimat 3: alamat lengkap
-
-                                    }
-                                    @company <br />
-                                    @building <br />
-                                    @addressLine <br />
+                                    @Html.Raw(item.description.Replace("\n", "<br>"))
                                 </p>
                             </div>
                             <a target="_blank" href="@item.url">
