@@ -1,4 +1,4 @@
-﻿@model CMS_Dashboard_v1.Models.ModelForm.ContentViewModel
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ArtikelViewModel
 @{
     ViewBag.title = "Edit";
 }
@@ -8,7 +8,7 @@
     }
 
     .img-container {
-        height: 200px; /* mengatur tinggi div agar sesuai dengan tinggi gambar */
+        height: 300px; /* mengatur tinggi div agar sesuai dengan tinggi gambar */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -21,7 +21,7 @@
     }
 </style>
 
-<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / Master Section / </span> @ViewBag.Title</h3>
+<h3 class="fw-bold py-0 mb-4 "><span class="fw-light">Pages / Master Artikel / </span> @ViewBag.Title</h3>
 
 <div class="row">
     <div class="col-sm-12">
@@ -43,43 +43,32 @@
                             <input type="hidden" id="idsection" asp-for="section_id" readonly>
 
                             <div class="form-group">
-                                <label class="form-label">Menu</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="Menu" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Section</label>
-                                <input type="text" class="form-control" id="NameSection" asp-for="Section" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Header</label>
+                                <label class="form-label" for="exampleInputText1">Judul Artikel</label>
                                 <input type="text" class="form-control" id="NameMenu" asp-for="header" placeholder="Silakan Input Disini">
                                 <span asp-validation-for="header" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Tittle</label>
+                                <label class="form-label" for="exampleInputText1">Category</label>
                                 <input type="text" class="form-control" id="NameMenu" asp-for="title" placeholder="Silakan Input Disini">
                                 <span asp-validation-for="title" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="exampleInputText1">Image</label>
-                                        <input class="form-control" accept="image/jpeg, image/png, image/gif" id="image" asp-for="Photos">
-                                        <span class="text-danger">Peringatan : Gambar yang baru, akan menimpa gambar yang lama.</span>
-                                        <br /><br />
-                                        <label class="form-label" for="exampleInputText1">URL</label>
-                                        <input type="url" class="form-control" asp-for="url" id="url" placeholder="Enter Url">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="exampleInputText1">Preview Image</label>
-                                        <div class="img-container border">
-                                            <img src="@Model.imageurl" alt="gambar">
-                                        </div>
-                                    </div>
+                                <label class="form-label" for="exampleInputText1">Sampul</label>
+                                <div class="input-group">
+                                    <input class="form-control" accept="image/jpeg, image/png, image/gif" id="image" asp-for="Photos">
+                                    <button type="button" id="disable-input" class="btn btn-secondary">
+                                        <i class="fa fa-lock"></i>
+                                    </button>
+                                </div>
+                                <span asp-validation-for="Photos" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="exampleInputText1">Preview</label>
+                                <div class="img-container border">
+                                    <img src="@Model.imageurl" alt="gambar">
                                 </div>
                             </div>
 
@@ -92,7 +81,7 @@
 
                             <br />
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a asp-controller="Content" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                            <a asp-controller="Artikel" asp-action="Index" class="btn btn-secondary" style="width:150px">
                                 Back to List
                             </a>
                         </form>
@@ -100,10 +89,36 @@
                     <div class="col-sm-2"></div>
 
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        $(function () {
+            var $input = $('#image');
+            var $button = $('#disable-input');
+
+            $button.on('click', function () {
+                if ($input.prop('disabled')) {
+                    $input.prop('disabled', false);
+                    $button.removeClass('active');
+                } else {
+                    $input.prop('disabled', true);
+                    $button.addClass('active');
+                }
+            });
+        });
+    });
+
+</script>
 
 @section Scripts{
     @{

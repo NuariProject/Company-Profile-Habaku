@@ -43,7 +43,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                                        title = a.header, // Judul
                                        category = a.title, // Category
                                        published = DateTime.Now.ToString("dd MMMM yyyy"),
-                                       desc = Regex.Replace(a.description, @"<[^>]*>", ""), // Description
+                                       desc = Regex.Replace(a.description, @"<[^>]*>|&nbsp;", ""), // Description
                                        image = a.image, // Sampul
                                        link_detail = "DetailArtikel/Read/?ArtikelKe=" + a.content_id
                                        //new string(Enumerable.Repeat("0123", a.content_id)
@@ -105,7 +105,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                                          title = a.header, // Judul
                                          category = a.title, // Category
                                          published = DateTime.Now.ToString("dd MMMM yyyy"),
-                                         desc = Regex.Replace(a.description, @"<[^>]*>", ""), // Description
+                                         desc = Regex.Replace(a.description, @"<[^>]*>|&nbsp;", ""), // Description
                                          image = a.image, // Sampul
                                          link_detail = "?ArtikelKe=" + a.content_id
                                          //new string(Enumerable.Repeat("0123", a.content_id)

@@ -154,5 +154,205 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         }
 
 
+        [Route("Artikel/Edit")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            var model = new ArtikelViewModel();
+            try
+            {
+                model = await FindData(id);
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+                return RedirectToAction("Index", "Content");
+            }
+            return View(model);
+        }
+
+        [Route("Artikel/Delete")]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            var model = new ArtikelViewModel();
+            try
+            {
+                model = await FindData(id);
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+                return RedirectToAction("Index", "Content");
+            }
+            return View(model);
+        }
+
+        private async Task<ArtikelViewModel> FindData(int? id)
+        {
+            var val = new ArtikelViewModel();
+            try
+            {
+                var content = await _globallist.GetListContent();
+                var section = await _globallist.GetListSection();
+                var menu = await _globallist.GetListMenu();
+
+                val = (from a in content.Where(ss => ss.status && ss.content_id == id).ToList()
+                       join b in section.Where(ss => ss.status).ToList()
+                       on a.section_id equals b.section_id
+                       join c in menu.Where(ss => ss.status).ToList()
+                       on b.menu_id equals c.menu_id
+                       select new ArtikelViewModel
+                       {
+                           content_id = a.content_id,
+                           section_id = b.section_id,
+                           menu_id = Convert.ToInt16(c.menu_id),
+                           header = a.header,
+                           title = a.title,
+                           imageurl = a.image,
+                           description = a.description
+                       }).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+            }
+
+            return val;
+        }
+
+
+        [HttpPost]
+        [Route("Artikel/Edit")]
+        public async Task<IActionResult> Edit(ArtikelViewModel model)
+        {
+            try
+            {
+                var content = await _globallist.GetListContent();
+                var section = await _globallist.GetListSection();
+                var batasContent = section.Where(ss => ss.status && ss.section_id == model.section_id).FirstOrDefault();
+                var totalContent = content.Where(ss => ss.status && ss.section_id == model.section_id).ToList();
+
+                ModelState.Remove("Publish");
+                ModelState.Remove("Photos");
+
+                if (ModelState.IsValid)
+                {
+                    if (model.Photos != null)
+                    {
+                        string path = "cover/Artikel/";
+                        path += Guid.NewGuid().ToString() + "_" + model.Photos.FileName;
+                        model.imageurl = "/" + path;
+                        string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
+
+                        await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+                    }
+                    else
+                    {
+                        model.imageurl = content.FirstOrDefault(ss => ss.status && ss.content_id == model.content_id).image;
+                    }
+
+                    var obj = new PutContentModel
+                    {
+                        content_id = model.content_id,
+                        section_id = model.section_id,
+                        header = model.header,
+                        title = model.title,
+                        description = model.description,
+                        image = model.imageurl,
+                        url = "",
+                        status = true,
+                        modified_by = HttpContext.Session.GetString("Username")
+                    };
+
+                    MasterDataService _masterDataService = new MasterDataService();
+                    var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
+                    var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
+                    var data = await _masterDataService.PutAsync(baseadd + enpoint, obj);
+                    string jsonString = await data.Content.ReadAsStringAsync();
+                    var BaseResponse = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
+
+                    if (BaseResponse.code == Convert.ToInt16(HttpStatusCode.OK))
+                    {
+                        NotifMessage("success", "Artikel berhasil diupdate");
+                        return RedirectToAction("Index", "Artikel");
+                    }
+                    else
+                    {
+                        NotifMessage("error", " Data gagal diupdate");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Artikel/Delete")]
+        public async Task<IActionResult> Delete(ArtikelViewModel model)
+        {
+            try
+            {
+                ModelState.Remove("Publish");
+                ModelState.Remove("Photos");
+                if (ModelState.IsValid)
+                {
+                    var content = await _globallist.GetListContent();
+                    if (model.Photos != null)
+                    {
+                        string path = "cover/Artikel/";
+                        path += Guid.NewGuid().ToString() + "_" + model.Photos.FileName;
+                        model.imageurl = "/" + path;
+                        string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
+
+                        await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+                    }
+                    else
+                    {
+                        model.imageurl = content.FirstOrDefault(ss => ss.status && ss.content_id == model.content_id).image;
+                    }
+
+                    var obj = new PutContentModel
+                    {
+                        content_id = model.content_id,
+                        section_id = model.section_id,
+                        header = model.header,
+                        title = model.title,
+                        description = model.description,
+                        image = model.imageurl,
+                        url = "",
+                        status = false,
+                        modified_by = HttpContext.Session.GetString("Username")
+                    };
+
+                    MasterDataService _masterDataService = new MasterDataService();
+                    var baseadd = _configuration.GetValue<string>("Api-CMS:BaseAddress");
+                    var enpoint = _configuration.GetValue<string>("Api-CMS:Content");
+                    var data = await _masterDataService.PutAsync(baseadd + enpoint, obj);
+                    string jsonString = await data.Content.ReadAsStringAsync();
+                    var BaseResponse = JsonConvert.DeserializeObject<BaseResponse<List<ContentModel>>>(jsonString);
+
+                    if (BaseResponse.code == Convert.ToInt16(HttpStatusCode.OK))
+                    {
+                        NotifMessage("success", "Artikel berhasil dihapus");
+                        return RedirectToAction("Index", "Artikel");
+                    }
+                    else
+                    {
+                        NotifMessage("error", " Data gagal dihapus");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                NotifMessage("error", " Error : " + e.Message.ToString());
+            }
+
+            return View(model);
+        }
+
+
     }
 }

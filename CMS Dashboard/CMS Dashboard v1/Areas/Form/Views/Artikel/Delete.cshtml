@@ -1,4 +1,4 @@
-﻿@model CMS_Dashboard_v1.Models.ModelForm.ContentViewModel
+﻿@model CMS_Dashboard_v1.Models.ModelForm.ArtikelViewModel
 @{
     ViewBag.title = "Delete";
 }
@@ -8,7 +8,7 @@
     }
 
     .img-container {
-        height: 200px; /* mengatur tinggi div agar sesuai dengan tinggi gambar */
+        height: 300px; /* mengatur tinggi div agar sesuai dengan tinggi gambar */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -43,52 +43,32 @@
                             <input type="hidden" id="idsection" asp-for="section_id" readonly>
 
                             <div class="form-group">
-                                <label class="form-label">Menu</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="Menu" readonly>
+                                <label class="form-label" for="exampleInputText1">Judul Artikel</label>
+                                <input type="text" readonly class="form-control" id="NameMenu" asp-for="header" placeholder="Silakan Input Disini">
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Section</label>
-                                <input type="text" class="form-control" id="NameSection" asp-for="Section" readonly>
+                                <label class="form-label" for="exampleInputText1">Category</label>
+                                <input type="text" class="form-control" id="NameMenu" asp-for="title" placeholder="Silakan Input Disini" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Header</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="header" readonly>
-                                <span asp-validation-for="header" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label" for="exampleInputText1">Tittle</label>
-                                <input type="text" class="form-control" id="NameMenu" asp-for="title" readonly>
-                                <span asp-validation-for="title" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="exampleInputText1">URL</label>
-                                        <input type="url" class="form-control" asp-for="url" id="url" readonly>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="exampleInputText1">Preview Image</label>
-                                        <div class="img-container border">
-                                            <img src="@Model.imageurl" alt="gambar">
-                                        </div>
-                                    </div>
+                                <label class="form-label" for="exampleInputText1">Preview</label>
+                                <div class="img-container border">
+                                    <img src="@Model.imageurl" alt="gambar">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="exampleInputText1">Description</label>
-                                <textarea class="form-control" id="editor" rows="5" asp-for="description" readonly>
+                                <textarea class="form-control" id="editor" rows="5" asp-for="description" placeholder=" Isi Sebuah Deskripsi Disini">
 
                                 </textarea>
                             </div>
 
                             <br />
                             <button type="submit" class="btn btn-danger">Delete</button>
-                            <a asp-controller="Content" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                            <a asp-controller="Artikel" asp-action="Index" class="btn btn-secondary" style="width:150px">
                                 Back to List
                             </a>
                         </form>
@@ -100,6 +80,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        $(function () {
+            var $input = $('#image');
+            var $button = $('#disable-input');
+
+            $button.on('click', function () {
+                if ($input.prop('disabled')) {
+                    $input.prop('disabled', false);
+                    $button.removeClass('active');
+                } else {
+                    $input.prop('disabled', true);
+                    $button.addClass('active');
+                }
+            });
+        });
+    });
+
+</script>
 
 @section Scripts{
     @{
