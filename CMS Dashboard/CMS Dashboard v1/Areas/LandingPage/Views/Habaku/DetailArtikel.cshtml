@@ -79,6 +79,7 @@
                 <p class="text-mb-small lg:text-db-small pt-4 text-justify">
                    @Html.Raw(Model.desc)
                 </p>
+
                 <div class="pt-4 flex space-x-4">
                     <p class="text-mb-small lg:text-db-small font-medium text-greyscale-80">Bagikan Artikel Ini</p>
                     <a href="@Model.link_detail">
@@ -105,7 +106,7 @@
                 <a :href="`${item.link_detail}`">
                     <div class="group col-span-1 flex flex-col gap-4">
                         <div class="group-hover:border-3 group-hover:rounded-xl group-hover:lg:rounded-2xl group-hover:border-blue-400 group-hover:drop-shadow-dropBlue">
-                            <img :src="`${item.image}`" alt="gambar" style="object-fit: cover; width: 335px; height: 165px;" class="rounded-xl lg:rounded-2xl w-full h-full" />
+                            <img :src="`${item.image}`" alt="gambar" style="object-fit: cover;" class="rounded-xl lg:rounded-2xl w-full h-full" />
                         </div>
                         <div class="text-left">
                             <h1 class="group-hover:text-blue-400 font-bold text-mh-head6 lg:text-dh-head6"
