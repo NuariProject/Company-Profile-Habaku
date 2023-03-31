@@ -26,7 +26,7 @@
                 <div id="toggle-menu"
                      class="2xl:container hidden lg:block bg-nav-overlay lg:bg-transparent font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full lg:h-auto w-full lg:w-auto flex flex-col lg:relative">
                     <div class="w-3/4 lg:w-auto h-full lg:h-auto bg-green-100 lg:bg-transparent pt-85 lg:pt-0 ml-auto">
-                        <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
+                        <ul class="list-none list-pl flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
                             <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
                                 <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
                             </li>
@@ -34,7 +34,7 @@
                                 <div class="cursor-pointer w-fit mx-auto hover:text-blue-400 hover:font-bold">
                                     <span>Produk</span>
                                 </div>
-                                <ul class="dropdown-menu relative lg:absolute hidden text-greyscale-80 ml-0 lg:-ml-38 pt-3 w-140 text-center">
+                                <ul class="list-none list-pl dropdown-menu relative lg:absolute hidden text-greyscale-80 ml-0 lg:-ml-38 pt-3 w-140 text-center">
                                     <div class="rounded rounded-lg border lg:border-0 border-greyscale-60 bg-transparent lg:bg-greyscale-0 lg:drop-shadow-dropMenuDropdown">
                                     <li class=""><a class="hover:text-blue-400 hover:font-bold py-2 lg:py-4 px-10 lg:px-4 block w-full" asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">B2B Product</a></li>
                                     <li class="hidden lg:block border-b border-greyscale-40 rounded-full mx-auto w-105"></li>
