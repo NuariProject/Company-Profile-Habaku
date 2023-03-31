@@ -2,6 +2,7 @@
 using CMS_Dashboard_v1.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
@@ -42,7 +43,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                                        id = a.content_id.ToString(), // IdArtikel
                                        title = a.header, // Judul
                                        category = a.title, // Category
-                                       published = DateTime.Now.ToString("dd MMMM yyyy"),
+                                       published = a.created_at.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), // Tanggal Artikel Dibuat,
                                        desc = Regex.Replace(a.description, @"<[^>]*>|&nbsp;", ""), // Description
                                        image = a.image, // Sampul
                                        link_detail = "DetailArtikel/Read/?ArtikelKe=" + a.content_id
@@ -87,7 +88,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                     Model.id = artikelContent.content_id.ToString();
                     Model.title = artikelContent.header;
                     Model.category = artikelContent.title;
-                    Model.published = DateTime.Now.ToString("dd MMMM yyyy");
+                    Model.published = artikelContent.created_at.ToString("dd MMMM yyyy", new CultureInfo("id-ID")); // Tanggal Artikel Dibuat;
                     Model.desc = artikelContent.description;
                     Model.image = artikelContent.image;
                     Model.link_detail = "?ArtikelKe=" + artikelContent.content_id;
@@ -104,7 +105,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                                          id = a.content_id.ToString(), // IdArtikel
                                          title = a.header, // Judul
                                          category = a.title, // Category
-                                         published = DateTime.Now.ToString("dd MMMM yyyy"),
+                                         published = a.created_at.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), // Tanggal Artikel Dibuat,
                                          desc = Regex.Replace(a.description, @"<[^>]*>|&nbsp;", ""), // Description
                                          image = a.image, // Sampul
                                          link_detail = "?ArtikelKe=" + a.content_id
@@ -146,7 +147,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                                        id = a.content_id.ToString(), // IdArtikel
                                        title = a.header, // Judul
                                        category = a.title, // Category
-                                       published = DateTime.Now.ToString("dd MMMM yyyy"),
+                                       published = a.created_at.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), // Tanggal Artikel Dibuat,
                                        desc = a.description, // Description
                                        image = a.image, // Sampul
                                        link_detail = "DetailArtikel/Read/?ArtikelKe"+

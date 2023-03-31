@@ -20,6 +20,7 @@ namespace CMS_Dashboard_v1.Models.ModelForm
         public string image { get; set; } = string.Empty;
         public string url { get; set; } = string.Empty;
         public bool status { get; set; }
+        public DateTime created_at { get; set; }
         public List<ContentViewModel> List { get; set; }
         public List<ArtikelViewModel> ListArtikel { get; set; }
     }

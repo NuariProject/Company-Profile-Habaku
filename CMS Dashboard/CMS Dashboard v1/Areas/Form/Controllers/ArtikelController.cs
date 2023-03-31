@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 using System.Net;
 using System.Reflection;
 
@@ -34,17 +35,17 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                 if (content != null && section != null && menu != null)
                 {
                     Model.ListArtikel = (from a in content.Where(ss => ss.status).ToList()
-                                  join b in section.Where(ss => ss.status && ss.section_id == 12).ToList() on a.section_id equals b.section_id
-                                  join c in menu.Where(ss => ss.status).ToList() on b.menu_id equals c.menu_id
-                                  select new ArtikelViewModel
-                                  {
-                                      content_id = a.content_id, // IdArtikel
-                                      header = a.header, // Judul
-                                      title = a.title, // Category
-                                      publish = DateTime.Now.ToString("dd MMMM yyyy"),
-                                      description = a.description, // Description
-                                      imageurl = a.image, // Sampul
-                                  }).ToList();
+                                         join b in section.Where(ss => ss.status && ss.section_id == 12).ToList() on a.section_id equals b.section_id
+                                         join c in menu.Where(ss => ss.status).ToList() on b.menu_id equals c.menu_id
+                                         select new ArtikelViewModel
+                                         {
+                                             content_id = a.content_id, // IdArtikel
+                                             header = a.header, // Judul
+                                             title = a.title, // Category
+                                             publish = a.created_at.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), // Tanggal Artikel Dibuat
+                                             description = a.description, // Description
+                                             imageurl = a.image, // Sampul
+                                         }).ToList();
                 }
                 else
                 {
@@ -73,8 +74,8 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             var section = await _globallist.GetListSection();
 
             var def = (from a in menu.Where(ss => ss.menu_name.Contains("Artikel"))
-                           join b in section on a.menu_id equals b.menu_id
-                           select b).OrderByDescending(ss => ss.section_number).FirstOrDefault();
+                       join b in section on a.menu_id equals b.menu_id
+                       select b).OrderByDescending(ss => ss.section_number).FirstOrDefault();
             if (def != null)
             {
                 model.section_id = def.section_id;
@@ -95,7 +96,7 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
             ModelState.Remove("Publish");
             if (totalContent.Count() >= batasContent.section_approve)
             {
-                ModelState.AddModelError("section_id","Batas Maksimal");
+                ModelState.AddModelError("section_id", "Batas Maksimal");
 
                 NotifMessage("error", "Total Artikel anda : " + totalContent.Count() + " Artikel || " +
                     "Batas Tulis Artikel : " + batasContent.section_approve + " Artikel");

@@ -19,6 +19,8 @@ builder.Services
   .AddCookie(options => {
       options.Cookie.Name = "_Auth";
       options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+      options.LoginPath = "/Login";
+      options.LogoutPath = "/Auth/Logout";
   });
 
 builder.Services

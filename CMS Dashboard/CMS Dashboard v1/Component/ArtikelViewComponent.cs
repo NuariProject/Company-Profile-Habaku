@@ -32,7 +32,8 @@ namespace CMS_Dashboard_v1.Component
                                      title = a.title,
                                      image = a.image,
                                      url = a.url,
-                                     description = a.description
+                                     description = a.description,
+                                     created_at = a.created_at
                                  }).ToList();
 
             return View(Model);

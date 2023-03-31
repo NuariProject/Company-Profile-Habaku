@@ -12,6 +12,7 @@
             public string image { get; set; }
             public string url { get; set; }
             public bool status { get; set; }
+            public DateTime created_at { get; set; }
 
         }
 

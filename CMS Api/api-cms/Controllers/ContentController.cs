@@ -50,7 +50,8 @@ namespace api_cms.Controllers
                                     description = reader.GetString(reader.GetOrdinal("description")),
                                     image = reader.GetString(reader.GetOrdinal("image")),
                                     url = reader.GetString(reader.GetOrdinal("url")),
-                                    status = reader.GetBoolean(reader.GetOrdinal("status"))
+                                    status = reader.GetBoolean(reader.GetOrdinal("status")),
+                                    created_at = reader.GetDateTime(reader.GetOrdinal("created_at"))
                                 });
                             }
                         }

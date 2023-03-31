@@ -31,9 +31,18 @@
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
                             <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
                         </li>
-                        <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">Produk</a>
-                        </li>
+                        <li class="dropdown inline-block relative">
+                            <div class="cursor-pointer w-fit mx-auto hover:text-blue-400 hover:font-bold">
+                                <span>Produk</span>
+                            </div>
+                            <ul class="dropdown-menu relative lg:absolute hidden text-greyscale-80 ml-0 lg:-ml-38 pt-3 w-140 text-center">
+                                <div class="rounded rounded-lg border lg:border-0 border-greyscale-60 bg-transparent lg:bg-greyscale-0 lg:drop-shadow-dropMenuDropdown">
+                                <li class=""><a class="hover:text-blue-400 hover:font-bold py-2 lg:py-4 px-10 lg:px-4 block w-full" asp-area="LandingPage" asp-controller="Habaku" asp-action="Produk">B2B Product</a></li>
+                                <li class="hidden lg:block border-b border-greyscale-40 rounded-full mx-auto w-105"></li>
+                                <li class=""><a class="hover:text-blue-400 hover:font-bold py-2 lg:py-4 px-10 lg:px-4 block w-full" href="#">Point of Sales</a></li>
+                </div>
+                </ul>
+                </li>
                         <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
                             <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
                         </li>
