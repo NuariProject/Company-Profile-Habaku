@@ -13,14 +13,34 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
         GlobalListApi _globallist = new GlobalListApi();
 
         [Route("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var menu = await _globallist.GetListMenu();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             return View();
         }
 
         [Route("/produk")]
-        public IActionResult Produk()
+        public async Task<IActionResult> Produk()
         {
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var menu = await _globallist.GetListMenu();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             return View();
         }
 
@@ -31,6 +51,13 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
             var section = await _globallist.GetListSection();
             var menu = await _globallist.GetListMenu();
             var Model = new Article();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             try
             {
                 if (content != null && section != null && menu != null)
@@ -60,14 +87,34 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
         }
 
         [Route("/tentangkami")]
-        public IActionResult TentangKami()
+        public async Task<IActionResult> TentangKami()
         {
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var menu = await _globallist.GetListMenu();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             return View();
         }
 
         [Route("/hubungikami")]
-        public IActionResult HubungiKami()
+        public async Task<IActionResult> HubungiKami()
         {
+            var content = await _globallist.GetListContent();
+            var section = await _globallist.GetListSection();
+            var menu = await _globallist.GetListMenu();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             return View();
         }
 
@@ -78,6 +125,13 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
             var section = await _globallist.GetListSection();
             var menu = await _globallist.GetListMenu();
             var Model = new Article();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             try
             {
                 var artikel = Convert.ToInt64(ArtikelKe);
@@ -99,7 +153,7 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
                     Model.Artikel = (from a in content.Where(ss => ss.status).ToList()
                                      join b in section.Where(ss => ss.status && ss.section_id == 12).ToList() on a.section_id equals b.section_id
                                      join c in menu.Where(ss => ss.status).ToList() on b.menu_id equals c.menu_id
-                                     where a.content_id != artikel
+                                     //where a.content_id != artikel
                                      select new Article
                                      {
                                          id = a.content_id.ToString(), // IdArtikel
@@ -133,6 +187,13 @@ namespace CMS_Dashboard_v1.Areas.LandingPage.Controllers
             var section = await _globallist.GetListSection();
             var menu = await _globallist.GetListMenu();
             var ModelArtike = new List<Article>();
+
+            ViewData["Beranda"] = menu[0].menu_name;
+            ViewData["Produk"] = menu[1].menu_name;
+            ViewData["Artikel"] = menu[2].menu_name;
+            ViewData["TentangKami"] = menu[3].menu_name;
+            ViewData["HubungiKami"] = menu[4].menu_name;
+
             try
             {
                 if (content != null && section != null && menu != null)

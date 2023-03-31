@@ -30,7 +30,7 @@
                      class="container hidden lg:block bg-green-100 lg:bg-transparent pt-85 lg:pt-0 font-medium text-greyscale-80 text-mb-large lg:text-db-large right-0 top-0 text-left fixed h-full w-3/4 flex flex-col lg:relative lg:w-auto lg:h-auto">
                     <ul class="list-none list-pl flex flex-col lg:flex-row gap-x-6 gap-y-6 items-center">
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">Beranda</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Index">@ViewData["Beranda"]</a>
                         </li>
                         <li class="dropdown inline-block relative">
                             <div class="cursor-pointer w-fit mx-auto hover:text-blue-400 hover:font-bold">
@@ -45,13 +45,13 @@
                 </ul>
                 </li>
                         <li class="text-blue-400 font-bold rounded-full border border-blue-400 px-4 py-2">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">Artikel</a>
+                                                   <a asp-area="LandingPage" asp-controller="Habaku" asp-action="Artikel">@ViewData["Artikel"]</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">Tentang Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="TentangKami">@ViewData["TentangKami"]</a>
                         </li>
                         <li class="hover:text-blue-400 hover:font-bold hover:rounded-full hover:border hover:border-blue-400 hover:px-4 hover:py-2">
-                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">Hubungi Kami</a>
+                            <a asp-area="LandingPage" asp-controller="Habaku" asp-action="HubungiKami">@ViewData["HubungiKami"]</a>
                         </li>
                     </ul>
                 </div>

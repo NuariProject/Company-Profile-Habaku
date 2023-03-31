@@ -6,8 +6,7 @@ namespace CMS_API.ConfigurationDB
     {
         public static class ConnectionStrings
         {
-            public const string HABAKU_CONNECTION = "Data Source=FR-000-448\\SQLEXPRESS;Initial Catalog=Haba;Integrated Security=True;TrustServerCertificate=True";/*DB Farhan*/
-            //public const string HABAKU_CONNECTION = "Data Source=localhost;Initial Catalog=HabakuDB;Integrated Security=True;TrustServerCertificate=True";/*DB Bagas*/
+            public const string HABAKU_CONNECTION = "Data Source=localhost;Initial Catalog=HabakuDB;Integrated Security=True;TrustServerCertificate=True";/*DB Bagas*/
 
         }
         public static class Query
@@ -37,8 +36,8 @@ namespace CMS_API.ConfigurationDB
 
             #region Content
             public const string INSERT_CONTENT = "INSERT INTO [Content] (section_id, header, title, description, image, url, status, created_at, created_by) VALUES (@section_id, @header, @title, @description, @image, @url, @status, @created_at, @created_by);";
-            public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status FROM [Content] ORDER BY content_id ASC;";
-            public const string SELECT_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status FROM [Content] WHERE content_id = @content_id;";
+            public const string SELECT_ALL_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status, created_at FROM [Content] ORDER BY content_id ASC;";
+            public const string SELECT_CONTENT = "SELECT content_id, section_id, header, title, description, image, url, status, created_at FROM [Content] WHERE content_id = @content_id;";
             public const string UPDATE_CONTENT = "UPDATE [Content] SET section_id = @section_id, header = @header, title = @title, description = @description, image = @image, url = @url, status = @status, modified_at = @modified_at, modified_by = @modified_by WHERE content_id = @content_id;";
 
             #endregion
