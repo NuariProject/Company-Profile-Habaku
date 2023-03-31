@@ -12,7 +12,7 @@
  Target Server Version : 15002000 (15.00.2000)
  File Encoding         : 65001
 
- Date: 25/03/2023 14:37:48
+ Date: 31/03/2023 20:58:37
 */
 
 
@@ -51,7 +51,7 @@ GO
 
 INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'1', N'1', N'Solusi Belanja Hemat dan Mudah', N'Ini Tittle', N'Membantu pengadaan barang para pelaku usaha di bidang kesehatan dan kecantikan.
 
-Dapatkan pengalaman belanja terbaik untuk kebutuhan usaha Anda bersama kami!', N'/cover/img/941958c9-59b8-403a-bc20-273a9c7899ea_hero-homepage-desk-illustration.png', N'https://google.com', N'2023-03-22 19:49:17.883', N'bagas.tampan@projectkita.id', N'2023-03-24 00:47:53.250', N'bagas.tampan@projectkita.id', N'1')
+Dapatkan pengalaman belanja terbaik untuk kebutuhan usaha Anda bersama kami!', N'/cover/img/c51235bf-6213-43b2-b737-c06b9356f991_hero-homepage-desk-illustration.png', N'https://google.com', N'2023-03-22 19:49:17.883', N'bagas.tampan@projectkita.id', N'2023-03-31 00:44:07.340', N'bagas.tampan@projectkita.id', N'1')
 GO
 
 INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'2', N'2', N'Apa itu Habaku?', N'Ini Tittle Section 2', N'Habaku - B2B Marketplace bagi pelaku usaha retail di bidang kesehatan dan kecantikan yang menawarkan kemudahan serta fleksibilitas dalam memperoleh produk berkualitas asli dengan harga yang bersahabat.
@@ -80,7 +80,7 @@ GO
 INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'9', N'4', N'Apa Kata Mereka?', N'Person 4', N'Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed felis libero mi aliquam sed a neque bibendum semper.', N'/cover/img/34943116-52f1-46aa-bdeb-6dcc33ba83a2_3d-avatar-1.png', N'https://google.com', N'2023-03-24 01:39:35.450', N'bagas.tampan@projectkita.id', N'2023-03-24 01:43:37.510', N'bagas.tampan@projectkita.id', N'1')
 GO
 
-INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'10', N'4', N'Apa Kata Mereka?', N'Person 5', N'Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed felis libero mi aliquam sed a neque bibendum semper.', N'/cover/img/181bcaba-0c9c-46be-a399-74a0f38195e8_3d-avatar-2.png', N'https://google.com', N'2023-03-24 01:39:35.450', N'bagas.tampan@projectkita.id', N'2023-03-24 01:43:37.510', N'bagas.tampan@projectkita.id', N'1')
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'10', N'4', N'Apa Kata Mereka?', N'Person 5', N'Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed felis libero mi aliquam sed a neque bibendum semper.', N'/cover/img/0864ea0e-b1be-40ee-89f3-bbb69589ac9d_3d-avatar-2.png', N'https://google.com', N'2023-03-24 01:39:35.450', N'bagas.tampan@projectkita.id', N'2023-03-31 00:45:55.877', N'bagas.tampan@projectkita.id', N'1')
 GO
 
 INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'11', N'4', N'Apa Kata Mereka?', N'Person 6', N'Lorem ipsum dolor sit amet consectetur. Facilisi vitae tortor lorem ornare. Ut sagittis augue quam sagittis et velit pulvinar rutrum aliquet. Sed at at ultricies gravida. Sed felis libero mi aliquam sed a neque bibendum semper.', N'/cover/img/77a4add0-5b6f-426b-bd52-3b12dcc9913e_3d-avatar-3.png', N'https://google.com', N'2023-03-24 01:39:35.450', N'bagas.tampan@projectkita.id', N'2023-03-24 01:43:37.510', N'bagas.tampan@projectkita.id', N'1')
@@ -139,6 +139,24 @@ GO
 INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'28', N'21', N'Ajukan Pertanyaan', N'sma.habaku@gmail.com', N'Jika Anda memiliki pertanyaan atau kendala, silakan hubungi kami melalui:', N'/cover/img/d1acef4e-4b0d-4056-a76b-42afc15de458_no-image.png', N'https://mailto:sma.habaku@gmail.com', N'2023-03-25 13:35:53.283', N'bagas.tampan@projectkita.id', NULL, NULL, N'1')
 GO
 
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'29', N'11', N'Cerita Teman Habaku', N'Ini Tittle Section 1', N'Temukan koleksi cerita serta tips berharga seputar dunia kesehatan dan kecantikan.', N'/cover/img/23bf1ea4-039e-49ad-918a-61e414791dc9_hero-artikel-desk-illustration.png', N'https://www.google.com', N'2023-03-28 23:32:59.817', N'bagas.tampan@projectkita.id', NULL, NULL, N'1')
+GO
+
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'30', N'12', N'Berstamina Saat Berpuasa untuk Penderita Maag', N'Ramadan', N'<p>Pada saat menjalankan puasa di bulan Ramadhan dan memiliki riwayat sakit maag, maka mengkonsumsi VItamin B, Melatonin, Pepsin dan sebagainya untuk melawan rasa nyeri pada lambung adalah sebuah keharusan. Saat mendekati Ramadhan tak sedikit orang mempertanyakan ‘bolehkah atau amankah pengidap asam lambung menjalankan Puasa?’, karena selama berpuasa, seseorang harus menahan haus dan lapar dari subuh sampai maghrib.<br><br>Hal tersebut terkadang membuat banyak orang khawatir. Pasalnya, puasa dianggap dapat membuat gejala asam lambung kambuh atau memperburuk kondisi tubuhnya. Lantas, apakah pengidap asam lambung masih bisa berpuasa?<br><br><strong>Bolehkah Pengidap Asam Lambung Berpuasa?</strong><br>Meskipun tak mudah menjalaninya, pada dasarnya semua penderita GERD boleh berpuasa. Hal ini diperkuat oleh hasil penelitian Radhiyatam M, dkk yang dimana penelitian ini melibatkan 130 penderita GERD yang dibagi dalam 2 kelompok, yaitu kelompok penderita GERD yang berpuasa Ramadan dan kelompok GERD tidak berpuasa Ramadan. Pasien dievaluasi menggunakan GERD-Q. Hasil penelitian menunjukan pada pasien GERD yang menjalani puasa Ramadan, terdapat penurunan gejala klinis dibandingkan dengan pasien GERD yang tidak berpuasa. (The Effects of Ramadan Fasting on Clinical Symptoms in Patients with Gastroesophageal Reflux Disease,2016)<br><br>Penyebabnya adalah selama puasa, mereka mengalami perubahan pola makan dan gaya hidup karena ketika berpuasa mereka dituntut untuk tidak mengonsumsi makanan yang tidak sehat setiap waktu seperti gorengan, kpi dan makanan berlemak tinggi karena makanan tersebut adalah pemicu utama penyakit asam lambung/ GERD. Adapun kebiasaan merokok dan minum alkohol yang berkurang serta pembatasan asupan makanan dari tiga kali menjadi dua kali juga ikut mengurangi jumlah kalori yang masuk ke dalam tubuh.<br><br><strong>Tips Nyaman Berpuasa!</strong><br><strong>1. Jangan Lewatkan Sahur</strong><br>Karena menahan lapar selama kurang lebih 12 jam, pastikan untuk tidak melewatkan sahur demi mencegah naiknya asam lambung<br><br><strong>2. Segerakan Berbuka</strong><br>Mulailah berbuka dengan camilan sehat yang manis, seperti kurma sebanyak tiga buah setelah 15 - 30 menit kemudian lanjutkan dengan makanan berat<br><br><strong>3. Perhatikan Asupan Makanan</strong><br>Hindari makanan berlemak tinggi, asam, bersoda, santan, berkafein dan tomat serta bawang. Alangkah baik memilih makanan yang dikukus, rebus ataupun dipanggang<br><br><strong>4. Minum VItamin, Suplemen dan Obat Maag</strong><br>Konsumsi obat maag pada saat 15 menit sebelum makan sahur kemudian disusul Vitamin dan Suplemen setelah makan sahur. Hindari Vitamin C.<br><br>Anda dapat melengkapi toko/apotek dengan produk obat pereda nyeri, vitamin dan suplemen serta obat-obatan lainnya, melalui aplikasi HABAKU dengan mendapatkan berbagai macam program promo khusus!</p>', N'/cover/img/0fea415b-e226-4833-835d-426e1f0736f3_img-artikel-1.png', N'', N'2023-03-28 23:39:03.363', N'bagas.tampan@projectkita.id', N'2023-03-31 01:04:05.983', N'bagas.tampan@projectkita.id', N'1')
+GO
+
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'31', N'12', N'Kulit Sehat saat Ramadan', N'Ramadan', N'<p>Kulit sehat saat puasa bukan hal yang mustahil jika kesehatan kulit dan tubuh terjaga walaupun asupan nutrisi dan mineral terbatas selama menjalani ibadah tersebut. Tubuh manusia terdiri dari 60 persen air dan setiap sistem tubuh bergantung pada air, ketika berpuasa kulit akan terasa sangat kering karena kurangnya cairan. Maka dari itu, HABAKU akan memberikan tips kulit sehat saat berpuasa!<br><br>Ada beberapa tips sederhana yang dapat diterapkan untuk menjaga kesehatan kulit selama berpuasa.<br><strong>Apa saja tips yang dapat diterapkan?</strong><br><br><strong>1. Banyak Minum Air</strong><br>Banyak minum air saat sahur dan iftar adalah salah satu kunci agar kulit terdehidrasi. Pilih makanan yang mengandung banyak air seperti sup dan buah-buahan.<br><br><strong>2. Jauhi Soda dan Kafein</strong><br>Soda dan kafein dapat menyedot mineral yang diperlukan dalam tubuh sehingga dapat menimbulkan efek negatif pada kulit. Selain itu, minuman tersebut terbukti mudah membuat tubuh cepat dehidrasi.<br><br><strong>3. Pakai SPF dan Moisturizer</strong><br>Paparan sinar matahari saat berpuasa lebih bahaya dari biasanya! Kulit pun lebih rentan mengalami dehidrasi dan lebih kering yang juga dapat diperburuk oleh paparan sinar matahari. Oleh sebab itu, pastikan untuk menggunakan Sunscreen SPF dan Moisturizer sebelum beraktivitas di luar agar melindungi kulit dari sinar UV dan menjaga kelembabannya.<br><br><strong>4. Makan Makanan Sehat dan Hindari Makanan Berlemak</strong><br>Pastikan banyak mengonsumsi sayur dan buah yang kaya akan vitamin A, B dan C ketika sahur maupun iftar dan hindari makanan yang mengandung banyak minyak dan santan.<br><br><strong>5. Konsumsi Suplemen</strong><br>Selain memperhatikan asupan tubuh, ada baiknya untuk mengkonsumsi vitamin dan suplemen untuk membantu merawat dan mendapatkan kondisi kulit yang sehat dan ideal. Pada hasil penelitian terdapat suplemen khusus kulit yang mengandung berbagai jenis vitamin, mineral, dan asam amino terbukti dapat memberi pengaruh baik pada kesehatan kulit. (The Journal of Clinical and Aesthetic Dermatology, 2006)<br><br>Anda dapat melengkapi toko/apotek dengan produk skincare, body care hingga oral care dan produk personal care lainnya, melalui aplikasi HABAKU dengan mendapatkan berbagai macam program promo khusus!</p>', N'/cover/Artikel/d650878f-452a-4bb0-8fa8-185b6d054a05_img-artikel-2.png', N'https://google.com', N'2023-03-29 23:50:40.397', N'bagas.tampan@projectkita.id', N'2023-03-28 23:58:03.977', N'bagas.tampan@projectkita.id', N'1')
+GO
+
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'32', N'12', N'Nutrisi Ibu Hamil dan Menyusui selama Berpuasa', N'Ramadan', N'<p>Ibu hamil tidak diwajibkan untuk melakukan ibadah puasa di bulan Ramadan. Namun ibu hamil memiliki pilihan untuk tetap melakukan ibadah puasa selama merasa kondisi fisiknya mampu dan tetap cermat dalam memenuhi kebutuhan nutrisi selama berpuasa.&nbsp;<br><br>Jika Ibu memutuskan untuk ikut melakukan ibadah puasa di bulan Ramadan saat menjalani kehamilan, Ibu sangat disarankan untuk mengonsumsi makanan bernutrisi seimbang, saat berbuka puasa dan sahur. Dengan asupan nutrisi yang terpenuhi dengan baik, Ibu dapat mencegah beberapa gangguan kesehatan yang umum dialami ibu hamil saat berpuasa, yaitu:</p><p>&nbsp;</p><ul><li>Konstipasi</li><li>Sakit Kepala</li><li>Dehidrasi</li><li>Gangguan Pencernaan</li></ul><p><br>Pada saat berpuasa, ibu perlu mewaspadai terjadinya dehidrasi. Rasa haus atau warna urin yang gelap merupakan tanda awal terjadinya dehidrasi. Gejala lainnya adalah pusing, kelelahan, mulut kering, atau frekuensi berkemih yang sangat jarang. Jika seorang ibu merasa pusing yang berat atau badannya terasa lemah, yang tidak berkurang dengan istirahat, sebaiknya puasanya dibatalkan dan sang ibu segera mengonsumsi cairan dan makanan dalam jumlah cukup serta mengabari petugas kesehatan.&nbsp;<br><br>Untuk menurunkan risiko terjadinya dehidrasi, ada beberapa hal yang dapat ibu lakukan:&nbsp;</p><ol><li>Minum cukup air putih, sekitar 2,5 – 3 liter per hari saat sahur dan berbuka</li><li>Menempatkan diri untuk berada di tempat yang sejuk, batasi atau hindari berada di tempat yang panas</li><li>Beraktivitas seperlunya, hindari aktivitas fisik yang berat</li><li>Cukup mengonsumsi makanan yang memiliki kandungan air tinggi, seperti buah dan sayur. Batasi mengkonsumsi terlalu banyak makanan asin saat sahur, karena akan membuat ibu merasa semakin haus</li></ol><p><br>Serupa dengan ibu hamil yang berpuasa, untuk ibu yang menyusui, dirinya perlu fit secara fisik dan mental, konsumsi makanan dengan gizi seimbang, minum yang cukup serta istirahat yang memadai agar proses menyusui tetap berjalan lancar. Seorang ibu juga perlu memastikan dirinya dapat memenuhi syarat untuk keberhasilan menyusui, di antaranya menghindari stress, menggendong bayi secara nyaman serta mampu membantu bayi untuk menyusu pada posisi yang benar. Ibu yang menyusui perlu memastikan dirinya mengkonsumsi diet gizi seimbang dengan ekstra 500 Kalori sebagai tambahan dari total kebutuhan harian 2000 Kalori untuk rerata wanita dewasa. Buah dan sayur dalam jumlah yang cukup sangat dianjurkan.&nbsp;<br><br>Jika ibu menyusui mulai mengalami tanda dehidrasi, sebaiknya dirinya membatalkan puasa. Selanjutnya, meskipun puasa seharusnya tidak mempengaruhi kualitas dan kuantitas ASI, tetapi bila seorang ibu khawatir bayinya tidak mendapat cukup ASI, khususnya bila bayi menangis terus menerus, frekuensi berkemihnya menurun (ditandai dengan jumlah popok basah yang berkurang) dan berat badannya menurun, sang ibu boleh tidak melanjutkan puasanya dan segera menghubungi dokter atau konselor laktasi.&nbsp;<br><br>Pada prinsipnya, seorang ibu hamil ataupun menyusui tetap dapat menjalankan ibadah puasa. Hal yang penting adalah mengoptimalkan asupan makanan dan minuman selama sahur dan berbuka, melakukan penyesuaian aktivitas, konsumsi vitamin dan suplemen tambahan serta mewaspadai tanda bahaya yang dapat terjadi.&nbsp;<br><br><i>Referensi</i></p><p>&nbsp;</p><ol><li><i>Joosoph J, Abu J, Yu SL. A survey of fasting during pregnancy. Singapore Med J. 2004 Dec;45(12):583-6.</i></li><li><i>Hamad Medical Corporation. Advice for pregnant and breastfeeding women before fasting in Ramadan. Available from:https://www.hamad.qa/EN/your%20health/Ramadan%20Health/Health%20Information/Pages/Breastfeeding-and-Pregnancy.aspx [cited 16 Mar 2020].</i></li><li><i>British Nutrition Foundation. Ramadan and pregnancy. Available from: https://www.nutrition.org.uk/healthyliving/nutritionforpregnancy/ramadanpregnancy.html [cited 30 Mar 2020].</i></li><li><i>World Health Organization Regional Office for the Eastern Mediterranean. Dietary recommendations for the month of Ramadan. Available from: http://www.emro.who.int/nutrition/nutrition-infocus/dietary-recommendations-for-the-month-of-ramadan.html [cited 30 Mar 2020].</i></li></ol><p><br>Anda dapat melengkapi toko/apotek dengan produk vitamin dan suplemen serta obat-obatan lainnya, melalui aplikasi HABAKU dengan mendapatkan berbagai macam program promo khusus!</p>', N'/cover/Artikel/1e4c809a-bccb-49f9-bbd3-6044094ee623_img-artikel-3.png', N'', N'2023-03-30 23:54:18.580', N'bagas.tampan@projectkita.id', N'2023-03-31 17:46:14.147', N'bagas.tampan@projectkita.id', N'1')
+GO
+
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'33', N'2', N'Apa itu Habaku?', N'Ini Tittle Section 2', N'Ini Description Section 2', N'', N'https://www.ggg.com', N'2023-03-31 00:37:50.723', N'bagas.tampan@projectkita.id', N'2023-03-31 00:39:45.383', N'bagas.tampan@projectkita.id', N'0')
+GO
+
+INSERT INTO [dbo].[Content] ([content_id], [section_id], [header], [title], [description], [image], [url], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'34', N'12', N'Judul Artikel', N'Test Category', N'<p><strong>Ini Description Bold</strong></p><p><i>Ini Description Bold</i></p><p><i><strong>Ini Description Bold Italic</strong></i></p>', N'/cover/Artikel/c4c251f0-c627-42c2-8f7d-46cd76725bd5_img-artikel-detail.png', N'', N'2023-03-31 00:55:18.490', N'bagas.tampan@projectkita.id', N'2023-03-31 00:59:18.760', N'bagas.tampan@projectkita.id', N'0')
+GO
+
 SET IDENTITY_INSERT [dbo].[Content] OFF
 GO
 
@@ -171,19 +189,19 @@ GO
 SET IDENTITY_INSERT [dbo].[Menu] ON
 GO
 
-INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'1', N'Beranda', N'1', N'2023-03-04 11:51:29.220', N'Bagas Luar Biasa Tampan', NULL, NULL)
+INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'1', N'Beranda', N'1', N'2023-03-04 11:51:29.220', N'Bagas Luar Biasa Tampan', N'2023-03-31 19:23:24.717', N'admin.habaku@habaku.id')
 GO
 
-INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'2', N'Produk', N'1', N'2023-03-04 11:59:49.590', N'Bagas Yang Paling Tampan', N'2023-03-12 22:41:40.333', N'bagas.tampan@projectkita.id')
+INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'2', N'Produk', N'1', N'2023-03-04 11:59:49.590', N'Bagas Yang Paling Tampan', N'2023-03-31 19:23:36.867', N'admin.habaku@habaku.id')
 GO
 
-INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'3', N'Artikel', N'1', N'2023-03-04 13:40:22.387', N'Bagas Mempesona', NULL, NULL)
+INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'3', N'Artikel', N'1', N'2023-03-04 13:40:22.387', N'Bagas Mempesona', N'2023-03-31 19:23:20.010', N'admin.habaku@habaku.id')
 GO
 
-INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'4', N'Tentang Kami', N'1', N'2023-03-04 15:04:57.567', N'Bagas Wijaya', N'2023-03-12 21:17:50.060', N'bagas.tampan@projectkita.id')
+INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'4', N'Tentang Kami', N'1', N'2023-03-04 15:04:57.567', N'Bagas Wijaya', N'2023-03-31 19:23:41.757', N'admin.habaku@habaku.id')
 GO
 
-INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'5', N'Hubungi Kami', N'1', N'2023-03-14 13:50:00.000', N'Bagas GG', NULL, NULL)
+INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'5', N'Hubungi Kami', N'1', N'2023-03-14 13:50:00.000', N'Bagas GG', N'2023-03-31 19:23:31.880', N'admin.habaku@habaku.id')
 GO
 
 INSERT INTO [dbo].[Menu] ([menu_id], [menu_name], [status], [created_at], [created_by], [modified_at], [modified_by]) VALUES (N'6', N'Detail Artikel', N'1', N'2023-03-14 14:04:03.000', N'Bagas GG', NULL, NULL)
@@ -224,10 +242,10 @@ GO
 SET IDENTITY_INSERT [dbo].[Section] ON
 GO
 
-INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'1', N'1', N'Section 1', N'1', N'2023-03-11 13:04:29.253', N'Bagas Luar Biasa', N'2023-03-12 11:17:58.283', N'Bagas Tampan', N'1', N'1')
+INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'1', N'1', N'Section 1', N'1', N'2023-03-11 13:04:29.253', N'Bagas Luar Biasa', N'2023-03-31 00:16:28.913', N'bagas.tampan@projectkita.id', N'1', N'1')
 GO
 
-INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'2', N'1', N'Section 2', N'2', N'2023-03-12 11:15:53.220', N'Bagas Tampan', NULL, NULL, N'1', N'1')
+INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'2', N'1', N'Section 2', N'2', N'2023-03-12 11:15:53.220', N'Bagas Tampan', N'2023-03-31 00:36:18.090', N'bagas.tampan@projectkita.id', N'2', N'1')
 GO
 
 INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'3', N'1', N'Section 3', N'3', N'2023-03-12 11:16:17.440', N'Bagas Tampan', N'2023-03-24 13:22:20.533', N'bagas.tampan@projectkita.id', N'3', N'1')
@@ -257,7 +275,7 @@ GO
 INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'11', N'3', N'Section 1', N'1', N'2023-03-12 11:15:53.220', N'Bagas Tampan', N'2023-03-14 23:35:37.823', N'bagas.tampan@projectkita.id', N'1', N'1')
 GO
 
-INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'12', N'3', N'Section 2', N'2', N'2023-03-12 11:16:17.440', N'Bagas Tampan', NULL, NULL, N'1', N'1')
+INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'12', N'3', N'Section 2', N'2', N'2023-03-12 11:16:17.440', N'Bagas Tampan', N'2023-03-28 23:35:04.817', N'bagas.tampan@projectkita.id', N'18', N'1')
 GO
 
 INSERT INTO [dbo].[Section] ([section_id], [menu_id], [section_name], [section_number], [created_at], [created_by], [modified_at], [modified_by], [section_approve], [status]) VALUES (N'13', N'6', N'Section 1', N'1', N'2023-03-14 13:42:47.000', N'Bagas Tampan', NULL, NULL, N'1', N'1')
@@ -321,13 +339,13 @@ GO
 SET IDENTITY_INSERT [dbo].[User] ON
 GO
 
-INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'1', N'bagas.tampan@projectkita.id', N'Admin123', N'SuperAdmin', N'2023-03-09 20:29:44.300', N'Bagas Amazing', N'2023-03-09 21:57:59.440', N'string', N'1')
+INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'4', N'admin.habaku@gmail.com', N'Admin@2023', N'Admin', N'2023-03-30 23:15:27.070', N'admin.habaku', NULL, NULL, N'1')
 GO
 
-INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'2', N'Nuari Project2', N'12345678', N'Super Admin1', N'2023-03-10 00:03:14.247', N'Farhan', NULL, NULL, N'1')
+INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'5', N'bagas.tampan@projectkita.id', N'Admin123', N'SuperAdmin', N'2023-03-09 20:29:44.300', N'Bagas Amazing', N'2023-03-09 21:57:59.440', N'string', N'1')
 GO
 
-INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'3', N'Bagas Lagi', N'Admin123321', N'Hamba Allah', N'2023-03-10 00:14:19.113', N'Hamba Allah', NULL, NULL, N'1')
+INSERT INTO [dbo].[User] ([user_id], [user_name], [password], [role], [created_at], [created_by], [modified_at], [modified_by], [status]) VALUES (N'6', N'admin.habaku@habaku.id', N'Admin@123', N'Admin', N'2023-03-31 09:41:01.550', N'admin.habaku', NULL, NULL, N'1')
 GO
 
 SET IDENTITY_INSERT [dbo].[User] OFF
@@ -337,7 +355,7 @@ GO
 -- ----------------------------
 -- Auto increment value for Content
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[Content]', RESEED, 28)
+DBCC CHECKIDENT ('[dbo].[Content]', RESEED, 34)
 GO
 
 
@@ -385,7 +403,7 @@ GO
 -- ----------------------------
 -- Auto increment value for User
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[User]', RESEED, 3)
+DBCC CHECKIDENT ('[dbo].[User]', RESEED, 6)
 GO
 
 
