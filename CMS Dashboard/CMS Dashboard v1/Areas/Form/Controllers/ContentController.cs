@@ -248,7 +248,12 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
         {
             try
             {
-                if (ModelState.IsValid || model.Photos == null)
+                var content = await _globallist.GetListContent();
+
+                ModelState.Remove("Publish");
+                ModelState.Remove("Photos");
+
+                if (ModelState.IsValid)
                 {
                     if (model.Photos != null)
                     {
@@ -258,6 +263,10 @@ namespace CMS_Dashboard_v1.Areas.Form.Controllers
                         string serverfolder = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
                         await model.Photos.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+                    }
+                    else
+                    {
+                        model.imageurl = content.FirstOrDefault(ss => ss.status && ss.content_id == model.content_id).image;
                     }
 
                     var obj = new PutContentModel

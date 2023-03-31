@@ -70,9 +70,6 @@
                                         <label class="form-label" for="exampleInputText1">Image</label>
                                         <div class="input-group">
                                             <input class="form-control" accept="image/jpeg, image/png, image/gif" id="image" asp-for="Photos">
-                                            <!-- Input tersembunyi untuk mengirim nilai default bersamaan dengan form -->
-                                            <input type="hidden" asp-for="Photos" value="@Model.imageurl" />
-
                                             <button type="button" id="disable-input" class="btn btn-secondary">
                                                 <i class="fa fa-lock"></i>
                                             </button>
