@@ -28,8 +28,9 @@ To run this project locally, follow these steps:
    ```
 
 2. **Set up the database**:
-   - Ensure you have SQL Server installed. you can request in email : nuari.br@gmail.com / bagaswijaya97@gmail.com
+   - Ensure you have SQL Server installed.
    - Create a new database and update the connection string in `appsettings.json` accordingly.
+     If you need the database schema, you can contact us.
 
 3. **Restore dependencies and build the project**:
    ```bash
@@ -55,6 +56,6 @@ For any inquiries, please contact us at:
 
 ---
 
-Thank you for visiting the repository. We hope you find our application useful and welcome your feedback !
+Thank you for visiting the repository. We hope you find our application useful and welcome your feedback!
 
 ---
