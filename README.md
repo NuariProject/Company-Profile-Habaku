@@ -52,7 +52,7 @@ Once the application is running, you can access the frontend through your web br
 For any inquiries, please contact us at:
 
 - **Email 1**: nuari.br@gmail.com
-- **Email 2**: bagaswijaya97@gmail.com
+- **Email 2**: bagaswijaya256@gmail.com
 
 ---
 
